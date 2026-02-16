@@ -27,8 +27,9 @@ const links: NavLink[] = [
   aria-label="Navegación principal"
 >
   <div class="container">
-    <a href="#" class="nav-logo" aria-label="Dúo Studio Digital — Inicio">Dúo</a
-    >
+    <a href="#" class="nav-logo" aria-label="Dúo Studio Digital — Inicio">
+      <img src="/images/5.png" alt="Dúo Studio Digital" />
+    </a>
 
     <!-- Desktop links -->
     <div class="nav-links" role="menubar">
@@ -77,7 +78,7 @@ const links: NavLink[] = [
     left: 0;
     width: 100%;
     z-index: 1000;
-    padding: 1rem 0;
+    padding: 0.25rem 0;
     transition: var(--transition);
     background: rgba(254, 253, 251, 0);
   }
@@ -87,27 +88,40 @@ const links: NavLink[] = [
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     box-shadow: 0 1px 20px rgba(0, 0, 0, 0.06);
-    padding: 0.75rem 0;
+    padding: 0.2rem 0;
   }
 
   .navbar .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
   }
 
   /* Logo */
   .nav-logo {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    color: var(--olive);
+    display: flex;
+    align-items: center;
     transition: var(--transition);
+  }
+
+  .nav-logo img {
+    height: 80px;
+    width: auto;
+    transition: var(--transition);
+  }
+
+  .nav-logo:hover img {
+    transform: scale(1.05);
   }
 
   /* Desktop links */
   .nav-links {
     display: none;
     gap: 2rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .nav-links a {

@@ -1,0 +1,369 @@
+---
+/**
+ * Hero — above the fold, first impression
+ * Ley de Prägnanz: clean visual hierarchy
+ * Efecto estético-usabilidad: polished visuals build trust
+ * Ley de Fitts: large touch targets on CTAs
+ */
+---
+
+<section class="hero" id="hero">
+  <!-- Decorative shapes -->
+  <div class="hero-shapes" aria-hidden="true">
+    <div class="hero-shape hero-shape--1"></div>
+    <div class="hero-shape hero-shape--2"></div>
+    <div class="hero-shape hero-shape--3"></div>
+  </div>
+
+  <div class="container hero__grid">
+    <!-- Copy -->
+    <div class="hero__content">
+      <div class="hero__badge">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          aria-hidden="true"
+        >
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+        </svg>
+        Agencia de Marketing Digital
+      </div>
+
+      <h1 class="hero__title">
+        Impulsamos tu marca con
+        <span class="hero__accent">estrategia</span>
+        <span class="hero__break">y creatividad</span>
+      </h1>
+
+      <p class="hero__description">
+        Somos Dúo Studio Digital, tu partner creativo. Diseñamos estrategias que
+        conectan con tu audiencia y transforman tu presencia digital en
+        resultados reales.
+      </p>
+
+      <div class="hero__actions">
+        <a href="#planes" class="btn-primary">
+          Ver planes
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
+            <path d="M5 12h14M12 5l7 7-7 7"></path>
+          </svg>
+        </a>
+        <a href="#about" class="btn-secondary">Conocenos</a>
+      </div>
+
+      <!-- Social proof -->
+      <div class="hero__stats">
+        <div class="hero__stat">
+          <span class="hero__stat-number">+50</span>
+          <span class="hero__stat-label">Clientes felices</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-number">+200</span>
+          <span class="hero__stat-label">Proyectos entregados</span>
+        </div>
+        <div class="hero__stat">
+          <span class="hero__stat-number">3+</span>
+          <span class="hero__stat-label">Años de experiencia</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desktop visual -->
+    <div class="hero__visual" aria-hidden="true">
+      <div class="hero__visual-inner">
+        <div class="hero__circle hero__circle--main">
+          <span class="hero__circle-logo">Dúo</span>
+        </div>
+        <div class="hero__circle hero__circle--accent-1"></div>
+        <div class="hero__circle hero__circle--accent-2"></div>
+        <div class="hero__circle hero__circle--accent-3"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+      160deg,
+      var(--cream-light) 0%,
+      var(--white) 40%,
+      var(--blush) 100%
+    );
+    padding: 7rem 0 4rem;
+  }
+
+  /* Radial blobs */
+  .hero::before,
+  .hero::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .hero::before {
+    top: -20%;
+    right: -20%;
+    width: 60vw;
+    height: 60vw;
+    max-width: 600px;
+    max-height: 600px;
+    background: radial-gradient(
+      circle,
+      rgba(123, 139, 62, 0.12) 0%,
+      transparent 70%
+    );
+  }
+
+  .hero::after {
+    bottom: -10%;
+    left: -10%;
+    width: 40vw;
+    height: 40vw;
+    max-width: 400px;
+    max-height: 400px;
+    background: radial-gradient(
+      circle,
+      rgba(242, 196, 206, 0.2) 0%,
+      transparent 70%
+    );
+  }
+
+  /* Floating shapes */
+  .hero-shapes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .hero-shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.3;
+  }
+
+  .hero-shape--1 {
+    width: 12px;
+    height: 12px;
+    background: var(--olive);
+    top: 20%;
+    right: 15%;
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .hero-shape--2 {
+    width: 8px;
+    height: 8px;
+    background: var(--pink-light);
+    top: 60%;
+    right: 25%;
+    animation: float 5s ease-in-out infinite 0.5s;
+  }
+
+  .hero-shape--3 {
+    width: 16px;
+    height: 16px;
+    background: var(--tan);
+    bottom: 30%;
+    right: 10%;
+    animation: float 6s ease-in-out infinite 1s;
+  }
+
+  /* Content */
+  .hero__content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(123, 139, 62, 0.1);
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--olive);
+    margin-bottom: var(--space-md);
+    animation: fadeInUp 0.8s ease forwards;
+  }
+
+  .hero__badge svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .hero__title {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: clamp(2.2rem, 7vw, 4.5rem);
+    line-height: 1.08;
+    color: var(--text-dark);
+    margin-bottom: var(--space-md);
+    animation: fadeInUp 0.8s ease 0.15s forwards;
+    opacity: 0;
+  }
+
+  .hero__accent {
+    font-family: var(--font-display);
+    color: var(--olive);
+    font-weight: 400;
+  }
+
+  .hero__break {
+    display: block;
+  }
+
+  .hero__description {
+    font-size: clamp(0.95rem, 2vw, 1.125rem);
+    color: var(--text-muted);
+    max-width: 480px;
+    line-height: 1.7;
+    margin-bottom: var(--space-lg);
+    animation: fadeInUp 0.8s ease 0.3s forwards;
+    opacity: 0;
+  }
+
+  .hero__actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    animation: fadeInUp 0.8s ease 0.45s forwards;
+    opacity: 0;
+  }
+
+  /* Stats */
+  .hero__stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-sm);
+    margin-top: var(--space-xl);
+    padding-top: var(--space-lg);
+    border-top: 1px solid rgba(196, 185, 160, 0.3);
+    animation: fadeInUp 0.8s ease 0.6s forwards;
+    opacity: 0;
+  }
+
+  .hero__stat {
+    text-align: center;
+  }
+
+  .hero__stat-number {
+    display: block;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 700;
+    color: var(--olive);
+    line-height: 1;
+  }
+
+  .hero__stat-label {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+  }
+
+  /* Desktop visual */
+  .hero__visual {
+    display: none;
+    position: relative;
+  }
+
+  .hero__visual-inner {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    max-width: 480px;
+    margin-left: auto;
+  }
+
+  .hero__circle {
+    position: absolute;
+    border-radius: 50%;
+  }
+
+  .hero__circle--main {
+    width: 75%;
+    height: 75%;
+    top: 12%;
+    left: 12%;
+    background: linear-gradient(135deg, var(--olive), var(--olive-dark));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero__circle-logo {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    color: var(--cream-light);
+  }
+
+  .hero__circle--accent-1 {
+    width: 25%;
+    height: 25%;
+    top: 0;
+    right: 5%;
+    background: var(--pink-light);
+    animation: float 5s ease-in-out infinite;
+  }
+
+  .hero__circle--accent-2 {
+    width: 15%;
+    height: 15%;
+    bottom: 8%;
+    left: 5%;
+    background: var(--tan);
+    animation: float 6s ease-in-out infinite 1s;
+  }
+
+  .hero__circle--accent-3 {
+    width: 10%;
+    height: 10%;
+    bottom: 25%;
+    right: 0;
+    background: var(--blush);
+    animation: float 4s ease-in-out infinite 0.5s;
+  }
+
+  /* --- Breakpoints --- */
+  @media (min-width: 640px) {
+    .hero__actions {
+      flex-direction: row;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: var(--space-xl);
+    }
+
+    .hero__visual {
+      display: block;
+    }
+
+    .hero__stats {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

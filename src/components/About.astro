@@ -1,0 +1,338 @@
+---
+/**
+ * About — team/brand story
+ * Efecto estético-usabilidad: polished visual area builds credibility
+ * Ley de Proximidad: values grouped in pairs
+ * Ley de Similitud: consistent value card styling
+ */
+
+interface Value {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+const values: Value[] = [
+  {
+    icon: "smile",
+    title: "Cercanía",
+    description:
+      "Trabajamos codo a codo con cada cliente, como parte de su equipo.",
+  },
+  {
+    icon: "bulb",
+    title: "Creatividad",
+    description: "Cada idea nace con propósito. Creamos contenido que enamora.",
+  },
+  {
+    icon: "pulse",
+    title: "Resultados",
+    description:
+      "Medimos todo. Cada acción está orientada a objetivos concretos.",
+  },
+  {
+    icon: "people",
+    title: "Comunidad",
+    description:
+      "No buscamos seguidores, construimos comunidades que perduran.",
+  },
+];
+---
+
+<section class="about" id="about">
+  <div class="container">
+    <div class="about__grid">
+      <!-- Image side -->
+      <div class="about__image-wrapper reveal">
+        <div class="about__image">
+          <div class="about__image-inner">
+            <span class="about__logo">Dúo</span>
+            <span class="about__sub">Studio Digital</span>
+          </div>
+        </div>
+        <!-- Floating card -->
+        <div class="about__float">
+          <div class="about__float-icon">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path
+                d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+              ></path>
+            </svg>
+          </div>
+          <div class="about__float-text">
+            <span class="about__float-number">100%</span>
+            <span class="about__float-label">Pasión por lo que hacemos</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Content side -->
+      <div class="about__content reveal reveal-delay-2">
+        <span class="section-label">Sobre nosotras</span>
+        <h2 class="section-title">
+          Somos <span>Dúo</span>, tu partner creativo
+        </h2>
+        <p class="about__text">
+          Nacimos de la pasión por el marketing digital y la creatividad. Somos
+          un equipo que cree en el poder de las marcas auténticas y en construir
+          comunidades reales. Cada proyecto es único, y por eso diseñamos
+          estrategias personalizadas que reflejan la esencia de tu negocio.
+        </p>
+
+        <div class="about__values">
+          {
+            values.map((v) => (
+              <div class="about__value">
+                <div class="about__value-icon">
+                  {v.icon === "smile" && (
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <circle cx="12" cy="12" r="10" />
+                      <path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01" />
+                    </svg>
+                  )}
+                  {v.icon === "bulb" && (
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                    </svg>
+                  )}
+                  {v.icon === "pulse" && (
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                    </svg>
+                  )}
+                  {v.icon === "people" && (
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4-4v2" />
+                      <circle cx="9" cy="7" r="4" />
+                      <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
+                    </svg>
+                  )}
+                </div>
+                <div>
+                  <h4 class="about__value-title">{v.title}</h4>
+                  <p class="about__value-desc">{v.description}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+
+        <a href="#" class="btn-primary">
+          Hablemos de tu proyecto
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            width="18"
+            height="18"
+            aria-hidden="true"
+          >
+            <path d="M5 12h14M12 5l7 7-7 7"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    padding: var(--space-2xl) 0;
+    background: var(--white);
+  }
+
+  .about__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+  }
+
+  /* Image */
+  .about__image-wrapper {
+    position: relative;
+  }
+
+  .about__image {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    background: linear-gradient(
+      135deg,
+      var(--cream) 0%,
+      var(--blush) 50%,
+      var(--pink-light) 100%
+    );
+  }
+
+  .about__image-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .about__logo {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    color: var(--olive);
+  }
+
+  .about__sub {
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--olive-dark);
+  }
+
+  /* Floating card */
+  .about__float {
+    position: absolute;
+    bottom: -1rem;
+    right: -0.5rem;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .about__float-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(123, 139, 62, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .about__float-icon svg {
+    width: 20px;
+    height: 20px;
+    color: var(--olive);
+  }
+
+  .about__float-number {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1;
+  }
+
+  .about__float-label {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+  }
+
+  /* Content */
+  .about__content .section-title {
+    margin-top: var(--space-sm);
+  }
+
+  .about__text {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: var(--space-md);
+  }
+
+  /* Values */
+  .about__values {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+  }
+
+  .about__value {
+    display: flex;
+    gap: 1rem;
+    padding: 1.25rem;
+    border-radius: var(--radius-md);
+    background: var(--cream-light);
+    transition: var(--transition);
+  }
+
+  .about__value:hover {
+    background: var(--cream);
+  }
+
+  .about__value-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .about__value-icon svg {
+    width: 20px;
+    height: 20px;
+    color: var(--olive);
+  }
+
+  .about__value-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 0.15rem;
+  }
+
+  .about__value-desc {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* Breakpoints */
+  @media (min-width: 640px) {
+    .about__values {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .about__grid {
+      grid-template-columns: 5fr 6fr;
+      align-items: center;
+    }
+  }
+</style>

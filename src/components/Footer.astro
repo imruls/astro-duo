@@ -1,0 +1,232 @@
+---
+/**
+ * Footer — site footer with brand info, links, social icons
+ * Ley de Jakob: standard footer pattern
+ * Ley de Proximidad: related links grouped under headings
+ */
+
+interface FooterColumn {
+  title: string;
+  links: { label: string; href: string }[];
+}
+
+const columns: FooterColumn[] = [
+  {
+    title: "Servicios",
+    links: [
+      { label: "Social Media", href: "#" },
+      { label: "Diseño Gráfico", href: "#" },
+      { label: "Publicidad Digital", href: "#" },
+      { label: "Branding", href: "#" },
+    ],
+  },
+  {
+    title: "Recursos",
+    links: [
+      { label: "Blog", href: "#" },
+      { label: "Ebook Gratuito", href: "#ebook" },
+      { label: "Plantillas", href: "#recursos" },
+      { label: "Masterclasses", href: "#recursos" },
+    ],
+  },
+  {
+    title: "Contacto",
+    links: [
+      {
+        label: "hola@duostudiodigital.com.ar",
+        href: "mailto:hola@duostudiodigital.com.ar",
+      },
+      { label: "WhatsApp", href: "#" },
+      { label: "Agendar llamada", href: "#" },
+    ],
+  },
+];
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <!-- Brand -->
+      <div class="footer__brand">
+        <div class="footer__logo">Dúo</div>
+        <p>
+          Tu partner creativo para impulsar tu marca en el mundo digital con
+          estrategia y autenticidad.
+        </p>
+        <div class="footer__social">
+          <a href="#" aria-label="Instagram">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"
+              ></path>
+            </svg>
+          </a>
+          <a href="#" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.55a8.28 8.28 0 004.76 1.51V6.69h-1z"
+              ></path>
+            </svg>
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"
+              ></path>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Link columns -->
+      {
+        columns.map((col) => (
+          <div class="footer__links">
+            <h4>{col.title}</h4>
+            {col.links.map((link) => (
+              <a href={link.href}>{link.label}</a>
+            ))}
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="footer__bottom">
+      <span>&copy; {new Date().getFullYear()} Dúo Studio Digital</span>
+      <span class="footer__dot" aria-hidden="true"></span>
+      <span>Todos los derechos reservados</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--text-dark);
+    color: rgba(255, 255, 255, 0.7);
+    padding: var(--space-xl) 0 var(--space-md);
+  }
+
+  .footer__top {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Brand */
+  .footer__logo {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+  }
+
+  .footer__brand p {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    max-width: 280px;
+  }
+
+  .footer__social {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+  }
+
+  .footer__social a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+  }
+
+  .footer__social a:hover {
+    background: var(--olive);
+    transform: translateY(-2px);
+  }
+
+  .footer__social a svg {
+    width: 18px;
+    height: 18px;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  /* Link columns */
+  .footer__links h4 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .footer__links a {
+    display: block;
+    font-size: 0.85rem;
+    padding: 0.35rem 0;
+    transition: var(--transition);
+  }
+
+  .footer__links a:hover {
+    color: var(--pink-light);
+    transform: translateX(4px);
+  }
+
+  /* Bottom bar */
+  .footer__bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+    font-size: 0.8rem;
+  }
+
+  .footer__dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: none;
+  }
+
+  /* Breakpoints */
+  @media (min-width: 640px) {
+    .footer__top {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .footer__top {
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+    }
+
+    .footer__bottom {
+      flex-direction: row;
+      justify-content: center;
+    }
+
+    .footer__dot {
+      display: block;
+    }
+  }
+</style>

@@ -1,0 +1,317 @@
+---
+/**
+ * Ebook — lead magnet / free resource CTA
+ * Ley de Región Común: dark bg groups the entire offer visually
+ * Principio de Doherty: microinteractions on feature hover
+ */
+
+interface EbookFeature {
+  icon: string;
+  text: string;
+}
+
+const features: EbookFeature[] = [
+  { icon: "book", text: "+40 páginas de contenido práctico" },
+  { icon: "chart", text: "Estrategias probadas con resultados" },
+  { icon: "grid", text: "Templates y calendarios editables" },
+  { icon: "info", text: "Tips exclusivos de nuestro equipo" },
+];
+---
+
+<section class="ebook" id="ebook">
+  <div class="container ebook__grid">
+    <!-- Copy -->
+    <div class="ebook__content reveal">
+      <span class="section-label ebook__label">Recurso gratuito</span>
+      <h2 class="section-title ebook__title">
+        Descargá nuestro <span>ebook</span> gratuito
+      </h2>
+      <p class="ebook__desc">
+        Aprendé las estrategias que usamos con nuestros clientes para crecer en
+        redes sociales. Una guía práctica, directa y sin relleno.
+      </p>
+
+      <div class="ebook__features">
+        {
+          features.map((f) => (
+            <div class="ebook__feature">
+              <div class="ebook__feature-icon">
+                {f.icon === "book" && (
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M4 19.5A2.5 2.5 0 016.5 17H20" />
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" />
+                  </svg>
+                )}
+                {f.icon === "chart" && (
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M12 20V10M18 20V4M6 20v-4" />
+                  </svg>
+                )}
+                {f.icon === "grid" && (
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <path d="M3 9h18M9 21V9" />
+                  </svg>
+                )}
+                {f.icon === "info" && (
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 16v-4M12 8h.01" />
+                  </svg>
+                )}
+              </div>
+              <span class="ebook__feature-text">{f.text}</span>
+            </div>
+          ))
+        }
+      </div>
+
+      <a href="#" class="ebook__cta">
+        Descargar gratis
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          width="18"
+          height="18"
+          aria-hidden="true"
+        >
+          <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"
+          ></path>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Mockup -->
+    <div class="ebook__mockup reveal reveal-delay-2">
+      <div class="ebook__book" aria-hidden="true">
+        <span class="ebook__book-title">Dúo</span>
+        <span class="ebook__book-sub">Guía de Marketing Digital</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ebook {
+    padding: var(--space-2xl) 0;
+    background: var(--olive);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ebook::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -30%;
+    width: 80vw;
+    height: 80vw;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.05) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+
+  /* Label & title overrides for dark bg */
+  .ebook__label {
+    color: var(--pink-light);
+  }
+
+  .ebook__label::before {
+    background: var(--pink-light);
+  }
+
+  .ebook__title {
+    color: var(--white);
+  }
+
+  .ebook__title span {
+    color: var(--pink-light);
+  }
+
+  .ebook__desc {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.7;
+    max-width: 480px;
+    margin-bottom: var(--space-lg);
+  }
+
+  /* Features grid */
+  .ebook__features {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+  }
+
+  .ebook__feature {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    backdrop-filter: blur(4px);
+    transition: var(--transition);
+  }
+
+  .ebook__feature:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateX(4px);
+  }
+
+  .ebook__feature-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    background: rgba(242, 196, 206, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .ebook__feature-icon svg {
+    width: 18px;
+    height: 18px;
+    color: var(--pink-light);
+  }
+
+  .ebook__feature-text {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  /* CTA button */
+  .ebook__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: var(--pink-light);
+    color: var(--olive-deep);
+    border-radius: var(--radius-full);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: var(--transition);
+    box-shadow: 0 4px 20px rgba(242, 196, 206, 0.3);
+  }
+
+  .ebook__cta:hover {
+    background: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(242, 196, 206, 0.4);
+  }
+
+  /* Book mockup */
+  .ebook__mockup {
+    margin-top: var(--space-xl);
+    display: flex;
+    justify-content: center;
+  }
+
+  .ebook__book {
+    width: 200px;
+    height: 270px;
+    background: linear-gradient(
+      135deg,
+      var(--cream-light) 0%,
+      var(--blush) 100%
+    );
+    border-radius: 4px 16px 16px 4px;
+    box-shadow:
+      -6px 6px 20px rgba(0, 0, 0, 0.25),
+      inset -2px 0 8px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    position: relative;
+    transform: perspective(800px) rotateY(-8deg);
+    transition: var(--transition-slow);
+  }
+
+  .ebook__book:hover {
+    transform: perspective(800px) rotateY(-2deg) translateY(-8px);
+  }
+
+  .ebook__book::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 8px;
+    height: 100%;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.15), transparent);
+    border-radius: 4px 0 0 4px;
+  }
+
+  .ebook__book-title {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--olive);
+    text-align: center;
+    padding: 0 1.5rem;
+  }
+
+  .ebook__book-sub {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* Breakpoints */
+  @media (min-width: 640px) {
+    .ebook__features {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .ebook__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: var(--space-xl);
+    }
+
+    .ebook__mockup {
+      margin-top: 0;
+      justify-content: flex-end;
+    }
+
+    .ebook__book {
+      width: 260px;
+      height: 350px;
+    }
+  }
+</style>

@@ -58,29 +58,13 @@
         </a>
         <a href="#about" class="btn-secondary">Conocenos</a>
       </div>
-
-      <!-- Social proof -->
-      <div class="hero__stats">
-        <div class="hero__stat">
-          <span class="hero__stat-number">+50</span>
-          <span class="hero__stat-label">Clientes felices</span>
-        </div>
-        <div class="hero__stat">
-          <span class="hero__stat-number">+200</span>
-          <span class="hero__stat-label">Proyectos entregados</span>
-        </div>
-        <div class="hero__stat">
-          <span class="hero__stat-number">3+</span>
-          <span class="hero__stat-label">Años de experiencia</span>
-        </div>
-      </div>
     </div>
 
     <!-- Desktop visual -->
     <div class="hero__visual" aria-hidden="true">
       <div class="hero__visual-inner">
         <div class="hero__circle hero__circle--main">
-          <span class="hero__circle-logo">Dúo</span>
+          <img src="/images/2.png" alt="Dúo" class="hero__circle-image" />
         </div>
         <div class="hero__circle hero__circle--accent-1"></div>
         <div class="hero__circle hero__circle--accent-2"></div>
@@ -249,37 +233,6 @@
     opacity: 0;
   }
 
-  /* Stats */
-  .hero__stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-sm);
-    margin-top: var(--space-xl);
-    padding-top: var(--space-lg);
-    border-top: 1px solid rgba(196, 185, 160, 0.3);
-    animation: fadeInUp 0.8s ease 0.6s forwards;
-    opacity: 0;
-  }
-
-  .hero__stat {
-    text-align: center;
-  }
-
-  .hero__stat-number {
-    display: block;
-    font-size: clamp(1.5rem, 4vw, 2rem);
-    font-weight: 700;
-    color: var(--olive);
-    line-height: 1;
-  }
-
-  .hero__stat-label {
-    display: block;
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    margin-top: 0.25rem;
-  }
-
   /* Desktop visual */
   .hero__visual {
     display: none;
@@ -290,7 +243,7 @@
     position: relative;
     width: 100%;
     aspect-ratio: 1;
-    max-width: 480px;
+    max-width: 800px;
     margin-left: auto;
   }
 
@@ -300,20 +253,20 @@
   }
 
   .hero__circle--main {
-    width: 75%;
-    height: 75%;
-    top: 12%;
-    left: 12%;
-    background: linear-gradient(135deg, var(--olive), var(--olive-dark));
+    width: 95%;
+    height: 95%;
+    top: 2.5%;
+    left: 2.5%;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
   }
 
-  .hero__circle-logo {
-    font-family: var(--font-display);
-    font-size: 4rem;
-    color: var(--cream-light);
+  .hero__circle-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .hero__circle--accent-1 {
@@ -360,10 +313,6 @@
 
     .hero__visual {
       display: block;
-    }
-
-    .hero__stats {
-      grid-column: 1 / -1;
     }
   }
 </style>

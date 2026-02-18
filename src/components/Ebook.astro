@@ -1,10 +1,4 @@
 ---
-/**
- * Ebook — lead magnet / free resource CTA
- * Ley de Región Común: dark bg groups the entire offer visually
- * Principio de Doherty: microinteractions on feature hover
- */
-
 interface EbookFeature {
   icon: string;
   text: string;
@@ -13,8 +7,54 @@ interface EbookFeature {
 const features: EbookFeature[] = [
   { icon: "book", text: "+40 páginas de contenido práctico" },
   { icon: "chart", text: "Estrategias probadas con resultados" },
-  { icon: "grid", text: "Templates y calendarios editables" },
+  { icon: "rocket", text: "Plan de acción de 4 semanas" },
   { icon: "info", text: "Tips exclusivos de nuestro equipo" },
+];
+
+interface EbookReview {
+  name: string;
+  user: string;
+  text: string;
+  stars: number;
+}
+
+const reviews: EbookReview[] = [
+  {
+    name: "German",
+    user: "@vitalmeals.arg",
+    text: "Por fin entendí qué publicar y por qué. Dejé de subir cosas al azar y empecé a tener orden.",
+    stars: 5,
+  },
+  {
+    name: "Ornella",
+    user: "@nutri.ocolangelo",
+    text: "Es práctico de verdad. Lo leí y ya esa semana pude aplicarlo en mis redes.",
+    stars: 5,
+  },
+  {
+    name: "Lucía Fernández",
+    user: "Diseñadora Freelance",
+    text: "Me ayudó a organizar mi estrategia de contenido. El calendario editorial es súper útil.",
+    stars: 5,
+  },
+  {
+    name: "Ignacio",
+    user: "@mignoliperformance",
+    text: "Los recursos editables valen más que el ebook. Me ahorraron horas de trabajo",
+    stars: 5,
+  },
+  {
+    name: "Karina",
+    user: "@mesalibre.ok",
+    text: "Ideal si sentís que hacés mucho en redes pero no ves resultados. Me dio claridad.",
+    stars: 5,
+  },
+  {
+    name: "Morena",
+    user: "@skinstudio.ms",
+    text: "Se nota que está hecho desde la experiencia real, no desde el marketing humo.",
+    stars: 5,
+  },
 ];
 ---
 
@@ -22,13 +62,14 @@ const features: EbookFeature[] = [
   <div class="container ebook__grid">
     <!-- Copy -->
     <div class="ebook__content reveal">
-      <span class="section-label ebook__label">Recurso gratuito</span>
+      <span class="section-label ebook__label">Nuestro Ebook</span>
       <h2 class="section-title ebook__title">
         Descargá nuestro <span>ebook</span> gratuito
       </h2>
       <p class="ebook__desc">
-        Aprendé las estrategias que usamos con nuestros clientes para crecer en
-        redes sociales. Una guía práctica, directa y sin relleno.
+        El ABC de las Ventas en Redes es la guía práctica que te lleva de cero a
+        tu primera campaña rentable, sin tecnicismos y con acciones concretas de
+        15 minutos por capítulo.
       </p>
 
       <div class="ebook__features">
@@ -57,15 +98,17 @@ const features: EbookFeature[] = [
                     <path d="M12 20V10M18 20V4M6 20v-4" />
                   </svg>
                 )}
-                {f.icon === "grid" && (
+                {f.icon === "rocket" && (
                   <svg
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
                     stroke-width="2"
                   >
-                    <rect x="3" y="3" width="18" height="18" rx="2" />
-                    <path d="M3 9h18M9 21V9" />
+                    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z" />
+                    <path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z" />
+                    <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
+                    <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
                   </svg>
                 )}
                 {f.icon === "info" && (
@@ -86,7 +129,11 @@ const features: EbookFeature[] = [
         }
       </div>
 
-      <a href="#" class="ebook__cta">
+      <a
+        href="/downloads/Ebook - El ABC de las redes - Dúo Studio.pdf"
+        download
+        class="ebook__cta"
+      >
         Descargar gratis
         <svg
           viewBox="0 0 24 24"
@@ -103,20 +150,128 @@ const features: EbookFeature[] = [
       </a>
     </div>
 
-    <!-- Mockup -->
+    <!-- Portada -->
     <div class="ebook__mockup reveal reveal-delay-2">
-      <div class="ebook__book" aria-hidden="true">
-        <span class="ebook__book-title">Dúo</span>
-        <span class="ebook__book-sub">Guía de Marketing Digital</span>
+      <img
+        src="/images/PortadaEbook.png"
+        alt="Portada del ebook - Guía de Marketing Digital"
+        class="ebook__cover"
+      />
+    </div>
+  </div>
+
+  <!-- Reviews carousel -->
+  <div class="container ebook__reviews">
+    <h3 class="ebook__reviews-title">Lo que dicen quienes lo leyeron</h3>
+    <div class="ebook__carousel">
+      <button
+        class="ebook__arrow ebook__arrow--prev"
+        aria-label="Reseña anterior"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          width="20"
+          height="20"
+        >
+          <path d="M15 18l-6-6 6-6"></path>
+        </svg>
+      </button>
+      <div class="ebook__track-wrapper">
+        <div class="ebook__track">
+          {
+            reviews.map((r) => (
+              <div class="ebook__review-card">
+                <div class="ebook__review-stars">
+                  {Array.from({ length: r.stars }).map(() => (
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      width="16"
+                      height="16"
+                    >
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                    </svg>
+                  ))}
+                </div>
+                <p class="ebook__review-text">"{r.text}"</p>
+                <div class="ebook__review-author">
+                  <span class="ebook__review-name">{r.name}</span>
+                  <span class="ebook__review-role">{r.user}</span>
+                </div>
+              </div>
+            ))
+          }
+        </div>
       </div>
+      <button
+        class="ebook__arrow ebook__arrow--next"
+        aria-label="Siguiente reseña"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          width="20"
+          height="20"
+        >
+          <path d="M9 18l6-6-6-6"></path>
+        </svg>
+      </button>
     </div>
   </div>
 </section>
 
+<script>
+  const track = document.querySelector(".ebook__track") as HTMLElement;
+  const cards = track?.querySelectorAll(".ebook__review-card");
+  const prevBtn = document.querySelector(".ebook__arrow--prev");
+  const nextBtn = document.querySelector(".ebook__arrow--next");
+
+  if (track && cards.length > 0) {
+    let currentIndex = 0;
+    const totalCards = cards.length;
+
+    function getCardWidth() {
+      const card = cards[0] as HTMLElement;
+      const gap = parseFloat(getComputedStyle(track).gap) || 0;
+      return card.offsetWidth + gap;
+    }
+
+    function getMaxOffset() {
+      const wrapper = track.parentElement as HTMLElement;
+      return track.scrollWidth - wrapper.offsetWidth;
+    }
+
+    function slideTo(index: number) {
+      const offset = index * getCardWidth();
+      const maxOffset = getMaxOffset();
+      track.style.transform = `translateX(-${Math.min(offset, maxOffset)}px)`;
+    }
+
+    nextBtn?.addEventListener("click", () => {
+      if (currentIndex < totalCards - 1) {
+        currentIndex++;
+        slideTo(currentIndex);
+      }
+    });
+
+    prevBtn?.addEventListener("click", () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        slideTo(currentIndex);
+      }
+    });
+  }
+</script>
+
 <style>
   .ebook {
     padding: var(--space-2xl) 0;
-    background: var(--olive);
+    background: linear-gradient(to right, var(--pink-light), transparent);
     position: relative;
     overflow: hidden;
   }
@@ -137,26 +292,26 @@ const features: EbookFeature[] = [
     pointer-events: none;
   }
 
-  /* Label & title overrides for dark bg */
+  /* Label & title overrides for light bg */
   .ebook__label {
-    color: var(--pink-light);
+    color: var(--olive);
   }
 
   .ebook__label::before {
-    background: var(--pink-light);
+    background: var(--olive);
   }
 
   .ebook__title {
-    color: var(--white);
+    color: var(--text-dark);
   }
 
   .ebook__title span {
-    color: var(--pink-light);
+    color: var(--olive);
   }
 
   .ebook__desc {
     font-size: 1rem;
-    color: rgba(255, 255, 255, 0.75);
+    color: var(--text-muted);
     line-height: 1.7;
     max-width: 480px;
     margin-bottom: var(--space-lg);
@@ -175,22 +330,21 @@ const features: EbookFeature[] = [
     align-items: center;
     gap: 0.75rem;
     padding: 0.75rem 1rem;
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(0, 0, 0, 0.05);
     border-radius: var(--radius-md);
     backdrop-filter: blur(4px);
     transition: var(--transition);
   }
 
   .ebook__feature:hover {
-    background: rgba(255, 255, 255, 0.12);
-    transform: translateX(4px);
+    background: rgba(0, 0, 0, 0.05);
   }
 
   .ebook__feature-icon {
     width: 36px;
     height: 36px;
     border-radius: var(--radius-sm);
-    background: rgba(242, 196, 206, 0.2);
+    background: rgba(85, 107, 47, 0.15);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -200,12 +354,12 @@ const features: EbookFeature[] = [
   .ebook__feature-icon svg {
     width: 18px;
     height: 18px;
-    color: var(--pink-light);
+    color: var(--olive);
   }
 
   .ebook__feature-text {
     font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--text-muted);
   }
 
   /* CTA button */
@@ -215,78 +369,129 @@ const features: EbookFeature[] = [
     justify-content: center;
     gap: 0.5rem;
     padding: 1rem 2rem;
-    background: var(--pink-light);
-    color: var(--olive-deep);
+    background: var(--olive);
+    color: var(--white);
     border-radius: var(--radius-full);
     font-size: 0.95rem;
     font-weight: 600;
     transition: var(--transition);
-    box-shadow: 0 4px 20px rgba(242, 196, 206, 0.3);
+    box-shadow: 0 4px 20px rgba(85, 107, 47, 0.3);
   }
 
   .ebook__cta:hover {
-    background: var(--white);
+    background: var(--olive-deep);
     transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(242, 196, 206, 0.4);
+    box-shadow: 0 8px 30px rgba(85, 107, 47, 0.4);
   }
 
-  /* Book mockup */
+  /* Book cover */
   .ebook__mockup {
     margin-top: var(--space-xl);
     display: flex;
     justify-content: center;
   }
 
-  .ebook__book {
+  .ebook__cover {
     width: 200px;
-    height: 270px;
-    background: linear-gradient(
-      135deg,
-      var(--cream-light) 0%,
-      var(--blush) 100%
-    );
     border-radius: 4px 16px 16px 4px;
-    box-shadow:
-      -6px 6px 20px rgba(0, 0, 0, 0.25),
-      inset -2px 0 8px rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    position: relative;
+    box-shadow: -6px 6px 20px rgba(0, 0, 0, 0.25);
     transform: perspective(800px) rotateY(-8deg);
     transition: var(--transition-slow);
   }
 
-  .ebook__book:hover {
+  .ebook__cover:hover {
     transform: perspective(800px) rotateY(-2deg) translateY(-8px);
   }
 
-  .ebook__book::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 8px;
-    height: 100%;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.15), transparent);
-    border-radius: 4px 0 0 4px;
+  /* Reviews carousel */
+  .ebook__reviews {
+    margin-top: var(--space-xl);
   }
 
-  .ebook__book-title {
-    font-family: var(--font-display);
-    font-size: 1.3rem;
-    color: var(--olive);
+  .ebook__reviews-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-dark);
     text-align: center;
-    padding: 0 1.5rem;
+    margin-bottom: var(--space-lg);
   }
 
-  .ebook__book-sub {
-    font-size: 0.7rem;
+  .ebook__carousel {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .ebook__arrow {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--olive);
+    background: transparent;
+    color: var(--olive);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+
+  .ebook__arrow:hover {
+    background: var(--olive);
+    color: var(--white);
+  }
+
+  .ebook__track-wrapper {
+    overflow: hidden;
+    flex: 1;
+  }
+
+  .ebook__track {
+    display: flex;
+    gap: var(--space-md);
+    transition: transform 0.4s ease;
+  }
+
+  .ebook__review-card {
+    min-width: 280px;
+    flex: 0 0 280px;
+    background: var(--white);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  }
+
+  .ebook__review-stars {
+    display: flex;
+    gap: 2px;
+    color: #f5a623;
+    margin-bottom: 0.75rem;
+  }
+
+  .ebook__review-text {
+    font-size: 0.9rem;
     color: var(--text-muted);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+
+  .ebook__review-author {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .ebook__review-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-dark);
+  }
+
+  .ebook__review-role {
+    font-size: 0.75rem;
+    color: var(--text-light);
   }
 
   /* Breakpoints */
@@ -309,9 +514,8 @@ const features: EbookFeature[] = [
       justify-content: flex-end;
     }
 
-    .ebook__book {
-      width: 260px;
-      height: 350px;
+    .ebook__cover {
+      width: 300px;
     }
   }
 </style>

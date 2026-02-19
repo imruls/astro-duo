@@ -14,7 +14,7 @@
   --cream: #f0ede4;
   --cream-light: #f7f5f0;
   --white: #fefdfb;
-  --text-dark: #2d2d1e;
+  --text-dark: #0c0d0d;
   --text-muted: #6b6b5a;
   --text-light: #9b9b8a;
 
@@ -142,7 +142,7 @@ ul {
 
 .section-subtitle {
   font-size: 1rem;
-  color: var(--text-muted);
+  color: var(--text-dark);
   line-height: 1.7;
   max-width: 540px;
 }

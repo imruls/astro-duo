@@ -1,29 +1,10 @@
 ---
-/**
- * FloatingButtons — Scroll-to-top + WhatsApp CTA
- * Ley de Fitts: large 44px+ touch targets
- * Principio de Doherty: smooth show/hide transitions
- */
-
 interface Props {
   whatsappUrl?: string;
 }
 
 const { whatsappUrl = "https://wa.me/" } = Astro.props;
 ---
-
-<!-- Scroll to top -->
-<button class="scroll-top" id="scrollTop" aria-label="Volver arriba">
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2"
-    aria-hidden="true"
-  >
-    <path d="M18 15l-6-6-6 6"></path>
-  </svg>
-</button>
 
 <!-- WhatsApp -->
 <a
@@ -41,44 +22,10 @@ const { whatsappUrl = "https://wa.me/" } = Astro.props;
 </a>
 
 <style>
-  .scroll-top {
-    position: fixed;
-    bottom: 1.5rem;
-    right: 1.5rem;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: var(--olive);
-    color: var(--white);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 20px rgba(123, 139, 62, 0.3);
-    opacity: 0;
-    visibility: hidden;
-    transition: var(--transition);
-    z-index: 90;
-  }
-
-  .scroll-top.visible {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  .scroll-top:hover {
-    background: var(--olive-dark);
-    transform: translateY(-3px);
-  }
-
-  .scroll-top svg {
-    width: 20px;
-    height: 20px;
-  }
-
   .whatsapp-btn {
     position: fixed;
     bottom: 1.5rem;
-    left: 1.5rem;
+    right: 1.5rem;
     width: 52px;
     height: 52px;
     border-radius: 50%;
@@ -102,15 +49,3 @@ const { whatsappUrl = "https://wa.me/" } = Astro.props;
     height: 26px;
   }
 </style>
-
-<script>
-  const scrollTopBtn = document.getElementById("scrollTop")!;
-
-  window.addEventListener("scroll", () => {
-    scrollTopBtn.classList.toggle("visible", window.scrollY > 600);
-  });
-
-  scrollTopBtn.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-</script>

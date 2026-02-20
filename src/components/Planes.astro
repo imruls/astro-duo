@@ -1,97 +1,12 @@
 ---
-interface PlanFeature {
-  text: string;
-}
-
-interface Plan {
-  name: string;
-  price: string;
-  priceUsd: string;
-  featured?: boolean;
-  features: PlanFeature[];
-}
-
-const plans: Plan[] = [
-  {
-    name: "Basic",
-    price: "200.000",
-    priceUsd: "140",
-    features: [
-      { text: "Optimización de perfil + biografía profesional" },
-      {
-        text: "8 Publicaciones mensuales (2 reels, 6 carruseles/post estático)",
-      },
-      { text: "6 Historias mensuales" },
-      { text: "Planificación + calendario mensual" },
-      { text: "Diseño y copywriting" },
-      { text: "Reporte de métricas trimestral" },
-      { text: "Uso de imágenes provistas por la marca" },
-      { text: "Carpeta compartida en Google Drive" },
-      { text: "Mini guía de identidad (colores + tipografías)" },
-    ],
-  },
-  {
-    name: "Medium",
-    price: "320.000",
-    priceUsd: "220",
-    featured: true,
-    features: [
-      { text: "Optimización de perfil + biografía profesional" },
-      {
-        text: "10 Publicaciones mensuales (3 reels, 7 carruseles/post estático)",
-      },
-      { text: "12 Historias mensuales" },
-      { text: "Planificación + calendario mensual" },
-      { text: "Diseño y copywriting" },
-      { text: "Reporte de métricas mensual" },
-      { text: "1 grabación de contenido por 4 hs" },
-      { text: "Uso de imágenes provistas por la marca" },
-      { text: "Carpeta compartida en Google Drive" },
-      { text: "Mini guía de identidad (colores + tipografías)" },
-    ],
-  },
-  {
-    name: "Full",
-    price: "450.000",
-    priceUsd: "310",
-    features: [
-      { text: "Optimización de perfil + biografía profesional" },
-      {
-        text: "12 Publicaciones mensuales (4 reels, 8 carruseles/post estático)",
-      },
-      { text: "20 Historias mensuales" },
-      { text: "Planificación + calendario mensual" },
-      { text: "Diseño y copywriting" },
-      { text: "Reporte de métricas mensual" },
-      { text: "1 grabación de contenido por 4 hs" },
-      {
-        text: "Uso de imágenes provistas por la marca + material generado en grabación",
-      },
-      { text: "Carpeta compartida en Google Drive" },
-    ],
-  },
-  {
-    name: "Pro",
-    price: "550.000",
-    priceUsd: "370",
-    features: [
-      { text: "Optimización de perfil + biografía profesional" },
-      {
-        text: "16 Publicaciones mensuales (6 reels, 10 carruseles/post estático)",
-      },
-      { text: "28 Historias mensuales" },
-      { text: "Planificación + calendario mensual" },
-      { text: "Diseño y copywriting" },
-      { text: "Reporte de métricas mensual" },
-      { text: "2 grabación de contenido por 4 hs" },
-      {
-        text: "Material generado + edición incluida",
-      },
-      { text: "Carpeta compartida en Google Drive" },
-    ],
-  },
-];
+import { plans, extraService } from "@data/dataSite";
 ---
+
+<svg class="sr-only" aria-hidden="true">
+  <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <polyline points="20 6 9 17 4 12" />
+  </symbol>
+</svg>
 
 <section class="planes" id="planes">
   <div class="container">
@@ -104,8 +19,8 @@ const plans: Plan[] = [
         al siguiente nivel.
       </p>
       <div class="plan-toggle" role="tablist" aria-label="Moneda de pago">
-        <button class="active" role="tab" aria-selected="true">Pesos</button>
-        <button role="tab" aria-selected="false">Dolares</button>
+        <button type="button" class="active" role="tab" aria-selected="true">Pesos</button>
+        <button type="button" role="tab" aria-selected="false">Dolares</button>
       </div>
     </div>
 
@@ -134,15 +49,7 @@ const plans: Plan[] = [
             <ul class="plan-card__features">
               {plan.features.map((f) => (
                 <li>
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    aria-hidden="true"
-                  >
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
+                  <svg aria-hidden="true"><use href="#icon-check" /></svg>
                   {f.text}
                 </li>
               ))}
@@ -166,13 +73,13 @@ const plans: Plan[] = [
       <!-- Col 2: Precio -->
       <div
         class="extra-banner__pricing"
-        data-price="200.000"
-        data-price-usd="140"
+        data-price={extraService.price}
+        data-price-usd={extraService.priceUsd}
       >
         <span class="extra-banner__pricing-label">Gestión del servicio</span>
         <div class="extra-banner__price">
           <span class="extra-banner__currency">ARS</span>
-          <span class="extra-banner__amount">200.000</span>
+          <span class="extra-banner__amount">{extraService.price}</span>
         </div>
       </div>
 
@@ -201,6 +108,18 @@ const plans: Plan[] = [
 </section>
 
 <style>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
   .planes {
     padding: var(--space-2xl) 0;
     background: var(--white);
@@ -256,6 +175,7 @@ const plans: Plan[] = [
     transition: var(--transition);
     overflow: hidden;
     text-align: center;
+    will-change: transform;
   }
 
   .plan-card:hover {

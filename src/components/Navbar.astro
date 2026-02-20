@@ -1,23 +1,5 @@
 ---
-/**
- * Navbar — fixed top navigation
- * - Desktop: horizontal links + CTA
- * - Mobile: hamburger + slide-in drawer
- * Ley de Jakob: standard nav pattern users expect
- * Ley de Hick: limited nav choices (4 links + 1 CTA)
- */
-
-interface NavLink {
-  label: string;
-  href: string;
-}
-
-const links: NavLink[] = [
-  { label: "Planes", href: "#planes" },
-  { label: "Ebook", href: "#ebook" },
-  { label: "Recursos", href: "#recursos" },
-  { label: "Nosotras", href: "#about" },
-];
+import { navLinks as links } from "@data/dataSite";
 ---
 
 <nav

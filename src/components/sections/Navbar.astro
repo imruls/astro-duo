@@ -1,5 +1,7 @@
 ---
+import { Image } from "astro:assets";
 import { navLinks as links } from "@data/dataSite";
+import logo from "@images/5.png";
 ---
 
 <nav
@@ -10,7 +12,7 @@ import { navLinks as links } from "@data/dataSite";
 >
   <div class="container">
     <a href="#" class="nav-logo" aria-label="Dúo Studio Digital — Inicio">
-      <img src="/images/5.png" alt="Dúo Studio Digital" />
+      <Image src={logo} alt="Dúo Studio Digital" loading="eager" decoding="async" format="webp" />
     </a>
 
     <!-- Desktop links -->

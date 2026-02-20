@@ -1,5 +1,6 @@
 ---
-
+import { Image } from "astro:assets";
+import heroImage from "@images/2.png";
 ---
 
 <section class="hero" id="hero">
@@ -60,7 +61,7 @@
     <div class="hero__visual" aria-hidden="true">
       <div class="hero__visual-inner">
         <div class="hero__circle hero__circle--main">
-          <img src="/images/2.png" alt="Dúo" class="hero__circle-image" />
+          <Image src={heroImage} alt="Dúo" class="hero__circle-image" loading="eager" decoding="async" format="webp" />
         </div>
         <div class="hero__circle hero__circle--accent-1"></div>
         <div class="hero__circle hero__circle--accent-2"></div>

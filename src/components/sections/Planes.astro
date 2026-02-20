@@ -1,10 +1,16 @@
 ---
-import { plans, extraService } from "@data/dataSite";
+import { plans, extraService, contentShootService } from "@data/dataSite";
 ---
 
 <svg class="sr-only" aria-hidden="true">
-  <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-    <polyline points="20 6 9 17 4 12" />
+  <symbol
+    id="icon-check"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+  >
+    <polyline points="20 6 9 17 4 12"></polyline>
   </symbol>
 </svg>
 
@@ -19,7 +25,9 @@ import { plans, extraService } from "@data/dataSite";
         al siguiente nivel.
       </p>
       <div class="plan-toggle" role="tablist" aria-label="Moneda de pago">
-        <button type="button" class="active" role="tab" aria-selected="true">Pesos</button>
+        <button type="button" class="active" role="tab" aria-selected="true"
+          >Pesos</button
+        >
         <button type="button" role="tab" aria-selected="false">Dolares</button>
       </div>
     </div>
@@ -49,7 +57,9 @@ import { plans, extraService } from "@data/dataSite";
             <ul class="plan-card__features">
               {plan.features.map((f) => (
                 <li>
-                  <svg aria-hidden="true"><use href="#icon-check" /></svg>
+                  <svg aria-hidden="true">
+                    <use href="#icon-check" />
+                  </svg>
                   {f.text}
                 </li>
               ))}
@@ -59,49 +69,94 @@ import { plans, extraService } from "@data/dataSite";
       }
     </div>
 
-    <div class="planes__extra-banner reveal">
-      <!-- Col 1: Servicio -->
-      <div class="extra-banner__info">
-        <span class="extra-banner__badge">Servicio adicional</span>
-        <h3 class="extra-banner__title">Campañas + Paid Media</h3>
-        <p class="extra-banner__desc">
-          Gestionamos tus campañas publicitarias de principio a fin: estrategia,
-          segmentación, creatividades y optimización continua.
-        </p>
-      </div>
+    <!-- Servicios adicionales -->
+    <div class="planes__extras reveal">
+      <div class="planes__extras-grid">
+        <div class="planes__extra-banner">
+          <div class="extra-banner__info">
+            <span class="extra-banner__badge">Servicio adicional</span>
+            <h4 class="extra-banner__title">Campañas + Paid Media</h4>
+            <p class="extra-banner__desc">
+              Gestionamos tus campañas publicitarias de principio a fin:
+              estrategia, segmentación, creatividades y optimización continua.
+            </p>
+          </div>
 
-      <!-- Col 2: Precio -->
-      <div
-        class="extra-banner__pricing"
-        data-price={extraService.price}
-        data-price-usd={extraService.priceUsd}
-      >
-        <span class="extra-banner__pricing-label">Gestión del servicio</span>
-        <div class="extra-banner__price">
-          <span class="extra-banner__currency">ARS</span>
-          <span class="extra-banner__amount">{extraService.price}</span>
+          <div
+            class="extra-banner__pricing"
+            data-price={extraService.price}
+            data-price-usd={extraService.priceUsd}
+          >
+            <span class="extra-banner__pricing-label">Gestión del servicio</span
+            >
+            <div class="extra-banner__price">
+              <span class="extra-banner__currency">ARS</span>
+              <span class="extra-banner__amount">{extraService.price}</span>
+            </div>
+          </div>
+
+          <div class="extra-banner__note">
+            <svg
+              class="extra-banner__note-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+            <p>
+              El presupuesto destinado a la pauta publicitaria
+              <strong>corre por cuenta del cliente</strong> y no está incluido en
+              este valor.
+            </p>
+          </div>
         </div>
-      </div>
 
-      <!-- Col 3: Nota -->
-      <div class="extra-banner__note">
-        <svg
-          class="extra-banner__note-icon"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          aria-hidden="true"
-        >
-          <circle cx="12" cy="12" r="10"></circle>
-          <line x1="12" y1="16" x2="12" y2="12"></line>
-          <line x1="12" y1="8" x2="12.01" y2="8"></line>
-        </svg>
-        <p>
-          El presupuesto destinado a la pauta publicitaria
-          <strong>corre por cuenta del cliente</strong> y no está incluido en este
-          valor.
-        </p>
+        <div class="planes__extra-banner">
+          <div class="extra-banner__info">
+            <span class="extra-banner__badge">Servicio adicional</span>
+            <h4 class="extra-banner__title">Grabación de Contenido</h4>
+            <p class="extra-banner__desc">
+              Producimos contenido visual profesional para tus redes: fotos,
+              reels y videos con dirección creativa incluida.
+            </p>
+          </div>
+
+          <div
+            class="extra-banner__pricing"
+            data-price={contentShootService.price}
+            data-price-usd={contentShootService.priceUsd}
+          >
+            <span class="extra-banner__pricing-label">4 horas de grabación</span
+            >
+            <div class="extra-banner__price">
+              <span class="extra-banner__currency">ARS</span>
+              <span class="extra-banner__amount"
+                >{contentShootService.price}</span
+              >
+            </div>
+          </div>
+
+          <div class="extra-banner__note">
+            <svg
+              class="extra-banner__note-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+            <p>Incluye dirección creativa y edición.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -265,13 +320,23 @@ import { plans, extraService } from "@data/dataSite";
     margin-top: 2px;
   }
 
-  /* Extra Service Banner */
-  .planes__extra-banner {
+  /* Extras section */
+  .planes__extras {
     margin-top: var(--space-xl);
+  }
+
+  .planes__extras-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-md);
-    padding: var(--space-lg);
+  }
+
+  /* Extra Service Banner */
+  .planes__extra-banner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding: var(--space-md);
     background: var(--olive);
     border-radius: var(--radius-lg);
     overflow: hidden;
@@ -290,14 +355,13 @@ import { plans, extraService } from "@data/dataSite";
     pointer-events: none;
   }
 
-  /* Col 1 - Info */
   .extra-banner__info {
     position: relative;
   }
 
   .extra-banner__badge {
     display: inline-block;
-    padding: 0.3rem 0.8rem;
+    padding: 0.25rem 0.7rem;
     background: var(--white);
     color: var(--olive-dark);
     font-size: 0.7rem;
@@ -305,24 +369,22 @@ import { plans, extraService } from "@data/dataSite";
     text-transform: uppercase;
     letter-spacing: 0.06em;
     border-radius: var(--radius-full);
-    margin-bottom: var(--space-sm);
+    margin-bottom: 0.4rem;
   }
 
   .extra-banner__title {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     font-weight: 700;
     color: var(--white);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.35rem;
   }
 
   .extra-banner__desc {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: var(--cream);
     line-height: 1.6;
-    max-width: 380px;
   }
 
-  /* Col 2 - Pricing */
   .extra-banner__pricing {
     position: relative;
     display: flex;
@@ -330,10 +392,12 @@ import { plans, extraService } from "@data/dataSite";
     justify-content: center;
     align-items: center;
     gap: 0.25rem;
+    padding-top: var(--space-sm);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
   }
 
   .extra-banner__pricing-label {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -353,34 +417,33 @@ import { plans, extraService } from "@data/dataSite";
   }
 
   .extra-banner__amount {
-    font-size: 2.25rem;
+    font-size: 2rem;
     font-weight: 700;
     color: var(--white);
     line-height: 1;
   }
 
-  /* Col 3 - Note */
   .extra-banner__note {
     position: relative;
     display: flex;
     align-items: flex-start;
-    gap: 0.6rem;
-    padding: var(--space-sm);
+    gap: 0.5rem;
+    padding: 0.5rem;
     background: rgba(255, 255, 255, 0.1);
     border-radius: var(--radius-sm);
     border-left: 2px solid var(--cream);
   }
 
   .extra-banner__note-icon {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     color: var(--cream);
     flex-shrink: 0;
-    margin-top: 2px;
+    margin-top: 1px;
   }
 
   .extra-banner__note p {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: var(--cream);
     line-height: 1.5;
   }
@@ -391,16 +454,8 @@ import { plans, extraService } from "@data/dataSite";
   }
 
   @media (min-width: 768px) {
-    .planes__extra-banner {
-      grid-template-columns: 1.2fr auto 1fr;
-      align-items: center;
-      padding: var(--space-lg) var(--space-xl);
-    }
-
-    .extra-banner__pricing {
-      padding-inline: var(--space-lg);
-      border-left: 1px solid rgba(255, 255, 255, 0.2);
-      border-right: 1px solid rgba(255, 255, 255, 0.2);
+    .planes__extras-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 
@@ -421,7 +476,7 @@ import { plans, extraService } from "@data/dataSite";
 <script>
   const toggleBtns = document.querySelectorAll(".plan-toggle button");
   const cards = document.querySelectorAll<HTMLElement>(".plan-card");
-  const bannerPricing = document.querySelector<HTMLElement>(
+  const bannerPricings = document.querySelectorAll<HTMLElement>(
     ".extra-banner__pricing",
   );
 
@@ -449,7 +504,7 @@ import { plans, extraService } from "@data/dataSite";
         }
       });
 
-      if (bannerPricing) {
+      bannerPricings.forEach((bannerPricing) => {
         const bannerAmount = bannerPricing.querySelector(
           ".extra-banner__amount",
         );
@@ -465,7 +520,7 @@ import { plans, extraService } from "@data/dataSite";
             bannerCurrency.textContent = "ARS";
           }
         }
-      }
+      });
     });
   });
 </script>

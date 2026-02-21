@@ -1,11 +1,10 @@
 ---
-import { footerColumns as columns } from "@data/dataSite";
+
 ---
 
 <footer class="footer">
   <div class="container">
     <div class="footer__top">
-      <!-- Brand -->
       <div class="footer__brand">
         <div class="footer__logo">Dúo</div>
         <p>
@@ -13,7 +12,11 @@ import { footerColumns as columns } from "@data/dataSite";
           estrategia y autenticidad.
         </p>
         <div class="footer__social">
-          <a href="#" aria-label="Instagram">
+          <a
+            href="https://www.instagram.com/duostudio.digital/"
+            target="_blank"
+            aria-label="Instagram"
+          >
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -25,40 +28,28 @@ import { footerColumns as columns } from "@data/dataSite";
               ></path>
             </svg>
           </a>
-          <a href="#" aria-label="TikTok">
+          <a
+            href="https://www.tiktok.com/@duo.studio.digital"
+            target="_blank"
+            aria-label="TikTok"
+          >
             <svg viewBox="0 0 24 24" fill="currentColor">
               <path
                 d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.55a8.28 8.28 0 004.76 1.51V6.69h-1z"
               ></path>
             </svg>
           </a>
-          <a href="#" aria-label="LinkedIn">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"
-              ></path>
-              <circle cx="4" cy="4" r="2"></circle>
-            </svg>
-          </a>
         </div>
       </div>
 
-      <!-- Link columns -->
-      {
-        columns.map((col) => (
-          <div class="footer__links">
-            <h4>{col.title}</h4>
-            {col.links.map((link) => (
-              <a href={link.href}>{link.label}</a>
-            ))}
-          </div>
-        ))
-      }
+      <div class="footer__contact">
+        <h4>Contacto</h4>
+        <a href="mailto:hola@duostudiodigital.com.ar"
+          >hola@duostudiodigital.com.ar</a
+        >
+        <a href="#">WhatsApp</a>
+        <a href="#">Agendar llamada</a>
+      </div>
     </div>
 
     <div class="footer__bottom">
@@ -73,15 +64,15 @@ import { footerColumns as columns } from "@data/dataSite";
   .footer {
     background: var(--text-dark);
     color: rgba(255, 255, 255, 0.7);
-    padding: var(--space-xl) 0 var(--space-md);
+    padding: var(--space-lg) 0 var(--space-sm);
   }
 
   .footer__top {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-lg);
-    margin-bottom: var(--space-xl);
-    padding-bottom: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+    padding-bottom: var(--space-md);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
@@ -127,8 +118,8 @@ import { footerColumns as columns } from "@data/dataSite";
     color: rgba(255, 255, 255, 0.8);
   }
 
-  /* Link columns */
-  .footer__links h4 {
+  /* Contact */
+  .footer__contact h4 {
     font-size: 0.85rem;
     font-weight: 600;
     color: var(--white);
@@ -137,14 +128,14 @@ import { footerColumns as columns } from "@data/dataSite";
     letter-spacing: 0.08em;
   }
 
-  .footer__links a {
+  .footer__contact a {
     display: block;
     font-size: 0.85rem;
     padding: 0.35rem 0;
     transition: var(--transition);
   }
 
-  .footer__links a:hover {
+  .footer__contact a:hover {
     color: var(--pink-light);
     transform: translateX(4px);
   }
@@ -168,15 +159,11 @@ import { footerColumns as columns } from "@data/dataSite";
   }
 
   /* Breakpoints */
-  @media (min-width: 640px) {
+  @media (min-width: 768px) {
     .footer__top {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .footer__top {
-      grid-template-columns: 2fr 1fr 1fr 1fr;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
     }
 
     .footer__bottom {

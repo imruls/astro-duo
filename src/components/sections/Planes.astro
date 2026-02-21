@@ -46,6 +46,7 @@ import { plans, extraService, contentShootService } from "@data/dataSite";
             data-price={plan.price}
             data-price-usd={plan.priceUsd}
           >
+            {plan.featured && <span class="plan-card__badge">Más popular</span>}
             <h3 class="plan-card__name">{plan.name}</h3>
 
             <div class="plan-card__price">
@@ -218,6 +219,7 @@ import { plans, extraService, contentShootService } from "@data/dataSite";
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-md);
+    margin-top: 1rem;
   }
 
   /* Card */
@@ -228,7 +230,6 @@ import { plans, extraService, contentShootService } from "@data/dataSite";
     padding: var(--space-lg);
     position: relative;
     transition: var(--transition);
-    overflow: hidden;
     text-align: center;
     will-change: transform;
   }
@@ -248,11 +249,11 @@ import { plans, extraService, contentShootService } from "@data/dataSite";
     );
   }
 
-  .plan-card.featured::before {
-    content: "Más popular";
+  .plan-card__badge {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
     padding: 0.3rem 0.8rem;
     background: var(--olive);
     color: var(--white);
@@ -260,6 +261,7 @@ import { plans, extraService, contentShootService } from "@data/dataSite";
     font-weight: 600;
     border-radius: var(--radius-full);
     letter-spacing: 0.02em;
+    white-space: nowrap;
   }
 
   .plan-card__name {
@@ -337,7 +339,7 @@ import { plans, extraService, contentShootService } from "@data/dataSite";
     flex-direction: column;
     gap: var(--space-sm);
     padding: var(--space-md);
-    background: var(--olive);
+    background: linear-gradient(to top, var(--pink-light), transparent);
     border-radius: var(--radius-lg);
     overflow: hidden;
     position: relative;
@@ -349,7 +351,7 @@ import { plans, extraService, contentShootService } from "@data/dataSite";
     inset: 0;
     background: radial-gradient(
       ellipse at 60% 50%,
-      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0.15) 0%,
       transparent 70%
     );
     pointer-events: none;
@@ -362,26 +364,26 @@ import { plans, extraService, contentShootService } from "@data/dataSite";
   .extra-banner__badge {
     display: inline-block;
     padding: 0.25rem 0.7rem;
-    background: var(--white);
-    color: var(--olive-dark);
+    background: var(--olive);
+    color: var(--white);
     font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     border-radius: var(--radius-full);
-    margin-bottom: 0.4rem;
+    margin-bottom: var(--space-sm);
   }
 
   .extra-banner__title {
     font-size: 1.2rem;
     font-weight: 700;
-    color: var(--white);
+    color: var(--text-dark);
     margin-bottom: 0.35rem;
   }
 
   .extra-banner__desc {
     font-size: 0.9rem;
-    color: var(--cream);
+    color: var(--text-dark);
     line-height: 1.6;
   }
 
@@ -393,7 +395,7 @@ import { plans, extraService, contentShootService } from "@data/dataSite";
     align-items: center;
     gap: 0.25rem;
     padding-top: var(--space-sm);
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
   }
 
   .extra-banner__pricing-label {
@@ -401,7 +403,7 @@ import { plans, extraService, contentShootService } from "@data/dataSite";
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: var(--cream);
+    color: var(--text-dark);
   }
 
   .extra-banner__price {
@@ -413,13 +415,13 @@ import { plans, extraService, contentShootService } from "@data/dataSite";
   .extra-banner__currency {
     font-size: 0.85rem;
     font-weight: 500;
-    color: var(--cream);
+    color: var(--text-dark);
   }
 
   .extra-banner__amount {
     font-size: 2rem;
     font-weight: 700;
-    color: var(--white);
+    color: var(--text-dark);
     line-height: 1;
   }
 
@@ -429,27 +431,27 @@ import { plans, extraService, contentShootService } from "@data/dataSite";
     align-items: flex-start;
     gap: 0.5rem;
     padding: 0.5rem;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.3);
     border-radius: var(--radius-sm);
-    border-left: 2px solid var(--cream);
+    border-left: 2px solid var(--text-dark);
   }
 
   .extra-banner__note-icon {
     width: 16px;
     height: 16px;
-    color: var(--cream);
+    color: var(--text-dark);
     flex-shrink: 0;
     margin-top: 1px;
   }
 
   .extra-banner__note p {
     font-size: 0.85rem;
-    color: var(--cream);
+    color: var(--text-dark);
     line-height: 1.5;
   }
 
   .extra-banner__note strong {
-    color: var(--white);
+    color: var(--text-dark);
     font-weight: 600;
   }
 

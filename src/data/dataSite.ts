@@ -1,62 +1,6 @@
-// ─── Interfaces ──────────────────────────────────────────
-
-export interface NavLink {
-  label: string;
-  href: string;
-}
-
-export interface PlanFeature {
-  text: string;
-}
-
-export interface Plan {
-  name: string;
-  price: string;
-  priceUsd: string;
-  featured?: boolean;
-  features: PlanFeature[];
-}
-
-export interface ExtraService {
-  price: string;
-  priceUsd: string;
-}
-
-export interface EbookFeature {
-  icon: string;
-  text: string;
-}
-
-export interface EbookReview {
-  name: string;
-  user: string;
-  text: string;
-  stars: number;
-}
-
-export interface Value {
-  icon: string;
-  title: string;
-  description: string;
-}
-
-export interface Recurso {
-  tag: string;
-  bgClass: string;
-  iconPath: string;
-  title: string;
-  excerpt: string;
-  linkText: string;
-}
-
-export interface FooterColumn {
-  title: string;
-  links: { label: string; href: string }[];
-}
-
 // ─── Navbar ──────────────────────────────────────────────
 
-export const navLinks: NavLink[] = [
+export const navLinks = [
   { label: "Planes", href: "#planes" },
   { label: "Ebook", href: "#ebook" },
   { label: "Recursos", href: "#recursos" },
@@ -65,16 +9,14 @@ export const navLinks: NavLink[] = [
 
 // ─── Planes ──────────────────────────────────────────────
 
-export const plans: Plan[] = [
+export const plans = [
   {
     name: "Basic",
     price: "200.000",
     priceUsd: "140",
     features: [
       { text: "Optimización de perfil" },
-      {
-        text: "4 Publicaciones mensuales (1 reels, 3 post)",
-      },
+      { text: "4 Publicaciones mensuales (1 reels, 3 post)" },
       { text: "4 conjuntos de historias mensuales" },
       { text: "Planificación y calendario mensual de contenido" },
       { text: "Diseño grafico y copywriting" },
@@ -90,9 +32,7 @@ export const plans: Plan[] = [
     featured: true,
     features: [
       { text: "Optimización de perfil" },
-      {
-        text: "8 Publicaciones mensuales (2 reels, 6 post)",
-      },
+      { text: "8 Publicaciones mensuales (2 reels, 6 post)" },
       { text: "6 conjuntos de historias mensuales" },
       { text: "1 grabación de contenido mensual (4 horas)" },
       { text: "Planificación y calendario mensual de contenido" },
@@ -109,12 +49,10 @@ export const plans: Plan[] = [
     priceUsd: "360",
     features: [
       { text: "Optimización de perfil" },
-      {
-        text: "10 Publicaciones mensuales (3 reels, 7 post)",
-      },
+      { text: "10 Publicaciones mensuales (3 reels, 7 post)" },
       { text: "8 conjuntos de historias mensuales" },
       { text: "1 grabación de contenido mensual (4 horas)" },
-      { text: " Planificación y calendario mensual de contenido" },
+      { text: "Planificación y calendario mensual de contenido" },
       { text: "Diseño grafico y copywriting" },
       { text: "Reporte de métricas mensual" },
       { text: "1 grabación de contenido por 4 hs" },
@@ -130,9 +68,7 @@ export const plans: Plan[] = [
     priceUsd: "460",
     features: [
       { text: "Optimización de perfil" },
-      {
-        text: "12 Publicaciones mensuales (4 reels, 8 post)",
-      },
+      { text: "12 Publicaciones mensuales (4 reels, 8 post)" },
       { text: "10 conjuntos de historias mensuales" },
       { text: "2 grabaciones de contenido mensuales (4 horas cada una)" },
       { text: "Material generado con edición incluida" },
@@ -144,26 +80,26 @@ export const plans: Plan[] = [
   },
 ];
 
-export const extraService: ExtraService = {
+export const extraService = {
   price: "200.000",
   priceUsd: "140",
 };
 
-export const contentShootService: ExtraService = {
+export const contentShootService = {
   price: "60.000",
   priceUsd: "45",
 };
 
 // ─── Ebook ───────────────────────────────────────────────
 
-export const ebookFeatures: EbookFeature[] = [
+export const ebookFeatures = [
   { icon: "book", text: "+40 páginas de contenido práctico" },
   { icon: "chart", text: "Estrategias probadas con resultados" },
   { icon: "rocket", text: "Plan de acción de 4 semanas" },
   { icon: "info", text: "Tips exclusivos de nuestro equipo" },
 ];
 
-export const ebookReviews: EbookReview[] = [
+export const ebookReviews = [
   {
     name: "German",
     user: "@vitalmeals.arg",
@@ -204,7 +140,7 @@ export const ebookReviews: EbookReview[] = [
 
 // ─── About ───────────────────────────────────────────────
 
-export const values: Value[] = [
+export const values = [
   {
     icon: "smile",
     title: "Cercanía",
@@ -232,7 +168,7 @@ export const values: Value[] = [
 
 // ─── Recursos ────────────────────────────────────────────
 
-export const recursos: Recurso[] = [
+export const recursos = [
   {
     tag: "Guía",
     bgClass: "bg-1",
@@ -271,39 +207,5 @@ export const recursos: Recurso[] = [
     excerpt:
       "Aprendé a configurar tu primera campaña publicitaria en Meta Ads paso a paso.",
     linkText: "Ver ahora",
-  },
-];
-
-// ─── Footer ──────────────────────────────────────────────
-
-export const footerColumns: FooterColumn[] = [
-  {
-    title: "Servicios",
-    links: [
-      { label: "Social Media", href: "#" },
-      { label: "Diseño Gráfico", href: "#" },
-      { label: "Publicidad Digital", href: "#" },
-      { label: "Branding", href: "#" },
-    ],
-  },
-  {
-    title: "Recursos",
-    links: [
-      { label: "Blog", href: "#" },
-      { label: "Ebook Gratuito", href: "#ebook" },
-      { label: "Plantillas", href: "#recursos" },
-      { label: "Masterclasses", href: "#recursos" },
-    ],
-  },
-  {
-    title: "Contacto",
-    links: [
-      {
-        label: "hola@duostudiodigital.com.ar",
-        href: "mailto:hola@duostudiodigital.com.ar",
-      },
-      { label: "WhatsApp", href: "#" },
-      { label: "Agendar llamada", href: "#" },
-    ],
   },
 ];

@@ -1,17 +1,19 @@
 ---
 import { values } from "@data/dataSite";
+import { Image } from "astro:assets";
+import photoDuo from "@images/photo-duo.jpg";
 ---
 
 <section class="about" id="about">
   <div class="container">
+    <div class="about__header">
+      <span class="section-label">Sobre nosotras</span>
+    </div>
     <div class="about__grid">
       <!-- Image side -->
       <div class="about__image-wrapper reveal">
         <div class="about__image">
-          <div class="about__image-inner">
-            <span class="about__logo">Dúo</span>
-            <span class="about__sub">Studio Digital</span>
-          </div>
+          <Image src={photoDuo} alt="Dúo Studio Digital" class="about__img" />
         </div>
         <!-- Floating card -->
         <div class="about__float">
@@ -37,15 +39,12 @@ import { values } from "@data/dataSite";
 
       <!-- Content side -->
       <div class="about__content reveal reveal-delay-2">
-        <span class="section-label">Sobre nosotras</span>
-        <h2 class="section-title">
-          Somos <span>Dúo</span>, tu partner creativo
-        </h2>
+        <h2 class="section-title">Somos tu partner creativo</h2>
         <p class="about__text">
-          Nacimos de la pasión por el marketing digital y la creatividad. Somos
-          un equipo que cree en el poder de las marcas auténticas y en construir
-          comunidades reales. Cada proyecto es único, y por eso diseñamos
-          estrategias personalizadas que reflejan la esencia de tu negocio.
+          Dúo Studio es un Mini Studio de Social Media creado por dos mejores
+          amigas, mamás, emprendedoras, CM´s y Paid Media. Trabajamos con
+          emprendedores, marcas personales y negocios que buscan crecer de
+          manera auténtica, ordenada y profesional.
         </p>
 
         <div class="about__values">
@@ -131,6 +130,11 @@ import { values } from "@data/dataSite";
     background: var(--white);
   }
 
+  .about__header {
+    text-align: center;
+    margin-bottom: var(--space-sm);
+  }
+
   .about__grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -155,27 +159,10 @@ import { values } from "@data/dataSite";
     );
   }
 
-  .about__image-inner {
+  .about__img {
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-  }
-
-  .about__logo {
-    font-family: var(--font-display);
-    font-size: 3rem;
-    color: var(--olive);
-  }
-
-  .about__sub {
-    font-size: 0.8rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--olive-dark);
+    object-fit: cover;
   }
 
   /* Floating card */
@@ -247,7 +234,7 @@ import { values } from "@data/dataSite";
     gap: 1rem;
     padding: 1.25rem;
     border-radius: var(--radius-md);
-    background: var(--cream-light);
+    background: var(--white);
     transition: var(--transition);
   }
 

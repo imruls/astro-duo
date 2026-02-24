@@ -1,5 +1,13 @@
 ---
+import { Image } from "astro:assets";
 import { recursos } from "@data/dataSite";
+import promptsChatgpt from "@images/prompts-chatgpt.png";
+import modeloPresupuesto from "@images/modelo-presupuesto.png";
+
+const previewImages: Record<string, ImageMetadata> = {
+  "prompts-chatgpt": promptsChatgpt,
+  "modelo-presupuesto": modeloPresupuesto,
+};
 ---
 
 <section class="recursos" id="recursos">
@@ -20,23 +28,24 @@ import { recursos } from "@data/dataSite";
             class:list={["recurso-card", "reveal", `reveal-delay-${i + 1}`]}
           >
             <div class="recurso-card__image">
-              <div class:list={["recurso-card__bg", r.bgClass]}>
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  aria-hidden="true"
-                >
-                  <path d={r.iconPath} />
-                </svg>
-              </div>
+              <Image
+                src={previewImages[r.preview]}
+                alt={r.title}
+                class="recurso-card__preview"
+                style={
+                  r.imagePosition
+                    ? `object-position: ${r.imagePosition}`
+                    : undefined
+                }
+                loading="lazy"
+                widths={[400, 600]}
+              />
               <span class="recurso-card__tag">{r.tag}</span>
             </div>
             <div class="recurso-card__body">
               <h3 class="recurso-card__title">{r.title}</h3>
               <p class="recurso-card__excerpt">{r.excerpt}</p>
-              <a href="#" class="recurso-card__link">
+              <a href={r.href} class="recurso-card__link" download>
                 {r.linkText}
                 <svg
                   viewBox="0 0 24 24"
@@ -59,7 +68,7 @@ import { recursos } from "@data/dataSite";
 <style>
   .recursos {
     padding: var(--space-2xl) 0;
-    background: var(--cream-light);
+    background: var(--white);
   }
 
   .recursos__header {
@@ -93,47 +102,16 @@ import { recursos } from "@data/dataSite";
 
   /* Image area */
   .recurso-card__image {
-    height: 180px;
+    height: 240px;
     position: relative;
     overflow: hidden;
   }
 
-  .recurso-card__bg {
+  .recurso-card__preview {
     width: 100%;
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .recurso-card__bg svg {
-    width: 48px;
-    height: 48px;
-    opacity: 0.6;
-  }
-
-  .bg-1 {
-    background: linear-gradient(135deg, var(--olive), var(--olive-dark));
-  }
-  .bg-2 {
-    background: linear-gradient(135deg, var(--pink-light), var(--blush));
-  }
-  .bg-3 {
-    background: linear-gradient(135deg, var(--tan), var(--cream));
-  }
-  .bg-4 {
-    background: linear-gradient(135deg, var(--olive-dark), var(--olive-deep));
-  }
-
-  .bg-1 svg,
-  .bg-4 svg {
-    color: var(--white);
-  }
-  .bg-2 svg {
-    color: var(--olive);
-  }
-  .bg-3 svg {
-    color: var(--olive-dark);
+    object-fit: cover;
+    object-position: top center;
   }
 
   .recurso-card__tag {
@@ -153,29 +131,29 @@ import { recursos } from "@data/dataSite";
 
   /* Body */
   .recurso-card__body {
-    padding: 1.5rem;
+    padding: 2rem;
   }
 
   .recurso-card__title {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     font-weight: 700;
     color: var(--text-dark);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
     line-height: 1.3;
   }
 
   .recurso-card__excerpt {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     color: var(--text-dark);
-    line-height: 1.6;
-    margin-bottom: 1rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
   }
 
   .recurso-card__link {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    font-size: 0.85rem;
+    gap: 0.5rem;
+    font-size: 0.95rem;
     font-weight: 600;
     color: var(--olive);
     transition: var(--transition);
@@ -200,7 +178,9 @@ import { recursos } from "@data/dataSite";
 
   @media (min-width: 1024px) {
     .recursos__grid {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 900px;
+      margin-inline: auto;
     }
   }
 </style>

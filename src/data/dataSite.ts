@@ -166,46 +166,80 @@ export const values = [
   },
 ];
 
+// ─── Social Links ───────────────────────────────────────
+
+export const socialLinks = [
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/duostudio.digital/",
+    external: true,
+    svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01"></path></svg>`,
+  },
+  {
+    label: "TikTok",
+    href: "https://www.tiktok.com/@duo.studio.digital",
+    external: true,
+    svg: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.55a8.28 8.28 0 004.76 1.51V6.69h-1z"></path></svg>`,
+  },
+  {
+    label: "WhatsApp",
+    href: "https://wa.me/5491173636081",
+    external: true,
+    svg: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg>`,
+  },
+  {
+    label: "Email",
+    href: "mailto:contacto@duostudiodigital.com",
+    external: false,
+    svg: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="M22 4L12 13 2 4"></path></svg>`,
+  },
+];
+
+// ─── Contacto ───────────────────────────────────────────
+
+export const contactChannels = [
+  {
+    name: "WhatsApp",
+    description: "Escribinos directo y te respondemos al toque.",
+    href: "https://wa.me/5491173636081",
+  },
+  {
+    name: "Email",
+    description: "Para consultas, propuestas o lo que necesites.",
+    href: "mailto:contacto@duostudiodigital.com",
+  },
+  {
+    name: "Instagram",
+    description: "Seguinos y mirá nuestro día a día creativo.",
+    href: "https://www.instagram.com/duostudio.digital/",
+  },
+  {
+    name: "TikTok",
+    description: "Tips, tendencias y detrás de escena.",
+    href: "https://www.tiktok.com/@duo.studio.digital",
+  },
+];
+
 // ─── Recursos ────────────────────────────────────────────
 
 export const recursos = [
   {
-    tag: "Guía",
-    bgClass: "bg-1",
-    iconPath:
-      "M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z",
-    title: "Cómo crear contenido que conecte",
+    tag: "Gratis",
+    preview: "prompts-chatgpt",
+    imagePosition: "center",
+    title: "10 Prompts para ChatGPT",
     excerpt:
-      "Aprendé a comunicar tu esencia de marca a través de contenido auténtico que genera comunidad.",
-    linkText: "Leer más",
+      "Prompts listos para usar que te van a ayudar a crear contenido, planificar y optimizar tu presencia digital.",
+    linkText: "Descargar PDF",
+    href: "/downloads/10 PROMPTS PARA CHATGPT.pdf",
   },
   {
-    tag: "Template",
-    bgClass: "bg-2",
-    iconPath:
-      "M3 3h18v18H3zM8.5 8.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM21 15l-5-5L5 21",
-    title: "Pack de plantillas para Instagram",
+    tag: "Gratis",
+    preview: "modelo-presupuesto",
+    title: "Modelo de Presupuesto",
     excerpt:
-      "Plantillas editables para stories, posts y reels que mantienen la coherencia visual de tu marca.",
-    linkText: "Descargar",
-  },
-  {
-    tag: "Checklist",
-    bgClass: "bg-3",
-    iconPath: "M12 20V10M18 20V4M6 20v-4",
-    title: "Auditoría express de redes sociales",
-    excerpt:
-      "Una checklist completa para evaluar y optimizar el rendimiento de tus perfiles en redes.",
-    linkText: "Obtener",
-  },
-  {
-    tag: "Video",
-    bgClass: "bg-4",
-    iconPath:
-      "M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zM10 8l6 4-6 4V8z",
-    title: "Masterclass: Ads para principiantes",
-    excerpt:
-      "Aprendé a configurar tu primera campaña publicitaria en Meta Ads paso a paso.",
-    linkText: "Ver ahora",
+      "Una plantilla de presupuesto profesional para que puedas presentar tus servicios de forma clara y organizada.",
+    linkText: "Descargar PDF",
+    href: "/downloads/MODELO DE PRESUPUESTO.pdf",
   },
 ];

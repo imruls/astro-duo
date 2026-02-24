@@ -1,0 +1,183 @@
+---
+import { contactChannels } from "@data/dataSite";
+---
+
+<section class="contacto" id="contacto">
+  <div class="container">
+    <div class="contacto__header reveal">
+      <span class="section-label">Contacto</span>
+      <h2 class="section-title">
+        ¿Charlamos? <span>Escribinos</span>
+      </h2>
+      <p class="contacto__subtitle">
+        Elegí el canal que más te guste y hablemos sobre tu proyecto.
+      </p>
+    </div>
+
+    <div class="contacto__grid">
+      {
+        contactChannels.map((channel, i) => (
+          <a
+            href={channel.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class={`contacto__card reveal reveal-delay-${i + 1}`}
+          >
+            <div class="contacto__icon">
+              {channel.name === "WhatsApp" && (
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                </svg>
+              )}
+              {channel.name === "Email" && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <path d="M22 4L12 13 2 4" />
+                </svg>
+              )}
+              {channel.name === "Instagram" && (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01" />
+                </svg>
+              )}
+              {channel.name === "TikTok" && (
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V8.55a8.28 8.28 0 004.76 1.51V6.69h-1z" />
+                </svg>
+              )}
+            </div>
+            <h3 class="contacto__name">{channel.name}</h3>
+            <p class="contacto__desc">{channel.description}</p>
+            <span class="contacto__arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .contacto {
+    padding: var(--space-2xl) 0;
+    background: var(--white);
+  }
+
+  .contacto__header {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+  }
+
+  .contacto__header .section-title {
+    margin-top: var(--space-sm);
+  }
+
+  .contacto__subtitle {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    margin-top: var(--space-sm);
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+  }
+
+  .contacto__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .contacto__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: var(--space-lg) var(--space-md);
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+    position: relative;
+  }
+
+  .contacto__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  }
+
+  .contacto__icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(123, 139, 62, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-sm);
+    transition: var(--transition);
+  }
+
+  .contacto__card:hover .contacto__icon {
+    background: var(--olive);
+  }
+
+  .contacto__icon svg {
+    width: 24px;
+    height: 24px;
+    color: var(--olive);
+    transition: var(--transition);
+  }
+
+  .contacto__card:hover .contacto__icon svg {
+    color: var(--white);
+  }
+
+  .contacto__name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 0.35rem;
+  }
+
+  .contacto__desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 260px;
+  }
+
+  .contacto__arrow {
+    margin-top: var(--space-sm);
+    color: var(--olive);
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: var(--transition);
+  }
+
+  .contacto__card:hover .contacto__arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Breakpoints */
+  @media (min-width: 640px) {
+    .contacto__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .contacto__grid {
+      grid-template-columns: repeat(4, 1fr);
+      max-width: 1000px;
+    }
+  }
+</style>

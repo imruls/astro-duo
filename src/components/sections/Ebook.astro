@@ -1,6 +1,9 @@
 ---
 import { Image } from "astro:assets";
-import { ebookFeatures as features, ebookReviews as reviews } from "@data/dataSite";
+import {
+  ebookFeatures as features,
+  ebookReviews as reviews,
+} from "@data/dataSite";
 import Icon from "@ui/Icon.astro";
 import ebookCover from "@images/PortadaEbook.png";
 ---
@@ -79,7 +82,12 @@ import ebookCover from "@images/PortadaEbook.png";
               <div class="ebook__review-card">
                 <div class="ebook__review-stars">
                   {Array.from({ length: r.stars }).map(() => (
-                    <Icon name="star" size={16} fill="currentColor" stroke="none" />
+                    <Icon
+                      name="star"
+                      size={16}
+                      fill="currentColor"
+                      stroke="none"
+                    />
                   ))}
                 </div>
                 <p class="ebook__review-text">"{r.text}"</p>
@@ -103,7 +111,9 @@ import ebookCover from "@images/PortadaEbook.png";
 </section>
 
 <script>
-  const wrapper = document.querySelector(".ebook__track-wrapper") as HTMLElement;
+  const wrapper = document.querySelector(
+    ".ebook__track-wrapper",
+  ) as HTMLElement;
   const prevBtn = document.querySelector(".ebook__arrow--prev");
   const nextBtn = document.querySelector(".ebook__arrow--next");
 

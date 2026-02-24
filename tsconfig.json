@@ -7,7 +7,7 @@
       "@components/*": ["src/components/*"],
       "@sections/*": ["src/components/sections/*"],
       "@ui/*": ["src/components/ui/*"],
-      "@images/*": ["src/assets/images/*"]
-    }
-  }
+      "@images/*": ["src/assets/images/*"],
+    },
+  },
 }

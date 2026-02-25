@@ -12,7 +12,7 @@ const previewImages: Record<string, ImageMetadata> = {
 
 <section class="recursos" id="recursos">
   <div class="container">
-    <div class="recursos__header reveal">
+    <div class="recursos__header">
       <span class="section-label">Recursos</span>
       <h2 class="section-title">Herramientas para <span>crecer</span></h2>
       <p class="section-subtitle">
@@ -25,7 +25,7 @@ const previewImages: Record<string, ImageMetadata> = {
       {
         recursos.map((r, i) => (
           <article
-            class:list={["recurso-card", "reveal", `reveal-delay-${i + 1}`]}
+            class:list={["recurso-card"]}
           >
             <div class="recurso-card__image">
               <Image

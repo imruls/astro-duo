@@ -266,6 +266,30 @@ const MAX_VISIBLE_FEATURES = 5;
     align-items: start;
   }
 
+  /* Mobile: horizontal scroll snap */
+  @media (max-width: 639px) {
+    .plans-grid {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      gap: var(--space-sm);
+      padding-top: 1.25rem;
+      padding-bottom: var(--space-sm);
+    }
+
+    .plans-grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    .plan-card {
+      min-width: 280px;
+      flex: 0 0 85%;
+      scroll-snap-align: center;
+    }
+  }
+
   /* Card */
   .plan-card {
     display: flex;
@@ -611,6 +635,7 @@ const MAX_VISIBLE_FEATURES = 5;
   .extra-banner__note strong {
     font-weight: 600;
   }
+
 
   @media (min-width: 768px) {
     .planes__extras-grid {

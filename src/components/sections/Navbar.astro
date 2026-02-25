@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import { navLinks as links } from "@data/dataSite";
 import logo from "@images/5.png";
+import isotipo from "@images/isotipo.png";
 ---
 
 <nav
@@ -11,7 +12,8 @@ import logo from "@images/5.png";
 >
   <div class="container">
     <a href="#" class="nav-logo" aria-label="Dúo Studio Digital — Inicio">
-      <Image src={logo} alt="Dúo Studio Digital" loading="eager" decoding="async" format="webp" />
+      <Image src={isotipo} alt="Dúo Studio Digital" class="nav-logo__mobile" width={44} height={44} format="webp" loading="eager" decoding="async" />
+      <Image src={logo} alt="Dúo Studio Digital" class="nav-logo__desktop" loading="eager" decoding="async" format="webp" />
     </a>
 
     <!-- Desktop links -->
@@ -88,8 +90,16 @@ import logo from "@images/5.png";
     transition: var(--transition);
   }
 
-  .nav-logo img {
-    height: 80px;
+  .nav-logo__mobile {
+    height: 40px;
+    width: 40px;
+    object-fit: contain;
+    transition: var(--transition);
+  }
+
+  .nav-logo__desktop {
+    display: none;
+    height: 60px;
     width: auto;
     transition: var(--transition);
   }
@@ -156,7 +166,11 @@ import logo from "@images/5.png";
     display: flex;
     flex-direction: column;
     gap: 5px;
-    padding: 4px;
+    padding: 10px;
+    min-width: 44px;
+    min-height: 44px;
+    justify-content: center;
+    align-items: center;
   }
 
   .nav-toggle span {
@@ -237,6 +251,15 @@ import logo from "@images/5.png";
 
   /* Desktop breakpoint */
   @media (min-width: 1024px) {
+    .nav-logo__mobile {
+      display: none;
+    }
+
+    .nav-logo__desktop {
+      display: block;
+      height: 80px;
+    }
+
     .nav-links {
       display: flex;
     }

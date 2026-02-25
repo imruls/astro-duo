@@ -269,6 +269,21 @@ button:focus-visible {
   }
 }
 
+/* ---------- Mobile spacing overrides ---------- */
+@media (max-width: 639px) {
+  :root {
+    --space-xl: 2.5rem;
+    --space-2xl: 3rem;
+    --space-3xl: 4rem;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding: 0.875rem 1.75rem;
+    font-size: 0.9rem;
+  }
+}
+
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   *,

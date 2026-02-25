@@ -26,6 +26,7 @@ const { whatsappUrl = "https://wa.me/5491173636081" } = Astro.props;
     position: fixed;
     bottom: 1.5rem;
     right: 1.5rem;
+    bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
     width: 52px;
     height: 52px;
     border-radius: 50%;

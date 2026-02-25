@@ -167,6 +167,37 @@ import { contactChannels } from "@data/dataSite";
     transform: translateX(0);
   }
 
+  /* Mobile: show arrows always + active feedback */
+  @media (max-width: 639px) {
+    .contacto__card {
+      flex-direction: row;
+      text-align: left;
+      gap: var(--space-sm);
+      padding: var(--space-md);
+    }
+
+    .contacto__icon {
+      margin-bottom: 0;
+    }
+
+    .contacto__desc {
+      display: none;
+    }
+
+    .contacto__arrow {
+      opacity: 1;
+      transform: translateX(0);
+      margin-top: 0;
+      margin-left: auto;
+      align-self: center;
+    }
+
+    .contacto__card:active {
+      transform: scale(0.98);
+      background: var(--cream);
+    }
+  }
+
   /* Breakpoints */
   @media (min-width: 640px) {
     .contacto__grid {

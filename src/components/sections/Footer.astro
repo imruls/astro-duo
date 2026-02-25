@@ -108,13 +108,13 @@ import { navLinks, socialLinks } from "@data/dataSite";
   }
 
   .footer__nav {
-    text-align: left;
+    text-align: center;
   }
 
   .footer__links {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 0.5rem 1.25rem;
   }
 
@@ -131,14 +131,19 @@ import { navLinks, socialLinks } from "@data/dataSite";
   .footer__contact {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
+    align-items: center;
+    text-align: center;
     gap: 0.75rem;
   }
 
   .footer__social {
     display: flex;
     gap: 0.75rem;
+  }
+
+  .footer__social a {
+    min-width: 44px;
+    min-height: 44px;
   }
 
   .footer__social a {
@@ -178,6 +183,19 @@ import { navLinks, socialLinks } from "@data/dataSite";
     color: var(--white);
   }
 
+  /* Mobile: separators between footer groups + FAB safe area */
+  @media (max-width: 767px) {
+    .footer {
+      padding-bottom: calc(var(--space-lg) + 4rem);
+    }
+
+    .footer__nav,
+    .footer__contact {
+      padding-top: var(--space-md);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  }
+
   /* Breakpoints */
   @media (min-width: 768px) {
     .footer__top {
@@ -186,8 +204,18 @@ import { navLinks, socialLinks } from "@data/dataSite";
       gap: var(--space-lg) var(--space-md);
     }
 
+    .footer__nav {
+      text-align: left;
+    }
+
+    .footer__contact {
+      align-items: flex-start;
+      text-align: left;
+    }
+
     .footer__links {
       flex-direction: column;
+      justify-content: flex-start;
     }
   }
 </style>

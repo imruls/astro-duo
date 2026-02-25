@@ -16,6 +16,7 @@
   --text-dark: #0c0d0d;
   --text-muted: #6b6b5a;
   --text-light: #9b9b8a;
+  --star-color: #f5a623;
 
   /* Typography */
   --font-display: "Pacifico", cursive;
@@ -87,6 +88,19 @@ button {
 
 ul {
   list-style: none;
+}
+
+/* ---------- Screen reader only ---------- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* ---------- Layout ---------- */

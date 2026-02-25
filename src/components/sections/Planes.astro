@@ -61,6 +61,7 @@ const MAX_VISIBLE_FEATURES = 5;
             <a
               href={`https://wa.me/+5491173636081?text=${encodeURIComponent(`Hola, me interesa el plan ${plan.name}, quiero más info`)}`}
               target="_blank"
+              rel="noopener noreferrer"
               class:list={[
                 "plan-card__cta",
                 { "plan-card__cta--featured": plan.featured },
@@ -194,18 +195,6 @@ const MAX_VISIBLE_FEATURES = 5;
 </section>
 
 <style>
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
-
   .planes {
     padding: var(--space-2xl) 0;
     background: var(--white);
@@ -288,7 +277,6 @@ const MAX_VISIBLE_FEATURES = 5;
     position: relative;
     transition: var(--transition);
     text-align: center;
-    will-change: transform;
   }
 
   .plan-card:hover {

@@ -231,7 +231,7 @@ export const recursos = [
     excerpt:
       "Prompts listos para usar que te van a ayudar a crear contenido, planificar y optimizar tu presencia digital.",
     linkText: "Descargar PDF",
-    href: "/downloads/10 PROMPTS PARA CHATGPT.pdf",
+    href: "/downloads/10-prompts-para-chatgpt.pdf",
   },
   {
     tag: "Gratis",
@@ -240,6 +240,6 @@ export const recursos = [
     excerpt:
       "Una plantilla de presupuesto profesional para que puedas presentar tus servicios de forma clara y organizada.",
     linkText: "Descargar PDF",
-    href: "/downloads/MODELO DE PRESUPUESTO.pdf",
+    href: "/downloads/modelo-de-presupuesto.pdf",
   },
 ];

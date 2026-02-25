@@ -7,7 +7,6 @@ import logo from "@images/5.png";
 <nav
   class="navbar"
   id="navbar"
-  role="navigation"
   aria-label="Navegación principal"
 >
   <div class="container">
@@ -16,10 +15,10 @@ import logo from "@images/5.png";
     </a>
 
     <!-- Desktop links -->
-    <div class="nav-links" role="menubar">
+    <div class="nav-links">
       {
         links.map((link) => (
-          <a href={link.href} role="menuitem">
+          <a href={link.href}>
             {link.label}
           </a>
         ))
@@ -251,32 +250,34 @@ import logo from "@images/5.png";
 </style>
 
 <script>
-  // Scroll behaviour
-  const navbar = document.getElementById("navbar")!;
-  window.addEventListener("scroll", () => {
-    navbar.classList.toggle("scrolled", window.scrollY > 60);
-  });
+  const navbar = document.getElementById("navbar");
+  const toggle = document.getElementById("navToggle");
+  const menu = document.getElementById("mobileMenu");
+  const overlay = document.getElementById("mobileOverlay");
 
-  // Mobile menu
-  const toggle = document.getElementById("navToggle")!;
-  const menu = document.getElementById("mobileMenu")!;
-  const overlay = document.getElementById("mobileOverlay")!;
-
-  function toggleMenu() {
-    const isOpen = menu.classList.contains("open");
-    menu.classList.toggle("open");
-    overlay.classList.toggle("open");
-    toggle.classList.toggle("active");
-    toggle.setAttribute("aria-expanded", String(!isOpen));
-    document.body.style.overflow = isOpen ? "" : "hidden";
+  if (navbar) {
+    window.addEventListener("scroll", () => {
+      navbar.classList.toggle("scrolled", window.scrollY > 60);
+    }, { passive: true });
   }
 
-  toggle.addEventListener("click", toggleMenu);
-  overlay.addEventListener("click", toggleMenu);
+  if (toggle && menu && overlay) {
+    function toggleMenu() {
+      const isOpen = menu.classList.contains("open");
+      menu.classList.toggle("open");
+      overlay.classList.toggle("open");
+      toggle.classList.toggle("active");
+      toggle.setAttribute("aria-expanded", String(!isOpen));
+      document.body.style.overflow = isOpen ? "" : "hidden";
+    }
 
-  menu.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      if (menu.classList.contains("open")) toggleMenu();
+    toggle.addEventListener("click", toggleMenu);
+    overlay.addEventListener("click", toggleMenu);
+
+    menu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        if (menu.classList.contains("open")) toggleMenu();
+      });
     });
-  });
+  }
 </script>

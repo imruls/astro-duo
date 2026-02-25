@@ -61,7 +61,7 @@ import heroImage from "@images/2.png";
     <div class="hero__visual" aria-hidden="true">
       <div class="hero__visual-inner">
         <div class="hero__circle hero__circle--main">
-          <Image src={heroImage} alt="Dúo" class="hero__circle-image" loading="eager" decoding="async" format="webp" />
+          <Image src={heroImage} alt="Dúo" class="hero__circle-image" loading="eager" decoding="async" format="webp" fetchpriority="high" />
         </div>
         <div class="hero__circle hero__circle--accent-1"></div>
         <div class="hero__circle hero__circle--accent-2"></div>
@@ -291,6 +291,16 @@ import heroImage from "@images/2.png";
     right: 0;
     background: var(--blush);
     animation: float 4s ease-in-out infinite 0.5s;
+  }
+
+  /* Pause floating animations on mobile to save GPU */
+  @media (max-width: 1023px) {
+    .hero-shape,
+    .hero__circle--accent-1,
+    .hero__circle--accent-2,
+    .hero__circle--accent-3 {
+      animation: none;
+    }
   }
 
   /* --- Breakpoints --- */

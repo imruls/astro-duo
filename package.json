@@ -5,9 +5,13 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "check": "astro check"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.0",
+    "@fontsource/pacifico": "^5.2.7",
+    "@fontsource/poppins": "^5.2.7",
     "astro": "^5.x"
   }
 }

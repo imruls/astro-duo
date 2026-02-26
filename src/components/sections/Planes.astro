@@ -263,7 +263,7 @@ const MAX_VISIBLE_FEATURES = 5;
     grid-template-columns: 1fr;
     gap: var(--space-md);
     margin-top: 1rem;
-    align-items: start;
+    align-items: stretch;
   }
 
   /* Mobile: horizontal scroll snap */
@@ -391,6 +391,7 @@ const MAX_VISIBLE_FEATURES = 5;
 
   /* 5. Features with separators */
   .plan-card__features {
+    flex: 1;
     margin-bottom: var(--space-sm);
     text-align: left;
   }

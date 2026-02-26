@@ -86,8 +86,8 @@ export const extraService = {
 };
 
 export const contentShootService = {
-  price: "60.000",
-  priceUsd: "45",
+  price: "70.000",
+  priceUsd: "50",
 };
 
 // ─── Ebook ───────────────────────────────────────────────

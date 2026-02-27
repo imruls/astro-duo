@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import {
   ebookFeatures as features,
   ebookReviews as reviews,
+  ebookHref,
 } from "@data/dataSite";
 import Icon from "@ui/Icon.astro";
 import ebookCover from "@images/PortadaEbook.png";
@@ -36,8 +37,9 @@ import ebookCover from "@images/PortadaEbook.png";
       </div>
 
       <a
-        href="/downloads/ebook-abc-ventas-redes.pdf"
-        download
+        href={ebookHref}
+        target="_blank"
+        rel="noopener noreferrer"
         class="ebook__cta"
       >
         Descargar gratis

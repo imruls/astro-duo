@@ -92,6 +92,9 @@ export const contentShootService = {
 
 // ─── Ebook ───────────────────────────────────────────────
 
+export const ebookHref =
+  "https://duo-studio-digital.tiendup.com/p/ebook-el-abc-de-las-redes";
+
 export const ebookFeatures = [
   { icon: "book", text: "+40 páginas de contenido práctico" },
   { icon: "chart", text: "Estrategias probadas con resultados" },
@@ -231,7 +234,7 @@ export const recursos = [
     excerpt:
       "Prompts listos para usar que te van a ayudar a crear contenido, planificar y optimizar tu presencia digital.",
     linkText: "Descargar PDF",
-    href: "/downloads/10-prompts-para-chatgpt.pdf",
+    href: "https://duo-studio-digital.tiendup.com/p/pack-de-10-prompts-para-chatgpt-especial-emprendedores",
   },
   {
     tag: "Gratis",
@@ -240,6 +243,6 @@ export const recursos = [
     excerpt:
       "Una plantilla de presupuesto profesional para que puedas presentar tus servicios de forma clara y organizada.",
     linkText: "Descargar PDF",
-    href: "/downloads/modelo-de-presupuesto.pdf",
+    href: "https://duo-studio-digital.tiendup.com/p/presupuesto-basico-community-manager-emprendedor",
   },
 ];

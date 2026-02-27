@@ -45,7 +45,7 @@ const previewImages: Record<string, ImageMetadata> = {
             <div class="recurso-card__body">
               <h3 class="recurso-card__title">{r.title}</h3>
               <p class="recurso-card__excerpt">{r.excerpt}</p>
-              <a href={r.href} class="recurso-card__link" download>
+              <a href={r.href} class="recurso-card__link" target="_blank" rel="noopener noreferrer">
                 {r.linkText}
                 <svg
                   viewBox="0 0 24 24"

@@ -55,34 +55,46 @@ const {
     <meta name="twitter:image" content={`${siteUrl}/og-image.png`} />
 
     <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "MarketingAgency",
-      "name": "Dúo Studio Digital",
-      "description": description,
-      "url": siteUrl,
-      "logo": `${siteUrl}/favicon-512.png`,
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Buenos Aires",
-        "addressCountry": "AR"
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "email": "contacto@duostudiodigital.com",
-        "contactType": "customer service"
-      },
-      "sameAs": [
-        "https://www.instagram.com/duostudio.digital/",
-        "https://www.tiktok.com/@duo.studio.digital"
-      ]
-    })} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "MarketingAgency",
+        name: "Dúo Studio Digital",
+        description: description,
+        url: siteUrl,
+        logo: `${siteUrl}/favicon-512.png`,
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Buenos Aires",
+          addressCountry: "AR",
+        },
+        contactPoint: {
+          "@type": "ContactPoint",
+          email: "contacto@duostudiodigital.com",
+          contactType: "customer service",
+        },
+        sameAs: [
+          "https://www.instagram.com/duostudio.digital/",
+          "https://www.tiktok.com/@duo.studio.digital",
+        ],
+      })}
+    />
 
     <title>{title}</title>
   </head>
 
   <body>
     <slot />
+
+    <!-- Vercel Analytics & Speed Insights -->
+    <script>
+      import { inject } from "@vercel/analytics";
+      import { injectSpeedInsights } from "@vercel/speed-insights";
+
+      inject();
+      injectSpeedInsights();
+    </script>
 
     <!-- Reveal observer -->
     <script>

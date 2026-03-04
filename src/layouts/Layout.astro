@@ -87,15 +87,6 @@ const {
   <body>
     <slot />
 
-    <!-- Vercel Analytics & Speed Insights -->
-    <script>
-      import { inject } from "@vercel/analytics";
-      import { injectSpeedInsights } from "@vercel/speed-insights";
-
-      inject();
-      injectSpeedInsights();
-    </script>
-
     <!-- Reveal observer -->
     <script>
       const revealElements = document.querySelectorAll(".reveal");

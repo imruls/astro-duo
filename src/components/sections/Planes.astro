@@ -1,5 +1,5 @@
 ---
-import { plans, extraService, contentShootService } from "@data/dataSite";
+import { plans } from "@data/dataSite";
 
 const MAX_VISIBLE_FEATURES = 5;
 ---
@@ -101,96 +101,6 @@ const MAX_VISIBLE_FEATURES = 5;
       }
     </div>
 
-    <!-- Servicios adicionales -->
-    <div class="planes__extras reveal">
-      <div class="planes__extras-grid">
-        <div class="planes__extra-banner">
-          <div class="extra-banner__info">
-            <span class="extra-banner__badge">Servicio adicional</span>
-            <h4 class="extra-banner__title">Campañas + Paid Media</h4>
-            <p class="extra-banner__desc">
-              Gestionamos tus campañas publicitarias de principio a fin:
-              estrategia, segmentación, creatividades y optimización continua.
-            </p>
-          </div>
-
-          <div
-            class="extra-banner__pricing"
-            data-price={extraService.price}
-            data-price-usd={extraService.priceUsd}
-          >
-            <span class="extra-banner__pricing-label">Gestión del servicio</span
-            >
-            <div class="extra-banner__price">
-              <span class="extra-banner__currency">ARS</span>
-              <span class="extra-banner__amount">{extraService.price}</span>
-            </div>
-          </div>
-
-          <div class="extra-banner__note">
-            <svg
-              class="extra-banner__note-icon"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              aria-hidden="true"
-            >
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="12" y1="16" x2="12" y2="12"></line>
-              <line x1="12" y1="8" x2="12.01" y2="8"></line>
-            </svg>
-            <p>
-              El presupuesto destinado a la pauta publicitaria
-              <strong>corre por cuenta del cliente</strong> y no está incluido en
-              este valor.
-            </p>
-          </div>
-        </div>
-
-        <div class="planes__extra-banner">
-          <div class="extra-banner__info">
-            <span class="extra-banner__badge">Servicio adicional</span>
-            <h4 class="extra-banner__title">Grabación de Contenido</h4>
-            <p class="extra-banner__desc">
-              Producimos contenido visual profesional para tus redes: fotos,
-              reels y videos con dirección creativa incluida.
-            </p>
-          </div>
-
-          <div
-            class="extra-banner__pricing"
-            data-price={contentShootService.price}
-            data-price-usd={contentShootService.priceUsd}
-          >
-            <span class="extra-banner__pricing-label">4 horas de grabación</span
-            >
-            <div class="extra-banner__price">
-              <span class="extra-banner__currency">ARS</span>
-              <span class="extra-banner__amount"
-                >{contentShootService.price}</span
-              >
-            </div>
-          </div>
-
-          <div class="extra-banner__note">
-            <svg
-              class="extra-banner__note-icon"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              aria-hidden="true"
-            >
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="12" y1="16" x2="12" y2="12"></line>
-              <line x1="12" y1="8" x2="12.01" y2="8"></line>
-            </svg>
-            <p>Incluye dirección creativa y edición.</p>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -373,18 +283,14 @@ const MAX_VISIBLE_FEATURES = 5;
 
   /* 9. Price change animation */
   .plan-card__amount,
-  .plan-card__currency,
-  .extra-banner__amount,
-  .extra-banner__currency {
+  .plan-card__currency {
     transition:
       opacity 0.2s ease,
       transform 0.2s ease;
   }
 
   :global(.price-updating) .plan-card__amount,
-  :global(.price-updating) .plan-card__currency,
-  :global(.price-updating) .extra-banner__amount,
-  :global(.price-updating) .extra-banner__currency {
+  :global(.price-updating) .plan-card__currency {
     opacity: 0;
     transform: translateY(-4px);
   }
@@ -497,153 +403,6 @@ const MAX_VISIBLE_FEATURES = 5;
     background: var(--olive-dark);
   }
 
-  /* Extras section */
-  .planes__extras {
-    margin-top: var(--space-xl);
-  }
-
-  .planes__extras-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-md);
-  }
-
-  /* Extra Service Banner */
-  .planes__extra-banner {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
-    padding: var(--space-lg);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    position: relative;
-    transition:
-      transform 0.3s ease,
-      box-shadow 0.3s ease;
-    background: var(--white);
-    border: 1px solid rgba(123, 139, 62, 0.2);
-  }
-
-  .planes__extra-banner:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-  }
-
-  .planes__extra-banner::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-      ellipse at 80% 20%,
-      rgba(255, 255, 255, 0.4) 0%,
-      transparent 60%
-    );
-    pointer-events: none;
-  }
-
-  .extra-banner__info {
-    position: relative;
-  }
-
-  .extra-banner__badge {
-    display: inline-block;
-    padding: 0.25rem 0.7rem;
-    background: var(--olive);
-    color: var(--white);
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    border-radius: var(--radius-full);
-    margin-bottom: var(--space-sm);
-  }
-
-  .extra-banner__title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--text-dark);
-    margin-bottom: 0.35rem;
-  }
-
-  .extra-banner__desc {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-  }
-
-  .extra-banner__pricing {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 0.25rem;
-    padding-top: var(--space-sm);
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
-  }
-
-  .extra-banner__pricing-label {
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text-muted);
-  }
-
-  .extra-banner__price {
-    display: flex;
-    align-items: baseline;
-    gap: 0.35rem;
-  }
-
-  .extra-banner__currency {
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--olive-dark);
-  }
-
-  .extra-banner__amount {
-    font-size: 2rem;
-    font-weight: 700;
-    line-height: 1;
-    color: var(--olive-dark);
-  }
-
-  .extra-banner__note {
-    position: relative;
-    display: flex;
-    align-items: flex-start;
-    gap: 0.5rem;
-    padding: 0.6rem 0.75rem;
-    background: rgba(123, 139, 62, 0.08);
-    border-radius: var(--radius-sm);
-    border-left: 2px solid var(--olive);
-  }
-
-  .extra-banner__note-icon {
-    width: 16px;
-    height: 16px;
-    color: var(--olive);
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
-  .extra-banner__note p {
-    font-size: 0.85rem;
-    color: var(--text-dark);
-    line-height: 1.5;
-  }
-
-  .extra-banner__note strong {
-    font-weight: 600;
-  }
-
-
-  @media (min-width: 768px) {
-    .planes__extras-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
 
   /* 8. Adjusted breakpoints */
   @media (min-width: 640px) {
@@ -694,9 +453,6 @@ const MAX_VISIBLE_FEATURES = 5;
   const toggle = document.querySelector(".plan-toggle");
   const toggleBtns = document.querySelectorAll(".plan-toggle button");
   const cards = document.querySelectorAll<HTMLElement>(".plan-card");
-  const bannerPricings = document.querySelectorAll<HTMLElement>(
-    ".extra-banner__pricing",
-  );
 
   // 4. Toggle with sliding pill
   toggleBtns.forEach((btn, index) => {
@@ -731,24 +487,6 @@ const MAX_VISIBLE_FEATURES = 5;
             } else {
               amount.textContent = card.dataset.price ?? "";
               currency.textContent = "ARS";
-            }
-          }
-        });
-
-        bannerPricings.forEach((bannerPricing) => {
-          const bannerAmount = bannerPricing.querySelector(
-            ".extra-banner__amount",
-          );
-          const bannerCurrency = bannerPricing.querySelector(
-            ".extra-banner__currency",
-          );
-          if (bannerAmount && bannerCurrency) {
-            if (isUsd) {
-              bannerAmount.textContent = bannerPricing.dataset.priceUsd ?? "";
-              bannerCurrency.textContent = "USD";
-            } else {
-              bannerAmount.textContent = bannerPricing.dataset.price ?? "";
-              bannerCurrency.textContent = "ARS";
             }
           }
         });

@@ -2,7 +2,6 @@
   "name": "duo-studio-digital",
   "type": "module",
   "version": "1.0.0",
-  "packageManager": "bun@1.3.8",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -10,12 +9,15 @@
     "check": "astro check"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.8",
     "@astrojs/sitemap": "^3.7.0",
     "@astrojs/vercel": "^9.0.4",
     "@fontsource/pacifico": "^5.2.7",
     "@fontsource/poppins": "^5.2.7",
     "@vercel/analytics": "^1.6.1",
     "@vercel/speed-insights": "^1.3.1",
-    "astro": "^5.x"
+    "astro": "^5.x",
+    "sharp": "^0.34.5",
+    "typescript": "^5.9.3"
   }
 }

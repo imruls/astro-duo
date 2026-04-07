@@ -8,7 +8,6 @@ export default defineConfig({
   site: 'https://duostudiodigital.com.ar',
   adapter: vercel({
     webAnalytics: { enabled: true },
-    speedInsights: { enabled: true },
   }),
   integrations: [sitemap()],
 });

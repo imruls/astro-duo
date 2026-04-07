@@ -1,7 +1,12 @@
+// ─── WhatsApp ────────────────────────────────────────────
+
+export const whatsappNumber = "5491173636081";
+
 // ─── Navbar ──────────────────────────────────────────────
 
 export const navLinks = [
   { label: "Planes", href: "#planes" },
+  { label: "Servicios", href: "#servicios" },
   { label: "Ebook", href: "#ebook" },
   { label: "Recursos", href: "#recursos" },
   { label: "Nosotras", href: "#about" },
@@ -89,6 +94,102 @@ export const contentShootService = {
   price: "70.000",
   priceUsd: "50",
 };
+
+// ─── Servicios ──────────────────────────────────────────
+
+export interface Servicio {
+  title: string;
+  description: string;
+  pricingLabel: string;
+  price: string;
+  priceUsd: string;
+  note: string;
+  ctaText?: string;
+  ctaHref?: string;
+}
+
+export const servicios: Servicio[] = [
+  {
+    title: "Campañas + Paid Media",
+    description:
+      "Gestionamos tus campañas publicitarias de principio a fin: estrategia, segmentación, creatividades y optimización continua.",
+    pricingLabel: "Gestión del servicio",
+    price: "200.000",
+    priceUsd: "140",
+    note: "El presupuesto destinado a la pauta publicitaria <strong>corre por cuenta del cliente</strong> y no está incluido en este valor.",
+  },
+  {
+    title: "Grabación de Contenido",
+    description:
+      "Producimos contenido visual profesional para tus redes: fotos, reels y videos con dirección creativa incluida.",
+    pricingLabel: "4 horas de grabación",
+    price: "70.000",
+    priceUsd: "50",
+    note: "Incluye dirección creativa y edición.",
+  },
+  {
+    title: "Estrategia de Marca + Calendario Mensual",
+    description:
+      "Dejá de improvisar: trabajamos sobre la base de tu marca para definir una estrategia clara y un calendario mensual de contenidos alineado a tus objetivos.",
+    pricingLabel: "Servicio único",
+    price: "180.000",
+    priceUsd: "130",
+    note: "Incluye estrategia de marca y planificación mensual de contenidos.",
+    ctaText: "Más info",
+    ctaHref: "https://duo-studio-digital.tiendup.com/p/estrategia-de-marca-calendario-mensual-de-contenidos",
+  },
+  {
+    title: "Branding",
+    description:
+      "Tu marca no es solo cómo se ve. Es cómo se percibe, cómo comunica y cómo conecta. Creamos soluciones de marca que van más allá de la estética visual.",
+    pricingLabel: "Servicio único",
+    price: "350.000",
+    priceUsd: "250",
+    note: "Incluye identidad de marca integral: percepción, comunicación y conexión.",
+    ctaText: "Más info",
+    ctaHref: "https://duo-studio-digital.tiendup.com/p/branding",
+  },
+  {
+    title: "Rebranding",
+    description:
+      "Tu marca ya no te representa como antes. Renovamos tu identidad visual y comunicación para que vuelva a conectar con tu audiencia.",
+    pricingLabel: "Servicio único",
+    price: "250.000",
+    priceUsd: "180",
+    note: "Incluye renovación estratégica de identidad visual y comunicación de marca.",
+    ctaText: "Más info",
+    ctaHref: "https://duo-studio-digital.tiendup.com/p/rebranding",
+  },
+  {
+    title: "Logo & Isotipo",
+    description:
+      "Tu logo es la primera impresión de tu marca. Y tiene que estar a la altura. Diseñamos logotipos e isotipos profesionales que representan tu identidad.",
+    pricingLabel: "Servicio único",
+    price: "250.000",
+    priceUsd: "180",
+    note: "Incluye diseño de logotipo e isotipo profesional.",
+    ctaText: "Más info",
+    ctaHref: "https://duo-studio-digital.tiendup.com/p/logo-isotipo",
+  },
+  {
+    title: "Plantillas Editables + Preview de Feed",
+    description:
+      "Diseñamos un feed alineado, coherente y estratégico. Creamos plantillas personalizadas y una preview completa para que veas cómo se verá tu Instagram antes de publicar.",
+    pricingLabel: "",
+    price: "",
+    priceUsd: "",
+    note: "Incluye plantillas editables adaptadas a tu marca, estructura visual estratégica, preview de feed y lineamientos de uso. Ideal contar con Canva Pro.",
+  },
+  {
+    title: "Single Page Websites",
+    description:
+      "Creamos webs completas en una sola página, con secciones estratégicas pensadas para convertir. Una web profesional, clara y estratégica para tu marca.",
+    pricingLabel: "",
+    price: "",
+    priceUsd: "",
+    note: "Incluye diseño personalizado, 5–7 secciones (Inicio, Servicios, Sobre vos, Portfolio, Contacto), galería de trabajos, integración con WhatsApp + formulario, dominio + SSL y 30 días de soporte.",
+  },
+];
 
 // ─── Ebook ───────────────────────────────────────────────
 

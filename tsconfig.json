@@ -1,13 +1,15 @@
 {
   "extends": "astro/tsconfigs/base",
   "compilerOptions": {
+    "skipLibCheck": true,
+    "types": [],
     "baseUrl": ".",
     "paths": {
       "@data/*": ["src/data/*"],
       "@components/*": ["src/components/*"],
       "@sections/*": ["src/components/sections/*"],
       "@ui/*": ["src/components/ui/*"],
-      "@images/*": ["src/assets/images/*"],
-    },
-  },
+      "@images/*": ["src/assets/images/*"]
+    }
+  }
 }

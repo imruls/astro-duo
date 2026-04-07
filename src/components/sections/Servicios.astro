@@ -1,0 +1,323 @@
+---
+import { servicios, whatsappNumber } from "@data/dataSite";
+
+const MAX_REVEAL_DELAY = 4;
+const whatsappBase = `https://wa.me/+${whatsappNumber}`;
+---
+
+<!-- 1. SVG symbol reutilizable (se renderiza una sola vez) -->
+<svg class="sr-only" aria-hidden="true">
+  <symbol
+    id="icon-info"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+  >
+    <circle cx="12" cy="12" r="10" />
+    <line x1="12" y1="16" x2="12" y2="12" />
+    <line x1="12" y1="8" x2="12.01" y2="8" />
+  </symbol>
+</svg>
+
+<section class="servicios" id="servicios">
+  <div class="container">
+    <div class="servicios__header reveal">
+      <span class="section-label">Nuestros servicios</span>
+      <h2 class="section-title">
+        Potenciá tu marca con <span>servicios a medida</span>
+      </h2>
+      <p class="section-subtitle">
+        Complementá tu plan con servicios individuales diseñados para llevar tu
+        presencia digital al siguiente nivel.
+      </p>
+    </div>
+
+    <div class="servicios__grid">
+      {
+        servicios.map((servicio, i) => {
+          const delay = Math.min(i + 1, MAX_REVEAL_DELAY);
+          const defaultHref = `${whatsappBase}?text=${encodeURIComponent(`Hola, me interesa el servicio de ${servicio.title}, quiero más info`)}`;
+
+          return (
+            <div
+              class:list={[
+                "servicio-card",
+                "reveal",
+                `reveal-delay-${delay}`,
+              ]}
+            >
+              <div class="servicio-card__info">
+                <h4 class="servicio-card__title">{servicio.title}</h4>
+                <p class="servicio-card__desc">{servicio.description}</p>
+              </div>
+
+              {servicio.price && (
+                <div class="servicio-card__pricing">
+                  <span class="servicio-card__pricing-label">
+                    {servicio.pricingLabel}
+                  </span>
+                  <div class="servicio-card__prices">
+                    <div class="servicio-card__price">
+                      <span class="servicio-card__currency">ARS</span>
+                      <span class="servicio-card__amount">
+                        {servicio.price}
+                      </span>
+                    </div>
+                    <span class="servicio-card__price-separator">|</span>
+                    <div class="servicio-card__price">
+                      <span class="servicio-card__currency">USD</span>
+                      <span class="servicio-card__amount">
+                        {servicio.priceUsd}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div class="servicio-card__note">
+                <svg class="servicio-card__note-icon" aria-hidden="true">
+                  <use href="#icon-info" />
+                </svg>
+                <p set:html={servicio.note} />
+              </div>
+
+              <a
+                href={servicio.ctaHref ?? defaultHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="servicio-card__cta"
+              >
+                {servicio.ctaText ??
+                  (servicio.price
+                    ? "Consultar"
+                    : "Consultar precio por WhatsApp")}
+              </a>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .servicios {
+    padding: var(--space-2xl) 0;
+    background: var(--cream);
+  }
+
+  .servicios__header {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+  }
+
+  .servicios__header .section-subtitle {
+    margin-inline: auto;
+  }
+
+  .servicios__header .section-title span {
+    font-family: var(--font-display);
+    font-weight: 400;
+  }
+
+  /* Grid */
+  .servicios__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  /* Mobile: horizontal scroll snap */
+  @media (max-width: 639px) {
+    .servicios__grid {
+      display: flex;
+      align-items: stretch;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      gap: var(--space-sm);
+      padding-bottom: var(--space-sm);
+    }
+
+    .servicios__grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    .servicio-card {
+      min-width: 280px;
+      flex: 0 0 85%;
+      scroll-snap-align: center;
+    }
+  }
+
+  /* Card */
+  .servicio-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    position: relative;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+    background: var(--white);
+    border: 1px solid rgba(123, 139, 62, 0.2);
+  }
+
+  .servicio-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  }
+
+  .servicio-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse at 80% 20%,
+      rgba(255, 255, 255, 0.4) 0%,
+      transparent 60%
+    );
+    pointer-events: none;
+  }
+
+  .servicio-card__info {
+    position: relative;
+  }
+
+  .servicio-card__title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.35rem;
+  }
+
+  .servicio-card__desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .servicio-card__pricing {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.25rem;
+    padding-top: var(--space-sm);
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+  }
+
+  .servicio-card__pricing-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+  }
+
+  .servicio-card__prices {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .servicio-card__price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+  }
+
+  .servicio-card__price-separator {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  .servicio-card__currency {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--olive-dark);
+  }
+
+  .servicio-card__amount {
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--olive-dark);
+  }
+
+  .servicio-card__note {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.6rem 0.75rem;
+    background: rgba(123, 139, 62, 0.08);
+    border-radius: var(--radius-sm);
+    border-left: 2px solid var(--olive);
+  }
+
+  .servicio-card__note-icon {
+    width: 16px;
+    height: 16px;
+    color: var(--olive);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .servicio-card__note p {
+    font-size: 0.85rem;
+    color: var(--text-dark);
+    line-height: 1.5;
+  }
+
+  .servicio-card__note :global(strong) {
+    font-weight: 600;
+  }
+
+  .servicio-card__cta {
+    position: relative;
+    display: block;
+    padding: 0.75rem 1.5rem;
+    border: 1.5px solid var(--olive);
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--olive);
+    text-align: center;
+    text-decoration: none;
+    transition:
+      background 0.3s ease,
+      color 0.3s ease,
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+    margin-top: auto;
+  }
+
+  .servicio-card__cta:hover {
+    background: var(--olive);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(123, 139, 62, 0.3);
+  }
+
+  @media (min-width: 768px) {
+    .servicios__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .servicios__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>

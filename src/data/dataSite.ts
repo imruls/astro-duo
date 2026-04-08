@@ -114,8 +114,8 @@ export const servicios: Servicio[] = [
     description:
       "Gestionamos tus campañas publicitarias de principio a fin: estrategia, segmentación, creatividades y optimización continua.",
     pricingLabel: "Gestión del servicio",
-    price: "200.000",
-    priceUsd: "140",
+    price: "300.000",
+    priceUsd: "220",
     note: "El presupuesto destinado a la pauta publicitaria <strong>corre por cuenta del cliente</strong> y no está incluido en este valor.",
   },
   {
@@ -136,7 +136,8 @@ export const servicios: Servicio[] = [
     priceUsd: "130",
     note: "Incluye estrategia de marca y planificación mensual de contenidos.",
     ctaText: "Más info",
-    ctaHref: "https://duo-studio-digital.tiendup.com/p/estrategia-de-marca-calendario-mensual-de-contenidos",
+    ctaHref:
+      "https://duo-studio-digital.tiendup.com/p/estrategia-de-marca-calendario-mensual-de-contenidos",
   },
   {
     title: "Branding",

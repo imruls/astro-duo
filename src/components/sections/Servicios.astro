@@ -52,28 +52,30 @@ const whatsappBase = `https://wa.me/+${whatsappNumber}`;
                 <p class="servicio-card__desc">{servicio.description}</p>
               </div>
 
-              {servicio.price && (
-                <div class="servicio-card__pricing">
-                  <span class="servicio-card__pricing-label">
-                    {servicio.pricingLabel}
-                  </span>
-                  <div class="servicio-card__prices">
-                    <div class="servicio-card__price">
-                      <span class="servicio-card__currency">ARS</span>
-                      <span class="servicio-card__amount">
-                        {servicio.price}
-                      </span>
-                    </div>
-                    <span class="servicio-card__price-separator">|</span>
-                    <div class="servicio-card__price">
-                      <span class="servicio-card__currency">USD</span>
-                      <span class="servicio-card__amount">
-                        {servicio.priceUsd}
-                      </span>
+              <div class="servicio-card__pricing">
+                {servicio.price ? (
+                  <div class="servicio-card__pricing-inner">
+                    <span class="servicio-card__pricing-label">
+                      {servicio.pricingLabel}
+                    </span>
+                    <div class="servicio-card__prices">
+                      <div class="servicio-card__price">
+                        <span class="servicio-card__currency">ARS</span>
+                        <span class="servicio-card__amount">
+                          {servicio.price}
+                        </span>
+                      </div>
+                      <span class="servicio-card__price-separator">|</span>
+                      <div class="servicio-card__price">
+                        <span class="servicio-card__currency">USD</span>
+                        <span class="servicio-card__amount">
+                          {servicio.priceUsd}
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
+                ) : null}
+              </div>
 
               <div class="servicio-card__note">
                 <svg class="servicio-card__note-icon" aria-hidden="true">
@@ -125,6 +127,7 @@ const whatsappBase = `https://wa.me/+${whatsappNumber}`;
   .servicios__grid {
     display: grid;
     grid-template-columns: 1fr;
+    grid-template-rows: auto;
     gap: var(--space-md);
   }
 
@@ -134,7 +137,6 @@ const whatsappBase = `https://wa.me/+${whatsappNumber}`;
       display: flex;
       align-items: stretch;
       overflow-x: auto;
-      scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
       gap: var(--space-sm);
@@ -148,14 +150,15 @@ const whatsappBase = `https://wa.me/+${whatsappNumber}`;
     .servicio-card {
       min-width: 280px;
       flex: 0 0 85%;
-      scroll-snap-align: center;
+      grid-template-rows: 1fr auto auto auto;
     }
   }
 
   /* Card */
   .servicio-card {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 4;
     gap: var(--space-sm);
     padding: var(--space-lg);
     border-radius: var(--radius-lg);
@@ -204,6 +207,12 @@ const whatsappBase = `https://wa.me/+${whatsappNumber}`;
 
   .servicio-card__pricing {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .servicio-card__pricing-inner {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -258,6 +267,7 @@ const whatsappBase = `https://wa.me/+${whatsappNumber}`;
     position: relative;
     display: flex;
     align-items: flex-start;
+    align-self: start;
     gap: 0.5rem;
     padding: 0.6rem 0.75rem;
     background: rgba(123, 139, 62, 0.08);
@@ -286,6 +296,7 @@ const whatsappBase = `https://wa.me/+${whatsappNumber}`;
   .servicio-card__cta {
     position: relative;
     display: block;
+    align-self: end;
     padding: 0.75rem 1.5rem;
     border: 1.5px solid var(--olive);
     border-radius: var(--radius-full);
@@ -299,7 +310,6 @@ const whatsappBase = `https://wa.me/+${whatsappNumber}`;
       color 0.3s ease,
       transform 0.3s ease,
       box-shadow 0.3s ease;
-    margin-top: auto;
   }
 
   .servicio-card__cta:hover {
@@ -312,6 +322,7 @@ const whatsappBase = `https://wa.me/+${whatsappNumber}`;
   @media (min-width: 768px) {
     .servicios__grid {
       grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(auto-fill, auto);
     }
   }
 

@@ -17,11 +17,13 @@ export const navLinks = [
 export const plans = [
   {
     name: "Basic",
-    price: "200.000",
-    priceUsd: "140",
+    price: "240.000",
+    priceUsd: "170",
     features: [
       { text: "Optimización de perfil" },
-      { text: "4 Publicaciones mensuales (1 reels, 3 post)" },
+      {
+        text: "4 carruseles mensuales (si queres sumar 1 reel posee un valor extra de $50.000 ars o u$d 35)",
+      },
       { text: "4 conjuntos de historias mensuales" },
       { text: "Planificación y calendario mensual de contenido" },
       { text: "Diseño grafico y copywriting" },
@@ -32,8 +34,8 @@ export const plans = [
   },
   {
     name: "Medium",
-    price: "380.000",
-    priceUsd: "270",
+    price: "400.000",
+    priceUsd: "285",
     featured: true,
     features: [
       { text: "Optimización de perfil" },
@@ -50,8 +52,8 @@ export const plans = [
   },
   {
     name: "Full",
-    price: "520.000",
-    priceUsd: "360",
+    price: "550.000",
+    priceUsd: "390",
     features: [
       { text: "Optimización de perfil" },
       { text: "10 Publicaciones mensuales (3 reels, 7 post)" },
@@ -69,8 +71,8 @@ export const plans = [
   },
   {
     name: "Pro",
-    price: "670.000",
-    priceUsd: "460",
+    price: "700.000",
+    priceUsd: "500",
     features: [
       { text: "Optimización de perfil" },
       { text: "12 Publicaciones mensuales (4 reels, 8 post)" },
@@ -189,6 +191,15 @@ export const servicios: Servicio[] = [
     price: "",
     priceUsd: "",
     note: "Incluye diseño personalizado, 5–7 secciones (Inicio, Servicios, Sobre vos, Portfolio, Contacto), galería de trabajos, integración con WhatsApp + formulario, dominio + SSL y 30 días de soporte.",
+  },
+  {
+    title: "Contenido UGC",
+    description:
+      "Contenido creado por nosotras como parte de la marca, mostrando el producto o servicio desde un lugar real, cercano y auténtico.",
+    pricingLabel: "",
+    price: "",
+    priceUsd: "",
+    note: "Contenido pensado para generar confianza y conexión real con tu audiencia.",
   },
 ];
 

@@ -1,0 +1,7 @@
+# Allowlist of packages permitted to run install/build lifecycle scripts.
+# Any package NOT listed here has its preinstall/install/postinstall hooks
+# blocked — pnpm 10+'s defense against malicious supply-chain scripts in
+# transitive dependencies. Add a package here only after auditing it.
+allowBuilds:
+  esbuild: true
+  sharp: true

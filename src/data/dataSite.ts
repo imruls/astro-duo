@@ -99,8 +99,17 @@ export const contentShootService = {
 
 // ─── Servicios ──────────────────────────────────────────
 
+export type ServicioCategoryId = "marca" | "contenido" | "estrategia";
+
+export const servicioCategorias: { id: ServicioCategoryId; label: string }[] = [
+  { id: "marca", label: "Marca & Identidad" },
+  { id: "contenido", label: "Contenido & Producción" },
+  { id: "estrategia", label: "Estrategia & Crecimiento" },
+];
+
 export interface Servicio {
   title: string;
+  category: ServicioCategoryId;
   description: string;
   pricingLabel: string;
   price: string;
@@ -113,6 +122,7 @@ export interface Servicio {
 export const servicios: Servicio[] = [
   {
     title: "Campañas + Paid Media",
+    category: "estrategia",
     description:
       "Gestionamos tus campañas publicitarias de principio a fin: estrategia, segmentación, creatividades y optimización continua.",
     pricingLabel: "Gestión del servicio",
@@ -122,6 +132,7 @@ export const servicios: Servicio[] = [
   },
   {
     title: "Grabación de Contenido",
+    category: "contenido",
     description:
       "Producimos contenido visual profesional para tus redes: fotos, reels y videos con dirección creativa incluida.",
     pricingLabel: "4 horas de grabación",
@@ -131,6 +142,7 @@ export const servicios: Servicio[] = [
   },
   {
     title: "Estrategia de Marca + Calendario Mensual",
+    category: "estrategia",
     description:
       "Dejá de improvisar: trabajamos sobre la base de tu marca para definir una estrategia clara y un calendario mensual de contenidos alineado a tus objetivos.",
     pricingLabel: "Servicio único",
@@ -143,6 +155,7 @@ export const servicios: Servicio[] = [
   },
   {
     title: "Branding",
+    category: "marca",
     description:
       "Tu marca no es solo cómo se ve. Es cómo se percibe, cómo comunica y cómo conecta. Creamos soluciones de marca que van más allá de la estética visual.",
     pricingLabel: "Servicio único",
@@ -154,6 +167,7 @@ export const servicios: Servicio[] = [
   },
   {
     title: "Rebranding",
+    category: "marca",
     description:
       "Tu marca ya no te representa como antes. Renovamos tu identidad visual y comunicación para que vuelva a conectar con tu audiencia.",
     pricingLabel: "Servicio único",
@@ -165,6 +179,7 @@ export const servicios: Servicio[] = [
   },
   {
     title: "Logo & Isotipo",
+    category: "marca",
     description:
       "Tu logo es la primera impresión de tu marca. Y tiene que estar a la altura. Diseñamos logotipos e isotipos profesionales que representan tu identidad.",
     pricingLabel: "Servicio único",
@@ -176,6 +191,7 @@ export const servicios: Servicio[] = [
   },
   {
     title: "Plantillas Editables + Preview de Feed",
+    category: "contenido",
     description:
       "Diseñamos un feed alineado, coherente y estratégico. Creamos plantillas personalizadas y una preview completa para que veas cómo se verá tu Instagram antes de publicar.",
     pricingLabel: "",
@@ -185,6 +201,7 @@ export const servicios: Servicio[] = [
   },
   {
     title: "Single Page Websites",
+    category: "estrategia",
     description:
       "Creamos webs completas en una sola página, con secciones estratégicas pensadas para convertir. Una web profesional, clara y estratégica para tu marca.",
     pricingLabel: "",
@@ -194,6 +211,7 @@ export const servicios: Servicio[] = [
   },
   {
     title: "Contenido UGC",
+    category: "contenido",
     description:
       "Contenido creado por nosotras como parte de la marca, mostrando el producto o servicio desde un lugar real, cercano y auténtico.",
     pricingLabel: "",

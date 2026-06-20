@@ -79,37 +79,6 @@ const filtroInicial = filtros[0].id;
                 <p class="servicio-card__desc">{servicio.description}</p>
               </div>
 
-              <div class="servicio-card__pricing">
-                <div class="servicio-card__pricing-inner">
-                  {servicio.price ? (
-                    <>
-                      <span class="servicio-card__pricing-label">
-                        {servicio.pricingLabel}
-                      </span>
-                      <div class="servicio-card__prices">
-                        <div class="servicio-card__price">
-                          <span class="servicio-card__currency">ARS</span>
-                          <span class="servicio-card__amount">
-                            {servicio.price}
-                          </span>
-                        </div>
-                        <span class="servicio-card__price-separator">|</span>
-                        <div class="servicio-card__price">
-                          <span class="servicio-card__currency">USD</span>
-                          <span class="servicio-card__amount">
-                            {servicio.priceUsd}
-                          </span>
-                        </div>
-                      </div>
-                    </>
-                  ) : (
-                    <span class="servicio-card__price-custom">
-                      Cotización personalizada
-                    </span>
-                  )}
-                </div>
-              </div>
-
               <div class="servicio-card__note">
                 <svg class="servicio-card__note-icon" aria-hidden="true">
                   <use href="#icon-info" />
@@ -118,7 +87,7 @@ const filtroInicial = filtros[0].id;
               </div>
 
               <a
-                href={servicio.ctaHref ?? defaultHref}
+                href={defaultHref}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="servicio-card__cta"
@@ -258,7 +227,7 @@ const filtroInicial = filtros[0].id;
     .servicio-card {
       min-width: 280px;
       flex: 0 0 85%;
-      grid-template-rows: 1fr auto auto auto;
+      grid-template-rows: 1fr auto auto;
       scroll-snap-align: center;
     }
 
@@ -299,7 +268,7 @@ const filtroInicial = filtros[0].id;
   .servicio-card {
     display: grid;
     grid-template-rows: subgrid;
-    grid-row: span 4;
+    grid-row: span 3;
     gap: var(--space-sm);
     padding: var(--space-lg);
     border-radius: var(--radius-lg);
@@ -357,73 +326,6 @@ const filtroInicial = filtros[0].id;
     overflow: hidden;
     /* 3 líneas: 0.9rem * 1.6 * 3 = 4.32rem */
     min-height: calc(0.9rem * 1.6 * 3);
-  }
-
-  .servicio-card__pricing {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-  }
-
-  .servicio-card__pricing-inner {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 0.25rem;
-    padding-top: var(--space-sm);
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
-    min-height: 4rem;
-  }
-
-  .servicio-card__price-custom {
-    font-size: 1rem;
-    font-weight: 600;
-    font-style: italic;
-    color: var(--text-muted);
-    text-align: center;
-  }
-
-  .servicio-card__pricing-label {
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text-muted);
-  }
-
-  .servicio-card__prices {
-    display: flex;
-    align-items: baseline;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .servicio-card__price {
-    display: flex;
-    align-items: baseline;
-    gap: 0.35rem;
-  }
-
-  .servicio-card__price-separator {
-    font-size: 1.25rem;
-    color: var(--text-muted);
-    font-weight: 300;
-  }
-
-  .servicio-card__currency {
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--olive-dark);
-  }
-
-  .servicio-card__amount {
-    font-size: 1.75rem;
-    font-weight: 700;
-    line-height: 1;
-    color: var(--olive-dark);
   }
 
   .servicio-card__note {

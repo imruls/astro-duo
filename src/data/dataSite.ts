@@ -5,160 +5,70 @@ export const whatsappNumber = "5491173636081";
 // ─── Navbar ──────────────────────────────────────────────
 
 export const navLinks = [
-  { label: "Planes", href: "#planes" },
   { label: "Servicios", href: "#servicios" },
   { label: "Ebook", href: "#ebook" },
   { label: "Recursos", href: "#recursos" },
   { label: "Nosotras", href: "#about" },
 ];
 
-// ─── Planes ──────────────────────────────────────────────
-
-export const plans = [
-  {
-    name: "Basic",
-    features: [
-      { text: "Optimización de perfil" },
-      {
-        text: "4 carruseles mensuales (si queres sumar 1 reel posee un valor extra de $50.000 ars o u$d 35)",
-      },
-      { text: "4 conjuntos de historias mensuales" },
-      { text: "Planificación y calendario mensual de contenido" },
-      { text: "Diseño grafico y copywriting" },
-      { text: "Reporte de métricas trimestral" },
-      { text: "Uso de material provistas por la marca" },
-      { text: "Carpeta compartida en Google Drive" },
-    ],
-  },
-  {
-    name: "Medium",
-    featured: true,
-    features: [
-      { text: "Optimización de perfil" },
-      { text: "8 Publicaciones mensuales (2 reels, 6 post)" },
-      { text: "6 conjuntos de historias mensuales" },
-      { text: "1 grabación de contenido mensual (4 horas)" },
-      { text: "Planificación y calendario mensual de contenido" },
-      { text: "Diseño grafico y copywriting" },
-      { text: "Reporte de métricas mensual" },
-      { text: "1 grabación de contenido por 4 hs" },
-      { text: "Uso de material provistas por la marca" },
-      { text: "Carpeta compartida en Google Drive" },
-    ],
-  },
-  {
-    name: "Full",
-    features: [
-      { text: "Optimización de perfil" },
-      { text: "10 Publicaciones mensuales (3 reels, 7 post)" },
-      { text: "8 conjuntos de historias mensuales" },
-      { text: "1 grabación de contenido mensual (4 horas)" },
-      { text: "Planificación y calendario mensual de contenido" },
-      { text: "Diseño grafico y copywriting" },
-      { text: "Reporte de métricas mensual" },
-      { text: "1 grabación de contenido por 4 hs" },
-      {
-        text: "Uso de material provisto por la marca y material generado en grabación",
-      },
-      { text: "Carpeta compartida en Google Drive" },
-    ],
-  },
-  {
-    name: "Pro",
-    features: [
-      { text: "Optimización de perfil" },
-      { text: "12 Publicaciones mensuales (4 reels, 8 post)" },
-      { text: "10 conjuntos de historias mensuales" },
-      { text: "2 grabaciones de contenido mensuales (4 horas cada una)" },
-      { text: "Material generado con edición incluida" },
-      { text: "Planificación y calendario mensual de contenido" },
-      { text: "Diseño grafico y copywriting" },
-      { text: "Reporte de métricas mensual" },
-      { text: "Carpeta compartida en Google Drive" },
-    ],
-  },
-];
-
 // ─── Servicios ──────────────────────────────────────────
-
-export type ServicioCategoryId = "marca" | "contenido" | "estrategia";
-
-export const servicioCategorias: { id: ServicioCategoryId; label: string }[] = [
-  { id: "marca", label: "Marca & Identidad" },
-  { id: "contenido", label: "Contenido & Producción" },
-  { id: "estrategia", label: "Estrategia & Crecimiento" },
-];
 
 export interface Servicio {
   title: string;
-  category: ServicioCategoryId;
   description: string;
-  note: string;
+  items: string[];
 }
 
 export const servicios: Servicio[] = [
   {
-    title: "Campañas + Paid Media",
-    category: "estrategia",
-    description:
-      "Gestionamos tus campañas publicitarias de principio a fin: estrategia, segmentación, creatividades y optimización continua.",
-    note: "El presupuesto destinado a la pauta publicitaria <strong>corre por cuenta del cliente</strong> y no está incluido en este valor.",
-  },
-  {
-    title: "Grabación de Contenido",
-    category: "contenido",
-    description:
-      "Producimos contenido visual profesional para tus redes: fotos, reels y videos con dirección creativa incluida.",
-    note: "Incluye dirección creativa y edición.",
-  },
-  {
-    title: "Estrategia de Marca + Calendario Mensual",
-    category: "estrategia",
-    description:
-      "Dejá de improvisar: trabajamos sobre la base de tu marca para definir una estrategia clara y un calendario mensual de contenidos alineado a tus objetivos.",
-    note: "Incluye estrategia de marca y planificación mensual de contenidos.",
-  },
-  {
     title: "Branding",
-    category: "marca",
     description:
-      "Tu marca no es solo cómo se ve. Es cómo se percibe, cómo comunica y cómo conecta. Creamos soluciones de marca que van más allá de la estética visual.",
-    note: "Incluye identidad de marca integral: percepción, comunicación y conexión.",
+      "Construimos una identidad visual que haga que tu marca sea coherente, profesional y memorable",
+    items: [
+      "Logos",
+      "Tipografías",
+      "Plantillas",
+      "Paleta de colores",
+      "Manual de marca",
+      "Dirección visual",
+    ],
   },
   {
-    title: "Rebranding",
-    category: "marca",
+    title: "Estrategia",
     description:
-      "Tu marca ya no te representa como antes. Renovamos tu identidad visual y comunicación para que vuelva a conectar con tu audiencia.",
-    note: "Incluye renovación estratégica de identidad visual y comunicación de marca.",
+      "Dejamos de publicar “porque sí” y armamos contenido con intención",
+    items: [
+      "Banco de ideas",
+      "Diagnóstico de tus redes",
+      "Pilares de contenido",
+      "Calendario mensual",
+      "Formatos",
+    ],
   },
   {
-    title: "Logo & Isotipo",
-    category: "marca",
-    description:
-      "Tu logo es la primera impresión de tu marca. Y tiene que estar a la altura. Diseñamos logotipos e isotipos profesionales que representan tu identidad.",
-    note: "Incluye diseño de logotipo e isotipo profesional.",
+    title: "Diseño Web",
+    description: "Webs que no solo se ven lindas. También convierten",
+    items: [
+      "Landing Pages",
+      "SEO básico",
+      "Optimización Mobile",
+      "Tiendas Online",
+      "Integraciones",
+      "Diseños UX/UI",
+    ],
   },
   {
-    title: "Plantillas Editables + Preview de Feed",
-    category: "contenido",
+    title: "Contenido para redes",
     description:
-      "Diseñamos un feed alineado, coherente y estratégico. Creamos plantillas personalizadas y una preview completa para que veas cómo se verá tu Instagram antes de publicar.",
-    note: "Incluye plantillas editables adaptadas a tu marca, estructura visual estratégica, preview de feed y lineamientos de uso. Ideal contar con Canva Pro.",
-  },
-  {
-    title: "Single Page Websites",
-    category: "estrategia",
-    description:
-      "Creamos webs completas en una sola página, con secciones estratégicas pensadas para convertir. Una web profesional, clara y estratégica para tu marca.",
-    note: "Incluye diseño personalizado, 5–7 secciones (Inicio, Servicios, Sobre vos, Portfolio, Contacto), galería de trabajos, integración con WhatsApp + formulario, dominio + SSL y 30 días de soporte.",
-  },
-  {
-    title: "Contenido UGC",
-    category: "contenido",
-    description:
-      "Contenido creado por nosotras como parte de la marca, mostrando el producto o servicio desde un lugar real, cercano y auténtico.",
-    note: "Contenido pensado para generar confianza y conexión real con tu audiencia.",
+      "Creamos contenido pensado para conectar, vender y hacer crecer tu comunidad.",
+    items: [
+      "Carruseles",
+      "Reels",
+      "Diseño Canva",
+      "Historias",
+      "Copywriting",
+      "Edición",
+    ],
   },
 ];
 

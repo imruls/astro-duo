@@ -46,7 +46,7 @@ Una landing single-page construida con Astro 5, optimizada para performance, acc
 
 **Dúo Studio Digital** es una agencia argentina especializada en estrategia de marca, contenido y crecimiento digital. Este repositorio contiene el código fuente de su sitio web institucional.
 
-El sitio está diseñado como una **landing single-page** que comunica los planes mensuales de gestión de redes, los servicios individuales (branding, paid media, contenido UGC, web design), un ebook descargable y recursos gratuitos.
+El sitio está diseñado como una **landing single-page** que comunica los servicios individuales (branding, estrategia, diseño web y contenido para redes), un ebook descargable y recursos gratuitos.
 
 **Características principales:**
 
@@ -105,7 +105,6 @@ astro-duo/
 │   │   ├── sections/            # Secciones full-width de la home
 │   │   │   ├── Navbar.astro
 │   │   │   ├── Hero.astro
-│   │   │   ├── Planes.astro
 │   │   │   ├── Servicios.astro
 │   │   │   ├── Ebook.astro
 │   │   │   ├── Recursos.astro
@@ -199,13 +198,12 @@ Radios desde `--radius-sm` (8px) hasta `--radius-full` (pill). Easing `cubic-bez
 |---|---|---|---|
 | 1 | Navbar | `Navbar.astro` | Logo + navegación + menú móvil |
 | 2 | Hero | `Hero.astro` | Headline principal y CTA |
-| 3 | Planes | `Planes.astro` | 4 planes mensuales (Basic / Medium / Full / Pro) |
-| 4 | Servicios | `Servicios.astro` | 9 servicios individuales con filtros por categoría |
-| 5 | Ebook | `Ebook.astro` | Promoción del ebook descargable + reviews |
-| 6 | Recursos | `Recursos.astro` | Recursos gratuitos (prompts, plantillas) |
-| 7 | About | `About.astro` | Quiénes somos + valores |
-| 8 | Contacto | `Contacto.astro` | Canales de contacto |
-| 9 | Footer | `Footer.astro` | Cierre + redes |
+| 3 | Servicios | `Servicios.astro` | Cards de servicios (título, descripción, listado de items y CTA a WhatsApp) — carrusel en mobile, grid de 4 columnas en desktop |
+| 4 | Ebook | `Ebook.astro` | Promoción del ebook descargable + reviews |
+| 5 | Recursos | `Recursos.astro` | Recursos gratuitos (prompts, plantillas) |
+| 6 | About | `About.astro` | Quiénes somos + valores |
+| 7 | Contacto | `Contacto.astro` | Canales de contacto |
+| 8 | Footer | `Footer.astro` | Cierre + redes |
 | ➕ | Botón flotante | `BotonFlotante.astro` | WhatsApp siempre accesible |
 
 ---
@@ -272,10 +270,7 @@ pnpm preview
 
 - `whatsappNumber` — número con código de país
 - `navLinks` — items del menú
-- `plans` — planes mensuales (precio, features, destacado)
-- `extraService`, `contentShootService` — add-ons sueltos
-- `servicios` — servicios individuales (categoría, precio, nota, CTA)
-- `servicioCategorias` — taxonomía de filtros de la sección Servicios
+- `servicios` — cards de servicios (título, descripción y listado de items)
 - `ebookHref`, `ebookFeatures`, `ebookReviews` — ebook + testimonios
 - `values` — valores de la sección About
 - `socialLinks` — redes (Instagram, TikTok, WhatsApp, Email)
@@ -290,20 +285,13 @@ export const servicios: Servicio[] = [
   // ...
   {
     title: "Mi nuevo servicio",
-    category: "marca", // "marca" | "contenido" | "estrategia"
-    description: "Descripción corta (se clampea a 3 líneas).",
-    pricingLabel: "Servicio único",
-    price: "200.000",
-    priceUsd: "150",
-    note: "Nota informativa con <strong>HTML</strong> permitido.",
-    // Opcionales: si los omitís, abre WhatsApp con un mensaje predefinido
-    ctaText: "Más info",
-    ctaHref: "https://...",
+    description: "Descripción breve del servicio.",
+    items: ["Item 1", "Item 2", "Item 3"],
   },
 ];
 ```
 
-Si omitís `price` y `priceUsd`, la card mostrará "Cotización personalizada" y el CTA seguirá llamándose "Consultar".
+Cada card renderiza automáticamente un CTA **"Más info"** que abre WhatsApp con un mensaje preestablecido basado en el `title` del servicio. En desktop las cards se muestran todas en un grid; en mobile forman un carrusel horizontal con scroll-snap y dots de navegación.
 
 ### Añadir una imagen optimizada
 

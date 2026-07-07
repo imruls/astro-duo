@@ -20,6 +20,14 @@ impórtalo desde `@data/dataSite`.
 - Número de WhatsApp → `whatsappNumber` / `whatsappUrl` / `getWhatsappLink()` en
   `dataSite.ts`. No escribas `"5491173636081"` ni `"https://wa.me/..."` a mano en
   ningún otro archivo.
+- Email de contacto → `contactEmail` / `contactEmailUrl` en `dataSite.ts`. No
+  escribas `"contacto@duostudiodigital.com"` ni `"mailto:..."` a mano.
+- Redes sociales (Instagram, TikTok) → `instagramUrl` / `tiktokUrl` en
+  `dataSite.ts`. No repitas esas URLs a mano en otros archivos.
+- `pnpm check:content` valida en CI que estos tres puntos no se hardcodeen
+  fuera de `dataSite.ts`; si agregás un nuevo dato de contacto único (ej. un
+  segundo teléfono), sumá también su chequeo en
+  `scripts/check-content-drift.mjs`.
 - Lista de servicios → `servicios`. El JSON-LD de `Layout.astro` se genera
   **dinámicamente** a partir de este array; si agregás/quitás un servicio no hace
   falta tocar el layout.
@@ -87,13 +95,13 @@ no en `public/images/`.
 
 ## Scripts disponibles
 
-| Script               | Qué hace                                                                          |
-| -------------------- | --------------------------------------------------------------------------------- |
-| `pnpm dev`           | Servidor de desarrollo                                                            |
-| `pnpm build`         | Build de producción                                                               |
-| `pnpm preview`       | Preview del build                                                                 |
-| `pnpm check`         | Type-check de `.astro`/`.ts`                                                      |
-| `pnpm lint`          | ESLint sobre todo el proyecto                                                     |
-| `pnpm format`        | Formatea con Prettier                                                             |
-| `pnpm format:check`  | Verifica formato sin escribir                                                     |
-| `pnpm check:content` | Verifica que no haya URLs/números de WhatsApp hardcodeados fuera de `dataSite.ts` |
+| Script               | Qué hace                                                                                            |
+| -------------------- | --------------------------------------------------------------------------------------------------- |
+| `pnpm dev`           | Servidor de desarrollo                                                                              |
+| `pnpm build`         | Build de producción                                                                                 |
+| `pnpm preview`       | Preview del build                                                                                   |
+| `pnpm check`         | Type-check de `.astro`/`.ts`                                                                        |
+| `pnpm lint`          | ESLint sobre todo el proyecto                                                                       |
+| `pnpm format`        | Formatea con Prettier                                                                               |
+| `pnpm format:check`  | Verifica formato sin escribir                                                                       |
+| `pnpm check:content` | Verifica que no haya datos de contacto (WhatsApp, email, redes) hardcodeados fuera de `dataSite.ts` |

@@ -7,14 +7,21 @@ import "@fontsource/poppins/600.css";
 import "@fontsource/poppins/700.css";
 import "@fontsource/pacifico/400.css";
 import SpeedInsights from "@vercel/speed-insights/astro";
-import { servicios } from "@data/dataSite";
+import {
+  servicios,
+  contactEmail,
+  instagramUrl,
+  tiktokUrl,
+} from "@data/dataSite";
 
 interface Props {
   title?: string;
   description?: string;
 }
 
-const siteUrl = "https://duostudiodigital.com.ar";
+// `Astro.site` viene de `site` en astro.config.mjs: única fuente de verdad
+// para el dominio, evita mantenerlo hardcodeado en dos archivos.
+const siteUrl = Astro.site?.origin ?? "https://duostudiodigital.com.ar";
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
 
 const {
@@ -84,13 +91,10 @@ const {
         },
         contactPoint: {
           "@type": "ContactPoint",
-          email: "contacto@duostudiodigital.com",
+          email: contactEmail,
           contactType: "customer service",
         },
-        sameAs: [
-          "https://www.instagram.com/duostudio.digital/",
-          "https://www.tiktok.com/@duo.studio.digital",
-        ],
+        sameAs: [instagramUrl, tiktokUrl],
       })}
     />
 

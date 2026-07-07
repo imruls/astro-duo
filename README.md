@@ -137,7 +137,7 @@ astro-duo/
 │       └── global.css           # Tokens + reset + utilidades globales
 │
 ├── scripts/
-│   └── check-content-drift.mjs  # Verifica que no haya WhatsApp/URLs hardcodeadas
+│   └── check-content-drift.mjs  # Verifica que no haya datos de contacto hardcodeados
 │
 ├── astro.config.mjs             # Config Astro + adapter Vercel
 ├── tsconfig.json                # Path aliases + TypeScript estricto
@@ -273,16 +273,16 @@ pnpm preview
 
 ## Scripts disponibles
 
-| Script          | Comando                                | Descripción                                                    |
-| --------------- | -------------------------------------- | -------------------------------------------------------------- |
-| `dev`           | `astro dev`                            | Servidor de desarrollo con HMR                                 |
-| `build`         | `astro build`                          | Build de producción                                            |
-| `preview`       | `astro preview`                        | Sirve el build localmente                                      |
-| `check`         | `astro check`                          | Type check de archivos `.astro` y `.ts`                        |
-| `lint`          | `eslint .`                             | Lint de `.ts`/`.astro`                                         |
-| `format`        | `prettier --write .`                   | Formatea todo el proyecto                                      |
-| `format:check`  | `prettier --check .`                   | Verifica formato sin escribir (útil en CI)                     |
-| `check:content` | `node scripts/check-content-drift.mjs` | Falla si hay WhatsApp/URLs hardcodeadas fuera de `dataSite.ts` |
+| Script          | Comando                                | Descripción                                                                                 |
+| --------------- | -------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `dev`           | `astro dev`                            | Servidor de desarrollo con HMR                                                              |
+| `build`         | `astro build`                          | Build de producción                                                                         |
+| `preview`       | `astro preview`                        | Sirve el build localmente                                                                   |
+| `check`         | `astro check`                          | Type check de archivos `.astro` y `.ts`                                                     |
+| `lint`          | `eslint .`                             | Lint de `.ts`/`.astro`                                                                      |
+| `format`        | `prettier --write .`                   | Formatea todo el proyecto                                                                   |
+| `format:check`  | `prettier --check .`                   | Verifica formato sin escribir (útil en CI)                                                  |
+| `check:content` | `node scripts/check-content-drift.mjs` | Falla si hay datos de contacto (WhatsApp, email, redes) hardcodeados fuera de `dataSite.ts` |
 
 ---
 
@@ -291,6 +291,8 @@ pnpm preview
 **Toda la copy del sitio vive en [`src/data/dataSite.ts`](./src/data/dataSite.ts)**. Es el único archivo que necesitás tocar para actualizar:
 
 - `whatsappNumber` / `whatsappUrl` / `getWhatsappLink(mensaje?)` — número y helpers de contacto. No hardcodear `"https://wa.me/..."` en componentes.
+- `contactEmail` / `contactEmailUrl` — email de contacto. No hardcodear `"mailto:..."` en componentes.
+- `instagramUrl` / `tiktokUrl` — URLs de redes sociales, reusadas en `socialLinks`, `contactChannels` y el JSON-LD de `Layout.astro`.
 - `companyDescription` — copy compartido entre Hero y About.
 - `navLinks` — items del menú
 - `servicios` — cards de servicios (título, descripción y listado de items)

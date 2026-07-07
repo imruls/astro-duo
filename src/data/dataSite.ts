@@ -1,6 +1,16 @@
 // ─── WhatsApp ────────────────────────────────────────────
+// Única fuente de verdad para el contacto por WhatsApp. No hardcodear el
+// número ni la URL de "wa.me" en ningún otro archivo: importar desde acá.
 
 export const whatsappNumber = "5491173636081";
+
+export const whatsappUrl = `https://wa.me/${whatsappNumber}`;
+
+export function getWhatsappLink(message?: string): string {
+  return message
+    ? `${whatsappUrl}?text=${encodeURIComponent(message)}`
+    : whatsappUrl;
+}
 
 // ─── Navbar ──────────────────────────────────────────────
 
@@ -72,6 +82,47 @@ export const servicios: Servicio[] = [
   },
 ];
 
+// ─── Auditoría de Redes ─────────────────────────────────
+
+export interface AuditoriaRedes {
+  title: string;
+  price: string;
+  priceNote: string;
+  includes: string[];
+  steps: string[];
+  targetAudience: string;
+  deliveryTime: string;
+  ctaLabel: string;
+  finalCta: string;
+}
+
+export const auditoriaRedes: AuditoriaRedes = {
+  title: "Auditoría de Redes Sociales",
+  price: "$80.000 ARS",
+  priceNote: "Pago único",
+  includes: [
+    "Análisis completo del perfil de Instagram",
+    "Revisión de biografía, identidad visual y posicionamiento",
+    "Evaluación del contenido publicado, engagement y estrategia",
+    "Análisis de la competencia",
+    "Reunión personalizada de 30 minutos por Google Meet o Zoom",
+    "Informe en PDF con un diagnóstico completo y las 5 acciones prioritarias para mejorar la cuenta",
+  ],
+  steps: [
+    "La persona reserva y realiza el pago",
+    "Recibe un formulario previo para conocer su negocio y objetivos",
+    "Analizamos su cuenta antes de la reunión",
+    "Realizamos una videollamada de 30 minutos",
+    "En un plazo de 48 horas enviamos un informe personalizado en PDF con recomendaciones concretas",
+  ],
+  targetAudience:
+    "Ideal para emprendedores, marcas y empresas que quieren mejorar sus resultados en redes sociales antes de contratar un servicio mensual o potenciar la estrategia que ya tienen.",
+  deliveryTime: "48 horas posteriores a la reunión",
+  ctaLabel: "Quiero mi Auditoría",
+  finalCta:
+    "¿Sentís que publicás mucho pero no obtenés resultados? Descubrí exactamente qué está frenando el crecimiento de tu marca y llevate un plan de acción listo para implementar.",
+};
+
 // ─── Ebook ───────────────────────────────────────────────
 
 export const ebookHref =
@@ -123,7 +174,12 @@ export const ebookReviews = [
   },
 ];
 
-// ─── About ───────────────────────────────────────────────
+// ─── About / Hero ───────────────────────────────────────
+// Copy compartido entre Hero.astro y About.astro: mantenerlo acá evita que
+// ambas secciones queden desincronizadas al editar solo una.
+
+export const companyDescription =
+  "Dúo Studio es un Mini Studio de Social Media creado por dos mejores amigas, emprendedoras, CM´s y Paid Media. Trabajamos con emprendedores, marcas personales y negocios que buscan crecer de manera auténtica, ordenada y profesional.";
 
 export const values = [
   {
@@ -168,7 +224,7 @@ export const socialLinks = [
   },
   {
     label: "WhatsApp",
-    href: "https://wa.me/5491173636081",
+    href: whatsappUrl,
     external: true,
     svg: `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg>`,
   },
@@ -186,7 +242,7 @@ export const contactChannels = [
   {
     name: "WhatsApp",
     description: "Escribinos directo y te respondemos al toque.",
-    href: "https://wa.me/5491173636081",
+    href: whatsappUrl,
   },
   {
     name: "Email",

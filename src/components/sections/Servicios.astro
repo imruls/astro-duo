@@ -1,8 +1,11 @@
 ---
-import { servicios, whatsappNumber } from "@data/dataSite";
+import { servicios, auditoriaRedes, getWhatsappLink } from "@data/dataSite";
+import Icon from "@ui/Icon.astro";
 
 const MAX_REVEAL_DELAY = 4;
-const whatsappBase = `https://wa.me/+${whatsappNumber}`;
+const auditoriaCtaHref = getWhatsappLink(
+  "Hola, quiero reservar mi Auditoría de Redes Sociales",
+);
 ---
 
 <!-- SVG symbol reutilizable (se renderiza una sola vez) -->
@@ -14,7 +17,7 @@ const whatsappBase = `https://wa.me/+${whatsappNumber}`;
     stroke="currentColor"
     stroke-width="2"
   >
-    <polyline points="20 6 9 17 4 12" />
+    <polyline points="20 6 9 17 4 12"></polyline>
   </symbol>
 </svg>
 
@@ -35,15 +38,13 @@ const whatsappBase = `https://wa.me/+${whatsappNumber}`;
       {
         servicios.map((servicio, i) => {
           const delay = Math.min(i + 1, MAX_REVEAL_DELAY);
-          const ctaHref = `${whatsappBase}?text=${encodeURIComponent(`Hola, me interesa el servicio de ${servicio.title}, quiero más info`)}`;
+          const ctaHref = getWhatsappLink(
+            `Hola, me interesa el servicio de ${servicio.title}, quiero más info`,
+          );
 
           return (
             <article
-              class:list={[
-                "servicio-card",
-                "reveal",
-                `reveal-delay-${delay}`,
-              ]}
+              class:list={["servicio-card", "reveal", `reveal-delay-${delay}`]}
             >
               <div class="servicio-card__info">
                 <h3 class="servicio-card__title">{servicio.title}</h3>
@@ -91,6 +92,71 @@ const whatsappBase = `https://wa.me/+${whatsappNumber}`;
           />
         ))
       }
+    </div>
+
+    <div class="auditoria reveal">
+      <div class="auditoria__header">
+        <div class="auditoria__heading">
+          <h3 class="auditoria__title">{auditoriaRedes.title}</h3>
+          <p class="auditoria__audience">{auditoriaRedes.targetAudience}</p>
+        </div>
+
+        <div class="auditoria__price">
+          <span class="auditoria__price-value">{auditoriaRedes.price}</span>
+          <span class="auditoria__price-note">{auditoriaRedes.priceNote}</span>
+        </div>
+      </div>
+
+      <div class="auditoria__body">
+        <div class="auditoria__col">
+          <h4 class="auditoria__col-title">¿Qué incluye?</h4>
+          <ul class="auditoria__list">
+            {
+              auditoriaRedes.includes.map((item) => (
+                <li class="auditoria__list-item">
+                  <svg class="auditoria__list-icon" aria-hidden="true">
+                    <use href="#icon-check" />
+                  </svg>
+                  <span>{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div class="auditoria__col">
+          <h4 class="auditoria__col-title">¿Cómo funciona?</h4>
+          <ol class="auditoria__steps">
+            {
+              auditoriaRedes.steps.map((step, i) => (
+                <li class="auditoria__step">
+                  <span class="auditoria__step-number">{i + 1}</span>
+                  <span>{step}</span>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+      </div>
+
+      <div class="auditoria__meta">
+        <Icon name="clock" size={18} />
+        <span>
+          Tiempo de entrega: <strong>{auditoriaRedes.deliveryTime}</strong>
+        </span>
+      </div>
+
+      <div class="auditoria__footer">
+        <p class="auditoria__final-cta">{auditoriaRedes.finalCta}</p>
+        <a
+          href={auditoriaCtaHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="auditoria__cta btn-primary"
+        >
+          {auditoriaRedes.ctaLabel}
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -301,9 +367,217 @@ const whatsappBase = `https://wa.me/+${whatsappNumber}`;
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(123, 139, 62, 0.3);
   }
+
+  /* Auditoría de Redes — subsección destacada */
+  .auditoria {
+    position: relative;
+    margin-top: var(--space-xl);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    background: var(--white);
+    border: 1px solid rgba(123, 139, 62, 0.2);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.05);
+  }
+
+  .auditoria__badge {
+    display: inline-block;
+    padding: 0.35rem 0.9rem;
+    background: var(--olive);
+    color: var(--white);
+    border-radius: var(--radius-full);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-md);
+  }
+
+  .auditoria__header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+  }
+
+  .auditoria__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--text-dark);
+  }
+
+  .auditoria__audience {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 480px;
+  }
+
+  .auditoria__price {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    padding: 0.85rem 1.5rem;
+    background: var(--white);
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  }
+
+  .auditoria__price-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--olive);
+    white-space: nowrap;
+  }
+
+  .auditoria__price-note {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .auditoria__body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-lg);
+  }
+
+  .auditoria__col-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: var(--space-sm);
+  }
+
+  .auditoria__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    list-style: none;
+  }
+
+  .auditoria__list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.55rem 0;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    line-height: 1.5;
+    border-bottom: 1px solid rgba(123, 139, 62, 0.15);
+  }
+
+  .auditoria__list-item:last-child {
+    border-bottom: none;
+  }
+
+  .auditoria__list-icon {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    color: var(--olive);
+    flex-shrink: 0;
+  }
+
+  .auditoria__steps {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    list-style: none;
+  }
+
+  .auditoria__step {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    line-height: 1.5;
+  }
+
+  .auditoria__step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--olive);
+    color: var(--white);
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  .auditoria__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.75rem 1rem;
+    margin-bottom: var(--space-lg);
+    background: rgba(123, 139, 62, 0.08);
+    border-radius: var(--radius-md);
+    font-size: 0.85rem;
+    color: var(--text-dark);
+  }
+
+  .auditoria__meta svg {
+    color: var(--olive);
+    flex-shrink: 0;
+  }
+
+  .auditoria__footer {
+    text-align: center;
+  }
+
+  .auditoria__final-cta {
+    max-width: 620px;
+    margin: 0 auto var(--space-md);
+    font-size: 1rem;
+    color: var(--text-dark);
+    line-height: 1.7;
+  }
+
+  .auditoria__cta {
+    width: 100%;
+  }
+
+  /* Breakpoints */
+  @media (min-width: 640px) {
+    .auditoria__cta {
+      width: auto;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .auditoria {
+      padding: var(--space-xl);
+    }
+
+    .auditoria__header {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .auditoria__price {
+      align-self: auto;
+    }
+
+    .auditoria__body {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-xl);
+    }
+  }
 </style>
 
 <script>
+  import { initScrollDots } from "@scripts/scrollDots";
+
   const grid = document.querySelector<HTMLElement>(".servicios__grid");
 
   if (grid) {
@@ -314,38 +588,6 @@ const whatsappBase = `https://wa.me/+${whatsappNumber}`;
       document.querySelectorAll<HTMLButtonElement>(".servicios__dot"),
     );
 
-    // Dots (carrusel): click → scroll a la card
-    dots.forEach((dot, i) => {
-      dot.addEventListener("click", () => {
-        cards[i]?.scrollIntoView({
-          behavior: "smooth",
-          inline: "center",
-          block: "nearest",
-        });
-      });
-    });
-
-    // Scroll → marca el dot de la card más visible
-    if (cards.length && dots.length === cards.length) {
-      const setActive = (index: number) => {
-        dots.forEach((d, i) =>
-          d.setAttribute("aria-current", i === index ? "true" : "false"),
-        );
-      };
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          const visible = entries
-            .filter((e) => e.isIntersecting)
-            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-          if (visible) {
-            setActive(cards.indexOf(visible.target as HTMLElement));
-          }
-        },
-        { root: grid, threshold: [0.5, 0.75, 1] },
-      );
-
-      cards.forEach((card) => observer.observe(card));
-    }
+    initScrollDots({ container: grid, items: cards, dots });
   }
 </script>

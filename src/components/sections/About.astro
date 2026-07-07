@@ -1,5 +1,5 @@
 ---
-import { values } from "@data/dataSite";
+import { values, companyDescription, whatsappUrl } from "@data/dataSite";
 import { Image } from "astro:assets";
 import photoDuo from "@images/photo-duo.jpg";
 ---
@@ -40,12 +40,7 @@ import photoDuo from "@images/photo-duo.jpg";
       <!-- Content side -->
       <div class="about__content reveal reveal-delay-2">
         <h2 class="section-title">Somos tu partner creativo</h2>
-        <p class="about__text">
-          Dúo Studio es un Mini Studio de Social Media creado por dos mejores
-          amigas, emprendedoras, CM´s y Paid Media. Trabajamos con
-          emprendedores, marcas personales y negocios que buscan crecer de
-          manera auténtica, ordenada y profesional.
-        </p>
+        <p class="about__text">{companyDescription}</p>
 
         <div class="about__values">
           {
@@ -106,7 +101,7 @@ import photoDuo from "@images/photo-duo.jpg";
         </div>
 
         <a
-          href="https://wa.me/5491173636081"
+          href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
           class="btn-primary"

@@ -1,5 +1,5 @@
 {
-  "extends": "astro/tsconfigs/base",
+  "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
     "skipLibCheck": true,
     "types": [],
@@ -9,7 +9,9 @@
       "@components/*": ["src/components/*"],
       "@sections/*": ["src/components/sections/*"],
       "@ui/*": ["src/components/ui/*"],
-      "@images/*": ["src/assets/images/*"]
+      "@images/*": ["src/assets/images/*"],
+      "@layouts/*": ["src/layouts/*"],
+      "@scripts/*": ["src/scripts/*"]
     }
   }
 }

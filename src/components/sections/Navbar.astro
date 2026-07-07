@@ -5,26 +5,32 @@ import logo from "@images/5.png";
 import isotipo from "@images/isotipo.png";
 ---
 
-<nav
-  class="navbar"
-  id="navbar"
-  aria-label="Navegación principal"
->
+<nav class="navbar" id="navbar" aria-label="Navegación principal">
   <div class="container">
     <a href="#" class="nav-logo" aria-label="Dúo Studio Digital — Inicio">
-      <Image src={isotipo} alt="Dúo Studio Digital" class="nav-logo__mobile" width={44} height={44} format="webp" loading="eager" decoding="async" />
-      <Image src={logo} alt="Dúo Studio Digital" class="nav-logo__desktop" loading="eager" decoding="async" format="webp" />
+      <Image
+        src={isotipo}
+        alt="Dúo Studio Digital"
+        class="nav-logo__mobile"
+        width={44}
+        height={44}
+        format="webp"
+        loading="eager"
+        decoding="async"
+      />
+      <Image
+        src={logo}
+        alt="Dúo Studio Digital"
+        class="nav-logo__desktop"
+        loading="eager"
+        decoding="async"
+        format="webp"
+      />
     </a>
 
     <!-- Desktop links -->
     <div class="nav-links">
-      {
-        links.map((link) => (
-          <a href={link.href}>
-            {link.label}
-          </a>
-        ))
-      }
+      {links.map((link) => <a href={link.href}>{link.label}</a>)}
     </div>
 
     <a href="#contacto" class="nav-cta">Contacto</a>
@@ -279,18 +285,28 @@ import isotipo from "@images/isotipo.png";
   const overlay = document.getElementById("mobileOverlay");
 
   if (navbar) {
-    window.addEventListener("scroll", () => {
-      navbar.classList.toggle("scrolled", window.scrollY > 60);
-    }, { passive: true });
+    window.addEventListener(
+      "scroll",
+      () => {
+        navbar.classList.toggle("scrolled", window.scrollY > 60);
+      },
+      { passive: true },
+    );
   }
 
   if (toggle && menu && overlay) {
+    // Vinculamos a nuevas const para que TypeScript retenga el narrowing
+    // (no-null) dentro del closure de `toggleMenu`.
+    const toggleEl = toggle;
+    const menuEl = menu;
+    const overlayEl = overlay;
+
     function toggleMenu() {
-      const isOpen = menu.classList.contains("open");
-      menu.classList.toggle("open");
-      overlay.classList.toggle("open");
-      toggle.classList.toggle("active");
-      toggle.setAttribute("aria-expanded", String(!isOpen));
+      const isOpen = menuEl.classList.contains("open");
+      menuEl.classList.toggle("open");
+      overlayEl.classList.toggle("open");
+      toggleEl.classList.toggle("active");
+      toggleEl.setAttribute("aria-expanded", String(!isOpen));
       document.body.style.overflow = isOpen ? "" : "hidden";
     }
 

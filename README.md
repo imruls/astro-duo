@@ -54,28 +54,35 @@ El sitio está diseñado como una **landing single-page** que comunica los servi
 - ⚡ Astro 5 con generación estática (SSG) e imágenes optimizadas con `sharp`.
 - ♿ Accesibilidad nativa: roles ARIA, navegación por teclado, focus management.
 - 📱 Responsive de mobile-first con scroll-snap horizontal en cards.
-- 🔍 SEO + sitemap + Open Graph + JSON-LD listos.
-- 📊 Vercel Analytics + Speed Insights integrados.
+- 🔍 SEO + sitemap + Open Graph + JSON-LD (generado dinámicamente desde `dataSite.ts`) listos.
+- 📊 Vercel Web Analytics (vía adapter) + Speed Insights (componente) integrados.
 - 🔐 Supply chain endurecido: pnpm con hash pinning y allowlist de scripts.
+- 🤖 `AGENTS.md` con convenciones del proyecto para agentes de IA (Cursor, etc.).
 
 ---
 
 ## Stack tecnológico
 
-| Herramienta | Versión | Rol |
-|---|---|---|
-| [Astro](https://astro.build) | `^5.x` | Framework SSG/SSR |
-| [TypeScript](https://www.typescriptlang.org) | `^5.9` | Tipado estático |
-| [pnpm](https://pnpm.io) | `11.1.1` | Package manager (pinned con SHA-512) |
-| [Node.js](https://nodejs.org) | `≥20.10` | Runtime |
-| [Vercel](https://vercel.com) (`@astrojs/vercel`) | `^9.0` | Hosting + adapter |
-| [`@astrojs/sitemap`](https://docs.astro.build/en/guides/integrations-guide/sitemap/) | `^3.7` | Generación de `sitemap.xml` |
-| [`@astrojs/check`](https://docs.astro.build/en/guides/typescript/) | `^0.9` | Type checking de `.astro` |
-| [`sharp`](https://sharp.pixelplumbing.com) | `^0.34` | Optimización nativa de imágenes |
-| [`@fontsource/poppins`](https://fontsource.org/fonts/poppins) | `^5.2` | Tipografía body (self-hosted) |
-| [`@fontsource/pacifico`](https://fontsource.org/fonts/pacifico) | `^5.2` | Tipografía display (self-hosted) |
-| [`@vercel/analytics`](https://vercel.com/docs/analytics) | `^1.6` | Métricas de uso |
-| [`@vercel/speed-insights`](https://vercel.com/docs/speed-insights) | `^1.3` | Core Web Vitals reales |
+| Herramienta                                                                                                     | Versión  | Rol                                  |
+| --------------------------------------------------------------------------------------------------------------- | -------- | ------------------------------------ |
+| [Astro](https://astro.build)                                                                                    | `^5.x`   | Framework SSG/SSR                    |
+| [TypeScript](https://www.typescriptlang.org)                                                                    | `^5.9`   | Tipado estático                      |
+| [pnpm](https://pnpm.io)                                                                                         | `11.1.1` | Package manager (pinned con SHA-512) |
+| [Node.js](https://nodejs.org)                                                                                   | `≥20.10` | Runtime                              |
+| [Vercel](https://vercel.com) (`@astrojs/vercel`)                                                                | `^9.0`   | Hosting + adapter                    |
+| [`@astrojs/sitemap`](https://docs.astro.build/en/guides/integrations-guide/sitemap/)                            | `^3.7`   | Generación de `sitemap.xml`          |
+| [`@astrojs/check`](https://docs.astro.build/en/guides/typescript/)                                              | `^0.9`   | Type checking de `.astro`            |
+| [`sharp`](https://sharp.pixelplumbing.com)                                                                      | `^0.34`  | Optimización nativa de imágenes      |
+| [`@fontsource/poppins`](https://fontsource.org/fonts/poppins)                                                   | `^5.2`   | Tipografía body (self-hosted)        |
+| [`@fontsource/pacifico`](https://fontsource.org/fonts/pacifico)                                                 | `^5.2`   | Tipografía display (self-hosted)     |
+| [`@vercel/speed-insights`](https://vercel.com/docs/speed-insights)                                              | `^1.3`   | Core Web Vitals reales               |
+| [ESLint](https://eslint.org) + [`eslint-plugin-astro`](https://ota-meshi.github.io/eslint-plugin-astro/)        | `^9`     | Lint de `.ts`/`.astro`               |
+| [Prettier](https://prettier.io) + [`prettier-plugin-astro`](https://github.com/withastro/prettier-plugin-astro) | `^3`     | Formato consistente                  |
+
+> **Nota:** `@vercel/analytics` no es una dependencia directa — el Web Analytics de Vercel
+> ya se inyecta automáticamente vía `webAnalytics: { enabled: true }` en `astro.config.mjs`
+> (ver [`@astrojs/vercel`](https://docs.astro.build/en/guides/integrations-guide/vercel/)).
+> Speed Insights sí requiere el componente `<SpeedInsights />`, agregado en `Layout.astro`.
 
 ---
 
@@ -88,8 +95,7 @@ astro-duo/
 │   ├── favicon-192.png
 │   ├── favicon-512.png
 │   ├── og-image.png             # Open Graph / preview en redes
-│   ├── robots.txt
-│   └── images/                  # Imágenes que NO requieren optimización
+│   └── robots.txt
 │
 ├── src/
 │   ├── assets/
@@ -124,11 +130,21 @@ astro-duo/
 │   ├── pages/
 │   │   └── index.astro          # Home — compone todas las secciones
 │   │
+│   ├── scripts/
+│   │   └── scrollDots.ts        # Lógica compartida de carruseles (Servicios/Ebook)
+│   │
 │   └── styles/
 │       └── global.css           # Tokens + reset + utilidades globales
 │
+├── scripts/
+│   └── check-content-drift.mjs  # Verifica que no haya WhatsApp/URLs hardcodeadas
+│
 ├── astro.config.mjs             # Config Astro + adapter Vercel
-├── tsconfig.json                # Path aliases (@data, @sections, @ui, @images)
+├── tsconfig.json                # Path aliases + TypeScript estricto
+├── eslint.config.js             # Lint (flat config)
+├── .prettierrc.json             # Formato
+├── .editorconfig                # Convenciones de editor
+├── AGENTS.md                    # Convenciones del proyecto para agentes de IA
 ├── package.json                 # Scripts, deps, engines, packageManager pinned
 ├── pnpm-workspace.yaml          # allowBuilds: lifecycle scripts permitidos
 ├── pnpm-lock.yaml               # Lockfile reproducible
@@ -141,9 +157,11 @@ Configurados en `tsconfig.json` para evitar imports relativos largos:
 
 ```ts
 import { servicios } from "@data/dataSite";
+import Layout from "@layouts/Layout.astro";
 import Hero from "@sections/Hero.astro";
 import Icon from "@ui/Icon.astro";
 import logo from "@images/5.png";
+import { initScrollDots } from "@scripts/scrollDots";
 ```
 
 ---
@@ -154,17 +172,17 @@ Todos los tokens viven en [`src/styles/global.css`](./src/styles/global.css) com
 
 ### 🎨 Paleta de colores
 
-| Token | Hex | Muestra |
-|---|---|---|
-| `--olive` | `#7b8b3e` | ![](https://img.shields.io/badge/-7b8b3e-7b8b3e?style=flat-square) |
+| Token          | Hex       | Muestra                                                            |
+| -------------- | --------- | ------------------------------------------------------------------ |
+| `--olive`      | `#7b8b3e` | ![](https://img.shields.io/badge/-7b8b3e-7b8b3e?style=flat-square) |
 | `--olive-dark` | `#5c6a2e` | ![](https://img.shields.io/badge/-5c6a2e-5c6a2e?style=flat-square) |
 | `--olive-deep` | `#4a5524` | ![](https://img.shields.io/badge/-4a5524-4a5524?style=flat-square) |
 | `--pink-light` | `#f2c4ce` | ![](https://img.shields.io/badge/-f2c4ce-f2c4ce?style=flat-square) |
-| `--blush` | `#eacfc8` | ![](https://img.shields.io/badge/-eacfc8-eacfc8?style=flat-square) |
-| `--tan` | `#c4b9a0` | ![](https://img.shields.io/badge/-c4b9a0-c4b9a0?style=flat-square) |
-| `--cream` | `#f0ede4` | ![](https://img.shields.io/badge/-f0ede4-f0ede4?style=flat-square) |
-| `--white` | `#fefdfb` | ![](https://img.shields.io/badge/-fefdfb-fefdfb?style=flat-square) |
-| `--text-dark` | `#0c0d0d` | ![](https://img.shields.io/badge/-0c0d0d-0c0d0d?style=flat-square) |
+| `--blush`      | `#eacfc8` | ![](https://img.shields.io/badge/-eacfc8-eacfc8?style=flat-square) |
+| `--tan`        | `#c4b9a0` | ![](https://img.shields.io/badge/-c4b9a0-c4b9a0?style=flat-square) |
+| `--cream`      | `#f0ede4` | ![](https://img.shields.io/badge/-f0ede4-f0ede4?style=flat-square) |
+| `--white`      | `#fefdfb` | ![](https://img.shields.io/badge/-fefdfb-fefdfb?style=flat-square) |
+| `--text-dark`  | `#0c0d0d` | ![](https://img.shields.io/badge/-0c0d0d-0c0d0d?style=flat-square) |
 | `--text-muted` | `#6b6b5a` | ![](https://img.shields.io/badge/-6b6b5a-6b6b5a?style=flat-square) |
 
 ### ✍️ Tipografía
@@ -176,15 +194,15 @@ Sin requests externos a Google Fonts → mejor performance y privacidad.
 
 ### 📐 Escala de espaciado
 
-| Token | Valor |
-|---|---|
-| `--space-xs` | `0.5rem` |
-| `--space-sm` | `1rem` |
-| `--space-md` | `1.5rem` |
-| `--space-lg` | `2.5rem` |
-| `--space-xl` | `4rem` |
-| `--space-2xl` | `6rem` |
-| `--space-3xl` | `8rem` |
+| Token         | Valor    |
+| ------------- | -------- |
+| `--space-xs`  | `0.5rem` |
+| `--space-sm`  | `1rem`   |
+| `--space-md`  | `1.5rem` |
+| `--space-lg`  | `2.5rem` |
+| `--space-xl`  | `4rem`   |
+| `--space-2xl` | `6rem`   |
+| `--space-3xl` | `8rem`   |
 
 ### 🟫 Radios y motion
 
@@ -194,17 +212,17 @@ Radios desde `--radius-sm` (8px) hasta `--radius-full` (pill). Easing `cubic-bez
 
 ## Secciones de la web
 
-| # | Sección | Componente | Función |
-|---|---|---|---|
-| 1 | Navbar | `Navbar.astro` | Logo + navegación + menú móvil |
-| 2 | Hero | `Hero.astro` | Headline principal y CTA |
-| 3 | Servicios | `Servicios.astro` | Cards de servicios (título, descripción, listado de items y CTA a WhatsApp) — carrusel en mobile, grid de 4 columnas en desktop |
-| 4 | Ebook | `Ebook.astro` | Promoción del ebook descargable + reviews |
-| 5 | Recursos | `Recursos.astro` | Recursos gratuitos (prompts, plantillas) |
-| 6 | About | `About.astro` | Quiénes somos + valores |
-| 7 | Contacto | `Contacto.astro` | Canales de contacto |
-| 8 | Footer | `Footer.astro` | Cierre + redes |
-| ➕ | Botón flotante | `BotonFlotante.astro` | WhatsApp siempre accesible |
+| #   | Sección        | Componente            | Función                                                                                                                                                                                                                                                         |
+| --- | -------------- | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | Navbar         | `Navbar.astro`        | Logo + navegación + menú móvil                                                                                                                                                                                                                                  |
+| 2   | Hero           | `Hero.astro`          | Headline principal y CTA                                                                                                                                                                                                                                        |
+| 3   | Servicios      | `Servicios.astro`     | Cards de servicios (título, descripción, listado de items y CTA a WhatsApp) — carrusel en mobile, grid de 4 columnas en desktop. Incluye además una subsección destacada de "Auditoría de Redes Sociales" (precio, qué incluye, cómo funciona y CTA a WhatsApp) |
+| 4   | Ebook          | `Ebook.astro`         | Promoción del ebook descargable + reviews                                                                                                                                                                                                                       |
+| 5   | Recursos       | `Recursos.astro`      | Recursos gratuitos (prompts, plantillas)                                                                                                                                                                                                                        |
+| 6   | About          | `About.astro`         | Quiénes somos + valores                                                                                                                                                                                                                                         |
+| 7   | Contacto       | `Contacto.astro`      | Canales de contacto                                                                                                                                                                                                                                             |
+| 8   | Footer         | `Footer.astro`        | Cierre + redes                                                                                                                                                                                                                                                  |
+| ➕  | Botón flotante | `BotonFlotante.astro` | WhatsApp siempre accesible                                                                                                                                                                                                                                      |
 
 ---
 
@@ -255,12 +273,16 @@ pnpm preview
 
 ## Scripts disponibles
 
-| Script | Comando | Descripción |
-|---|---|---|
-| `dev` | `astro dev` | Servidor de desarrollo con HMR |
-| `build` | `astro build` | Build de producción |
-| `preview` | `astro preview` | Sirve el build localmente |
-| `check` | `astro check` | Type check de archivos `.astro` y `.ts` |
+| Script          | Comando                                | Descripción                                                    |
+| --------------- | -------------------------------------- | -------------------------------------------------------------- |
+| `dev`           | `astro dev`                            | Servidor de desarrollo con HMR                                 |
+| `build`         | `astro build`                          | Build de producción                                            |
+| `preview`       | `astro preview`                        | Sirve el build localmente                                      |
+| `check`         | `astro check`                          | Type check de archivos `.astro` y `.ts`                        |
+| `lint`          | `eslint .`                             | Lint de `.ts`/`.astro`                                         |
+| `format`        | `prettier --write .`                   | Formatea todo el proyecto                                      |
+| `format:check`  | `prettier --check .`                   | Verifica formato sin escribir (útil en CI)                     |
+| `check:content` | `node scripts/check-content-drift.mjs` | Falla si hay WhatsApp/URLs hardcodeadas fuera de `dataSite.ts` |
 
 ---
 
@@ -268,9 +290,11 @@ pnpm preview
 
 **Toda la copy del sitio vive en [`src/data/dataSite.ts`](./src/data/dataSite.ts)**. Es el único archivo que necesitás tocar para actualizar:
 
-- `whatsappNumber` — número con código de país
+- `whatsappNumber` / `whatsappUrl` / `getWhatsappLink(mensaje?)` — número y helpers de contacto. No hardcodear `"https://wa.me/..."` en componentes.
+- `companyDescription` — copy compartido entre Hero y About.
 - `navLinks` — items del menú
 - `servicios` — cards de servicios (título, descripción y listado de items)
+- `auditoriaRedes` — subsección destacada de "Auditoría de Redes Sociales" (precio, qué incluye, cómo funciona, público, tiempo de entrega y CTAs)
 - `ebookHref`, `ebookFeatures`, `ebookReviews` — ebook + testimonios
 - `values` — valores de la sección About
 - `socialLinks` — redes (Instagram, TikTok, WhatsApp, Email)
@@ -293,6 +317,25 @@ export const servicios: Servicio[] = [
 
 Cada card renderiza automáticamente un CTA **"Más info"** que abre WhatsApp con un mensaje preestablecido basado en el `title` del servicio. En desktop las cards se muestran todas en un grid; en mobile forman un carrusel horizontal con scroll-snap y dots de navegación.
 
+### Editar la Auditoría de Redes Sociales
+
+```ts
+// src/data/dataSite.ts
+export const auditoriaRedes: AuditoriaRedes = {
+  title: "Auditoría de Redes Sociales",
+  price: "$80.000 ARS",
+  priceNote: "Pago único",
+  includes: ["..."], // checklist de "¿Qué incluye?"
+  steps: ["..."], // pasos numerados de "¿Cómo funciona?"
+  targetAudience: "...", // "¿Para quién es?"
+  deliveryTime: "48 horas posteriores a la reunión",
+  ctaLabel: "Quiero mi Auditoría",
+  finalCta: "...", // copy de cierre antes del botón
+};
+```
+
+Se renderiza como una subsección destacada al final de `Servicios.astro` (fuera del carrusel/grid), con checklist, pasos numerados y un único CTA a WhatsApp generado con `getWhatsappLink(...)`.
+
 ### Añadir una imagen optimizada
 
 1. Coloca el archivo en `src/assets/images/`.
@@ -303,7 +346,14 @@ Cada card renderiza automáticamente un CTA **"Más info"** que abre WhatsApp co
    import { Image } from "astro:assets";
    import miImagen from "@images/mi-imagen.png";
    ---
-   <Image src={miImagen} alt="..." widths={[400, 800]} sizes="100vw" format="webp" />
+
+   <Image
+     src={miImagen}
+     alt="..."
+     widths={[400, 800]}
+     sizes="100vw"
+     format="webp"
+   />
    ```
 
 `sharp` se encarga de generar variantes WebP responsive en build.
@@ -340,14 +390,14 @@ Solo estos paquetes pueden ejecutar `preinstall`/`install`/`postinstall`. Cualqu
 
 ### `.npmrc` (endurecido)
 
-| Setting | Valor | Propósito |
-|---|---|---|
-| `engine-strict` | `true` | Rechaza Node/pnpm fuera de rango |
-| `frozen-lockfile` | `true` | Falla si el lockfile está desincronizado |
-| `verify-store-integrity` | `true` | Verifica integridad de tarballs vs lockfile |
-| `strict-ssl` | `true` | Solo HTTPS al registry |
+| Setting                           | Valor  | Propósito                                         |
+| --------------------------------- | ------ | ------------------------------------------------- |
+| `engine-strict`                   | `true` | Rechaza Node/pnpm fuera de rango                  |
+| `frozen-lockfile`                 | `true` | Falla si el lockfile está desincronizado          |
+| `verify-store-integrity`          | `true` | Verifica integridad de tarballs vs lockfile       |
+| `strict-ssl`                      | `true` | Solo HTTPS al registry                            |
 | `manage-package-manager-versions` | `true` | pnpm autogestiona su versión vía `packageManager` |
-| `auto-install-peers` | `true` | Instala peer deps automáticamente |
+| `auto-install-peers`              | `true` | Instala peer deps automáticamente                 |
 
 ### Auditoría rápida
 
@@ -381,18 +431,18 @@ No requiere variables sensibles para el build (todo el contenido es estático). 
 
 ## Performance & SEO
 
-| Característica | Implementación |
-|---|---|
-| **Imágenes** | Optimización automática vía `sharp` → WebP responsive con `widths` y `sizes` |
-| **Fonts** | Self-hosted vía Fontsource → cero requests a Google Fonts |
-| **Sitemap** | Generado automáticamente por `@astrojs/sitemap` |
-| **Robots** | `public/robots.txt` con referencia al sitemap |
-| **Open Graph** | `public/og-image.png` (1200×630) |
-| **JSON-LD** | Structured data inyectado en `Layout.astro` |
-| **Lazy loading** | Imágenes below-the-fold con `loading="lazy"` |
-| **Preload critical** | Hero e isotipo con `loading="eager"` |
-| **Reveal animations** | IntersectionObserver con `prefers-reduced-motion` respetado |
-| **Web Analytics** | Vercel Analytics + Speed Insights (CWV reales) |
+| Característica        | Implementación                                                               |
+| --------------------- | ---------------------------------------------------------------------------- |
+| **Imágenes**          | Optimización automática vía `sharp` → WebP responsive con `widths` y `sizes` |
+| **Fonts**             | Self-hosted vía Fontsource → cero requests a Google Fonts                    |
+| **Sitemap**           | Generado automáticamente por `@astrojs/sitemap`                              |
+| **Robots**            | `public/robots.txt` con referencia al sitemap                                |
+| **Open Graph**        | `public/og-image.png` (1200×630)                                             |
+| **JSON-LD**           | Structured data inyectado en `Layout.astro`                                  |
+| **Lazy loading**      | Imágenes below-the-fold con `loading="lazy"`                                 |
+| **Preload critical**  | Hero e isotipo con `loading="eager"`                                         |
+| **Reveal animations** | IntersectionObserver con `prefers-reduced-motion` respetado                  |
+| **Web Analytics**     | Vercel Web Analytics (adapter) + Speed Insights (componente, CWV reales)     |
 
 ---
 

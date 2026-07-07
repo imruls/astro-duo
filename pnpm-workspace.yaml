@@ -1,3 +1,8 @@
+# NOTA: este archivo NO define un monorepo/workspace de pnpm. Este repo tiene
+# un único package.json en la raíz. pnpm 10+ simplemente requiere que ciertas
+# opciones de seguridad (como `allowBuilds`, debajo) vivan en este archivo, sea
+# o no un monorepo real. No busques `packages/*` ni asumas workspaces múltiples.
+
 # Allowlist of packages permitted to run install/build lifecycle scripts.
 # Any package NOT listed here has its preinstall/install/postinstall hooks
 # blocked — pnpm 10+'s defense against malicious supply-chain scripts in

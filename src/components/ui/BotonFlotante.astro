@@ -1,9 +1,11 @@
 ---
+import { whatsappUrl as defaultWhatsappUrl } from "@data/dataSite";
+
 interface Props {
   whatsappUrl?: string;
 }
 
-const { whatsappUrl = "https://wa.me/5491173636081" } = Astro.props;
+const { whatsappUrl = defaultWhatsappUrl } = Astro.props;
 ---
 
 <!-- WhatsApp -->

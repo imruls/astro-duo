@@ -4,7 +4,7 @@
  * Composes all section components inside the base layout.
  * Each component is self-contained (markup + scoped styles + script).
  */
-import Layout from "../layouts/Layout.astro";
+import Layout from "@layouts/Layout.astro";
 import Navbar from "@sections/Navbar.astro";
 import Hero from "@sections/Hero.astro";
 import Servicios from "@sections/Servicios.astro";
@@ -14,6 +14,7 @@ import About from "@sections/About.astro";
 import Contacto from "@sections/Contacto.astro";
 import Footer from "@sections/Footer.astro";
 import BotonFlotante from "@ui/BotonFlotante.astro";
+import { whatsappUrl } from "@data/dataSite";
 ---
 
 <Layout>
@@ -27,5 +28,5 @@ import BotonFlotante from "@ui/BotonFlotante.astro";
     <Contacto />
   </main>
   <Footer />
-  <BotonFlotante whatsappUrl="https://wa.me/5491173636081" />
+  <BotonFlotante whatsappUrl={whatsappUrl} />
 </Layout>

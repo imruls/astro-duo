@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
 import { recursos } from "@data/dataSite";
 import promptsChatgpt from "@images/prompts-chatgpt.png";
 import modeloPresupuesto from "@images/modelo-presupuesto.png";
@@ -23,10 +24,8 @@ const previewImages: Record<string, ImageMetadata> = {
 
     <div class="recursos__grid">
       {
-        recursos.map((r, i) => (
-          <article
-            class:list={["recurso-card"]}
-          >
+        recursos.map((r) => (
+          <article class="recurso-card">
             <div class="recurso-card__image">
               <Image
                 src={previewImages[r.preview]}
@@ -45,7 +44,12 @@ const previewImages: Record<string, ImageMetadata> = {
             <div class="recurso-card__body">
               <h3 class="recurso-card__title">{r.title}</h3>
               <p class="recurso-card__excerpt">{r.excerpt}</p>
-              <a href={r.href} class="recurso-card__link" target="_blank" rel="noopener noreferrer">
+              <a
+                href={r.href}
+                class="recurso-card__link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {r.linkText}
                 <svg
                   viewBox="0 0 24 24"

@@ -6,6 +6,7 @@ import {
   ebookHref,
 } from "@data/dataSite";
 import Icon from "@ui/Icon.astro";
+import type { IconName } from "@ui/iconTypes";
 import ebookCover from "@images/PortadaEbook.png";
 ---
 
@@ -28,7 +29,7 @@ import ebookCover from "@images/PortadaEbook.png";
           features.map((f) => (
             <div class="ebook__feature">
               <div class="ebook__feature-icon">
-                <Icon name={f.icon as any} />
+                <Icon name={f.icon as IconName} />
               </div>
               <span class="ebook__feature-text">{f.text}</span>
             </div>
@@ -110,34 +111,37 @@ import ebookCover from "@images/PortadaEbook.png";
       </button>
     </div>
     <div class="ebook__dots" aria-hidden="true">
-      {reviews.map((_, i) => (
-        <span class:list={["ebook__dot", { active: i === 0 }]} />
-      ))}
+      {
+        reviews.map((_, i) => (
+          <span class:list={["ebook__dot", { active: i === 0 }]} />
+        ))
+      }
     </div>
   </div>
 </section>
 
 <script>
-  const wrapper = document.querySelector(
-    ".ebook__track-wrapper",
-  ) as HTMLElement;
-  const prevBtn = document.querySelector(".ebook__arrow--prev");
-  const nextBtn = document.querySelector(".ebook__arrow--next");
+  import { initScrollDots } from "@scripts/scrollDots";
 
-  if (wrapper) {
+  const wrapper = document.querySelector<HTMLElement>(".ebook__track-wrapper");
+  const track = document.querySelector<HTMLElement>(".ebook__track");
+  const prevBtn = document.querySelector<HTMLButtonElement>(
+    ".ebook__arrow--prev",
+  );
+  const nextBtn = document.querySelector<HTMLButtonElement>(
+    ".ebook__arrow--next",
+  );
+
+  if (wrapper && track) {
     const cardWidth = 280 + 16; // card width + gap approximation
-    const dots = document.querySelectorAll(".ebook__dot");
+    const cards = Array.from(
+      track.querySelectorAll<HTMLElement>(".ebook__review-card"),
+    );
+    const dots = Array.from(
+      document.querySelectorAll<HTMLElement>(".ebook__dot"),
+    );
 
-    function updateDots() {
-      if (!dots.length) return;
-      const scrollLeft = wrapper.scrollLeft;
-      const index = Math.round(scrollLeft / cardWidth);
-      dots.forEach((dot, i) => {
-        dot.classList.toggle("active", i === index);
-      });
-    }
-
-    wrapper.addEventListener("scroll", updateDots, { passive: true });
+    initScrollDots({ container: wrapper, items: cards, dots });
 
     nextBtn?.addEventListener("click", () => {
       wrapper.scrollBy({ left: cardWidth, behavior: "smooth" });

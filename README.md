@@ -464,10 +464,3 @@ Agencia de Marketing Digital
 [✉️ Email](mailto:contacto@duostudiodigital.com)
 
 </div>
-
----
-
-<div align="center">
-
-Hecho con 🫒 por **Dúo Studio Digital**
-</div>

@@ -25,7 +25,9 @@ import { contactChannels, whatsappIconSvg } from "@data/dataSite";
           >
             <div class="contacto__icon">
               {channel.name === "WhatsApp" && (
-                <Fragment set:html={whatsappIconSvg} />
+                <span class="contacto__icon-whatsapp">
+                  <Fragment set:html={whatsappIconSvg} />
+                </span>
               )}
               {channel.name === "Email" && (
                 <svg
@@ -151,7 +153,25 @@ import { contactChannels, whatsappIconSvg } from "@data/dataSite";
     transition: var(--transition);
   }
 
-  .contacto__card:hover .contacto__icon svg {
+  /*
+   * El SVG de WhatsApp se inyecta con `set:html`, así que Astro no le agrega
+   * el atributo de scoping (data-astro-cid-*) y los selectores normales
+   * (ej. `.contacto__icon svg`) nunca lo alcanzan. Por eso acá usamos
+   * `:global()` en el nodo `svg`. Además ese SVG oficial llega hasta los
+   * bordes del viewBox (0-24), a diferencia de los íconos de línea
+   * (Email/Instagram/TikTok) que dejan ~2px de margen interno, por eso se
+   * reduce a 20px para igualar el peso visual.
+   */
+  .contacto__icon-whatsapp :global(svg) {
+    display: block;
+    width: 20px;
+    height: 20px;
+    color: var(--olive);
+    transition: var(--transition);
+  }
+
+  .contacto__card:hover .contacto__icon svg,
+  .contacto__card:hover .contacto__icon-whatsapp :global(svg) {
     color: var(--white);
   }
 

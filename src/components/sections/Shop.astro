@@ -1,0 +1,168 @@
+---
+import { shopFeatures as features, shopHref } from "@data/dataSite";
+import Icon from "@ui/Icon.astro";
+import type { IconName } from "@ui/iconTypes";
+---
+
+<section class="shop" id="shop">
+  <div class="container shop__grid">
+    <div class="shop__content reveal">
+      <span class="section-label shop__label">Nuestra Tienda</span>
+      <h2 class="section-title shop__title">
+        Visitá nuestro <span>eshop</span>
+      </h2>
+      <p class="shop__desc">
+        Encontrá recursos, plantillas y productos digitales pensados para
+        ayudarte a crecer en redes sin perder tiempo empezando de cero.
+      </p>
+
+      <div class="shop__features">
+        {
+          features.map((f) => (
+            <div class="shop__feature">
+              <div class="shop__feature-icon">
+                <Icon name={f.icon as IconName} />
+              </div>
+              <span class="shop__feature-text">{f.text}</span>
+            </div>
+          ))
+        }
+      </div>
+
+      <a
+        href={shopHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="shop__cta"
+      >
+        Ir a la tienda
+        <Icon name="shopping-bag" />
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .shop {
+    padding: var(--space-2xl) 0;
+    background: linear-gradient(to bottom, var(--pink-light), var(--cream));
+    position: relative;
+    overflow: hidden;
+    contain: paint;
+  }
+
+  .shop::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -30%;
+    width: 80vw;
+    height: 80vw;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.05) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+
+  .shop__grid {
+    display: flex;
+    justify-content: center;
+  }
+
+  .shop__content {
+    text-align: center;
+    max-width: 620px;
+  }
+
+  .shop__label {
+    color: var(--olive);
+  }
+
+  .shop__label::before {
+    background: var(--olive);
+  }
+
+  .shop__title {
+    color: var(--text-dark);
+  }
+
+  .shop__title span {
+    color: var(--olive);
+  }
+
+  .shop__desc {
+    font-size: 1rem;
+    color: var(--text-dark);
+    line-height: 1.7;
+    margin: 0 auto var(--space-lg);
+  }
+
+  .shop__features {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+    text-align: left;
+  }
+
+  .shop__feature {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: var(--radius-md);
+  }
+
+  .shop__feature-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    background: rgba(85, 107, 47, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .shop__feature-icon svg {
+    width: 18px;
+    height: 18px;
+    color: var(--text-dark);
+  }
+
+  .shop__feature-text {
+    font-size: 0.9rem;
+    color: var(--text-dark);
+  }
+
+  .shop__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: var(--olive);
+    color: var(--white);
+    border-radius: var(--radius-full);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: var(--transition);
+    box-shadow: 0 4px 20px rgba(85, 107, 47, 0.3);
+  }
+
+  .shop__cta:hover {
+    background: var(--olive-deep);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(85, 107, 47, 0.4);
+  }
+
+  @media (min-width: 640px) {
+    .shop__features {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

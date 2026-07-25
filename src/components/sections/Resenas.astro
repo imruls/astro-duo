@@ -1,0 +1,274 @@
+---
+import { clientReviews as reviews, googleReviewHref } from "@data/dataSite";
+import Icon from "@ui/Icon.astro";
+---
+
+<section class="resenas" id="resenas">
+  <div class="container">
+    <div class="resenas__header reveal">
+      <span class="section-label">Reseñas</span>
+      <h2 class="section-title">
+        Lo que dicen nuestros <span>clientes</span>
+      </h2>
+      <p class="section-subtitle">
+        Historias reales de personas que ya trabajaron con nosotras.
+      </p>
+    </div>
+
+    <div
+      class="resenas__carousel"
+      role="region"
+      aria-label="Reseñas de clientes"
+      aria-roledescription="carousel"
+    >
+      <button
+        class="resenas__arrow resenas__arrow--prev"
+        aria-label="Reseña anterior"
+      >
+        <Icon name="chevron-left" size={20} />
+      </button>
+      <div class="resenas__track-wrapper">
+        <div class="resenas__track">
+          {
+            reviews.map((r) => (
+              <div class="resena-card">
+                <span class="resena-card__name">{r.name}</span>
+                <div class="resena-card__stars">
+                  {Array.from({ length: r.rating }).map(() => (
+                    <Icon
+                      name="star"
+                      size={16}
+                      fill="currentColor"
+                      stroke="none"
+                    />
+                  ))}
+                </div>
+                <p class="resena-card__text">"{r.text}"</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+      <button
+        class="resenas__arrow resenas__arrow--next"
+        aria-label="Siguiente reseña"
+      >
+        <Icon name="chevron-right" size={20} />
+      </button>
+    </div>
+    <div class="resenas__dots" aria-hidden="true">
+      {
+        reviews.map((_, i) => (
+          <span class:list={["resenas__dot", { active: i === 0 }]} />
+        ))
+      }
+    </div>
+
+    <div class="resenas__cta-wrap reveal">
+      <p class="resenas__cta-text">¿Ya trabajaste con nosotras?</p>
+      <a
+        href={googleReviewHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="resenas__cta"
+      >
+        Dejanos tu reseña en Google
+        <Icon name="star" />
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initScrollDots } from "@scripts/scrollDots";
+
+  const wrapper = document.querySelector<HTMLElement>(
+    ".resenas__track-wrapper",
+  );
+  const track = document.querySelector<HTMLElement>(".resenas__track");
+  const prevBtn = document.querySelector<HTMLButtonElement>(
+    ".resenas__arrow--prev",
+  );
+  const nextBtn = document.querySelector<HTMLButtonElement>(
+    ".resenas__arrow--next",
+  );
+
+  if (wrapper && track) {
+    const cardWidth = 280 + 16; // card width + gap approximation
+    const cards = Array.from(
+      track.querySelectorAll<HTMLElement>(".resena-card"),
+    );
+    const dots = Array.from(
+      document.querySelectorAll<HTMLElement>(".resenas__dot"),
+    );
+
+    initScrollDots({ container: wrapper, items: cards, dots });
+
+    nextBtn?.addEventListener("click", () => {
+      wrapper.scrollBy({ left: cardWidth, behavior: "smooth" });
+    });
+
+    prevBtn?.addEventListener("click", () => {
+      wrapper.scrollBy({ left: -cardWidth, behavior: "smooth" });
+    });
+  }
+</script>
+
+<style>
+  .resenas {
+    padding: var(--space-2xl) 0;
+    background: linear-gradient(to bottom, var(--cream), var(--white));
+  }
+
+  .resenas__header {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+  }
+
+  .resenas__header .section-subtitle {
+    margin-inline: auto;
+  }
+
+  .resenas__carousel {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .resenas__arrow {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid var(--olive);
+    background: transparent;
+    color: var(--olive);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+
+  .resenas__arrow:hover {
+    background: var(--olive);
+    color: var(--white);
+  }
+
+  .resenas__track-wrapper {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex: 1;
+  }
+
+  .resenas__track-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+
+  .resenas__track {
+    display: flex;
+    gap: var(--space-md);
+  }
+
+  .resena-card {
+    min-width: 280px;
+    flex: 0 0 280px;
+    scroll-snap-align: start;
+    background: var(--white);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  }
+
+  .resena-card__stars {
+    display: flex;
+    gap: 2px;
+    color: var(--star-color);
+    margin-bottom: 0.75rem;
+  }
+
+  .resena-card__text {
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  .resena-card__name {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 0.35rem;
+  }
+
+  /* Dots indicator */
+  .resenas__dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: var(--space-md);
+  }
+
+  .resenas__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--tan);
+    transition: var(--transition);
+  }
+
+  .resenas__dot.active {
+    background: var(--olive);
+    transform: scale(1.25);
+  }
+
+  /* CTA para dejar reseña en Google */
+  .resenas__cta-wrap {
+    margin-top: var(--space-xl);
+    text-align: center;
+  }
+
+  .resenas__cta-text {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    margin-bottom: var(--space-sm);
+  }
+
+  .resenas__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: var(--olive);
+    color: var(--white);
+    border-radius: var(--radius-full);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: var(--transition);
+    box-shadow: 0 4px 20px rgba(85, 107, 47, 0.3);
+  }
+
+  .resenas__cta:hover {
+    background: var(--olive-deep);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(85, 107, 47, 0.4);
+  }
+
+  /* Mobile: hide arrows, rely on swipe + dots */
+  @media (max-width: 639px) {
+    .resenas__arrow {
+      display: none;
+    }
+  }
+
+  /* Desktop: hide dots */
+  @media (min-width: 640px) {
+    .resenas__dots {
+      display: none;
+    }
+  }
+</style>

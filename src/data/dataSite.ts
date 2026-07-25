@@ -32,8 +32,8 @@ export const tiktokUrl = "https://www.tiktok.com/@duo.studio.digital";
 
 export const navLinks = [
   { label: "Servicios", href: "#servicios" },
-  { label: "Ebook", href: "#ebook" },
-  { label: "Recursos", href: "#recursos" },
+  { label: "Tienda", href: "#shop" },
+  { label: "Reseñas", href: "#resenas" },
   { label: "Nosotras", href: "#about" },
 ];
 
@@ -139,56 +139,60 @@ export const auditoriaRedes: AuditoriaRedes = {
     "¿Sentís que publicás mucho pero no obtenés resultados? Descubrí exactamente qué está frenando el crecimiento de tu marca y llevate un plan de acción listo para implementar.",
 };
 
-// ─── Ebook ───────────────────────────────────────────────
+// ─── Shop ────────────────────────────────────────────────
 
-export const ebookHref =
-  "https://duo-studio-digital.tiendup.com/p/ebook-el-abc-de-las-redes";
+export const shopHref = "https://duostudioshop.com.ar/";
 
-export const ebookFeatures = [
-  { icon: "book", text: "+40 páginas de contenido práctico" },
+export const shopFeatures = [
+  { icon: "shopping-bag", text: "Recursos y plantillas listas para usar" },
   { icon: "chart", text: "Estrategias probadas con resultados" },
-  { icon: "rocket", text: "Plan de acción de 4 semanas" },
-  { icon: "info", text: "Tips exclusivos de nuestro equipo" },
+  { icon: "rocket", text: "Todo lo que necesitás para crecer" },
+  { icon: "info", text: "Contenido creado por nuestro equipo" },
 ];
 
-export const ebookReviews = [
+// ─── Reseñas ─────────────────────────────────────────────
+
+export interface ClientReview {
+  rating: 1 | 2 | 3 | 4 | 5;
+  name: string;
+  text: string;
+}
+
+export const clientReviews: ClientReview[] = [
   {
-    name: "German",
-    user: "@vitalmeals.arg",
-    text: "Por fin entendí qué publicar y por qué. Dejé de subir cosas al azar y empecé a tener orden.",
-    stars: 5,
+    rating: 5,
+    name: "Karina Fernandez",
+    text: "Super recomendables las chicas de Dúo! Trabajan súper profesional, súper modernas y cancheras!! Son un 10. Llevan mi emprendimiento adelante y estoy feliz con los resultados!",
   },
   {
-    name: "Ornella",
-    user: "@nutri.ocolangelo",
-    text: "Es práctico de verdad. Lo leí y ya esa semana pude aplicarlo en mis redes.",
-    stars: 5,
+    rating: 5,
+    name: "Alejandro Cuello",
+    text: "Excelente servicio el de Duo, siempre generando herramientas para que el cliente o el producto esté donde tiene que estar, la pasión y el profesionalismo de las chicas hacen la diferencia…. No duden en sumarse a este hermoso equipo!!!",
   },
   {
-    name: "Tomas",
-    user: "@catu3d",
-    text: "Me encantó porque está explicado simple, sin palabras técnicas ni vueltas.",
-    stars: 5,
+    rating: 5,
+    name: "Ornella Colangelo",
+    text: "Exelente atención, muy innovadoras con las publicaciones y siempre responden rápido a nuestros pedidos. Son lo mas",
   },
   {
-    name: "Ignacio",
-    user: "@mignoliperformance",
-    text: "Los recursos editables valen más que el ebook. Me ahorraron horas de trabajo",
-    stars: 5,
+    rating: 5,
+    name: "German Svariati",
+    text: "Son un dúo que le ponen garra a cada proyecto! Hacen un trabajo increible!",
   },
   {
-    name: "Karina",
-    user: "@mesalibre.ok",
-    text: "Ideal si sentís que hacés mucho en redes pero no ves resultados. Me dio claridad.",
-    stars: 5,
+    rating: 5,
+    name: "Flor Ruiz",
+    text: "Excelente experiencia con Dúo. Cami y Mica son unas genias, súper profesionales, creativas y siempre atentas a cada detalle. Da gusto trabajar con ellas y los resultados hablan por sí solos. Las recomiendo totalmente!",
   },
   {
-    name: "Morena",
-    user: "@skinstudio.ms",
-    text: "Se nota que está hecho desde la experiencia real, no desde el marketing humo.",
-    stars: 5,
+    rating: 5,
+    name: "Alexo Str",
+    text: "Excelente Duo. Resolvieron mi inquietud de manera rápida y eficaz logrando aumentar la cantidad de gente a la que le llegó mi trabajo como entrenador. Hoy con mas trabajo que antes, por la amabilidad de Mica y de Cami...no dudo en pedirle ayuda a DÚO STUDIO DIGITAL. Gracias chicas!",
   },
 ];
+
+export const googleReviewHref =
+  "https://www.google.com/maps/place/D%C3%BAo+Studio+Digital/@-37.0323467,-65.3129713,6z/data=!3m1!4b1!4m6!3m5!1s0x64ba177cf6cee76b:0xf62dadc4ff0ba53d!8m2!3d-37.1498821!4d-60.0254816!16s%2Fg%2F11ms1qqxbr?entry=ttu&g_ep=EgoyMDI2MDcyMi4wIKXMDSoASAFQAw%3D%3D";
 
 // ─── About / Hero ───────────────────────────────────────
 // Copy compartido entre Hero.astro y About.astro: mantenerlo acá evita que
@@ -281,26 +285,3 @@ export const contactChannels = [
   },
 ];
 
-// ─── Recursos ────────────────────────────────────────────
-
-export const recursos = [
-  {
-    tag: "Gratis",
-    preview: "prompts-chatgpt",
-    imagePosition: "center",
-    title: "10 Prompts para ChatGPT",
-    excerpt:
-      "Prompts listos para usar que te van a ayudar a crear contenido, planificar y optimizar tu presencia digital.",
-    linkText: "Descargar PDF",
-    href: "https://duo-studio-digital.tiendup.com/p/pack-de-10-prompts-para-chatgpt-especial-emprendedores",
-  },
-  {
-    tag: "Gratis",
-    preview: "modelo-presupuesto",
-    title: "Modelo de Presupuesto",
-    excerpt:
-      "Una plantilla de presupuesto profesional para que puedas presentar tus servicios de forma clara y organizada.",
-    linkText: "Descargar PDF",
-    href: "https://duo-studio-digital.tiendup.com/p/presupuesto-basico-community-manager-emprendedor",
-  },
-];

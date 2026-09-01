@@ -31,6 +31,7 @@ export const tiktokUrl = "https://www.tiktok.com/@duo.studio.digital";
 // ─── Navbar ──────────────────────────────────────────────
 
 export const navLinks = [
+  { label: "Novedades", href: "#novedades" },
   { label: "Servicios", href: "#servicios" },
   { label: "Tienda", href: "#shop" },
   { label: "Reseñas", href: "#resenas" },
@@ -137,6 +138,39 @@ export const auditoriaRedes: AuditoriaRedes = {
   ctaLabel: "Quiero mi Auditoría",
   finalCta:
     "¿Sentís que publicás mucho pero no obtenés resultados? Descubrí exactamente qué está frenando el crecimiento de tu marca y llevate un plan de acción listo para implementar.",
+};
+
+// ─── Novedades ───────────────────────────────────────────
+
+export interface Novedad {
+  badge: string;
+  title: string;
+  description: string;
+  items: string[];
+  targetAudience: string;
+  ctaLabel: string;
+  ctaHref: string;
+}
+
+export const novedadDuoSystemClient: Novedad = {
+  badge: "Novedad",
+  title: "Dúo System Client",
+  description:
+    "Un kit de 8 plantillas profesionales y 100% editables en Canva, pensado para ordenar toda la relación con tus clientes: desde el primer contacto hasta el cierre del proyecto. Sumá tu logo, colores y tipografías y empezá a usarlas sin necesitar experiencia en diseño.",
+  items: [
+    "Formulario estratégico de brief para conocer a fondo la marca del cliente",
+    "Propuesta de trabajo lista para presentar",
+    "Guía de bienvenida para nuevos clientes",
+    "Términos y condiciones del servicio",
+    "Guía para planificar la reunión inicial",
+    "Plantilla de cotización de proyectos",
+    "Estructura de brandbook / identidad visual",
+    "Checklist de cierre de cliente",
+  ],
+  targetAudience:
+    "Ideal para freelancers, diseñadoras, community managers, social media managers, estudios, agencias, fotógrafas, videomakers y profesionales independientes que trabajan directo con clientes.",
+  ctaLabel: "Más info",
+  ctaHref: "https://duostudioshop.com.ar/p/duo-system-client",
 };
 
 // ─── Shop ────────────────────────────────────────────────

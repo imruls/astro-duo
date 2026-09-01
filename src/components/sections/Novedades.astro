@@ -1,0 +1,170 @@
+---
+import { novedadDuoSystemClient as novedad } from "@data/dataSite";
+---
+
+<section class="novedades" id="novedades">
+  <div class="container">
+    <div class="novedades__card reveal">
+      <span class="novedades__badge">{novedad.badge}</span>
+
+      <div class="novedades__header">
+        <h2 class="section-title novedades__title">{novedad.title}</h2>
+        <p class="novedades__desc">{novedad.description}</p>
+      </div>
+
+      <ul class="novedades__list">
+        {
+          novedad.items.map((item) => (
+            <li class="novedades__list-item">
+              <svg
+                class="novedades__list-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              <span>{item}</span>
+            </li>
+          ))
+        }
+      </ul>
+
+      <p class="novedades__audience">{novedad.targetAudience}</p>
+
+      <div class="novedades__footer">
+        <a
+          href={novedad.ctaHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="novedades__cta btn-primary"
+        >
+          {novedad.ctaLabel}
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
+            <path d="M5 12h14M12 5l7 7-7 7"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .novedades {
+    padding: var(--space-2xl) 0;
+    background: var(--cream);
+  }
+
+  .novedades__card {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    background: var(--white);
+    border: 1px solid rgba(123, 139, 62, 0.2);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.05);
+  }
+
+  .novedades__badge {
+    display: inline-block;
+    padding: 0.35rem 0.9rem;
+    background: var(--olive);
+    color: var(--white);
+    border-radius: var(--radius-full);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-md);
+  }
+
+  .novedades__header {
+    margin-bottom: var(--space-lg);
+  }
+
+  .novedades__title {
+    color: var(--text-dark);
+  }
+
+  .novedades__desc {
+    margin-top: var(--space-sm);
+    max-width: 620px;
+    font-size: 1rem;
+    color: var(--text-dark);
+    line-height: 1.7;
+  }
+
+  .novedades__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    list-style: none;
+    margin-bottom: var(--space-lg);
+  }
+
+  .novedades__list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.55rem 0;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+    line-height: 1.5;
+    border-bottom: 1px solid rgba(123, 139, 62, 0.15);
+  }
+
+  .novedades__list-item:last-child {
+    border-bottom: none;
+  }
+
+  .novedades__list-icon {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    color: var(--olive);
+    flex-shrink: 0;
+  }
+
+  .novedades__audience {
+    max-width: 620px;
+    margin-bottom: var(--space-lg);
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .novedades__footer {
+    text-align: center;
+  }
+
+  .novedades__cta {
+    width: 100%;
+  }
+
+  @media (min-width: 640px) {
+    .novedades__cta {
+      width: auto;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .novedades__card {
+      padding: var(--space-xl);
+    }
+
+    .novedades__list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: var(--space-xl);
+    }
+  }
+</style>

@@ -193,6 +193,7 @@ import { companyDescription } from "@data/dataSite";
     height: auto;
     object-fit: contain;
     filter: drop-shadow(0 4px 12px rgba(123, 139, 62, 0.2));
+    animation: spin 14s linear infinite;
   }
 
   /* Content */
@@ -293,6 +294,7 @@ import { companyDescription } from "@data/dataSite";
     width: 100%;
     height: 100%;
     object-fit: cover;
+    animation: spin 14s linear infinite;
   }
 
   .hero__circle--accent-1 {
@@ -387,6 +389,23 @@ import { companyDescription } from "@data/dataSite";
 
     .hero__visual {
       display: block;
+    }
+
+    /* Logo 20% más grande en desktop, manteniendo el centrado */
+    .hero__circle--main {
+      width: 114%;
+      height: 114%;
+      top: -7%;
+      left: -7%;
+    }
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
     }
   }
 </style>
